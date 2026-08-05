@@ -1,6 +1,7 @@
 package com.example.lighture;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -177,7 +178,12 @@ public class AuthActivity extends AppCompatActivity {
         wireFieldFocus(confirm, findViewById(R.id.registerConfirmField));
         wirePasswordToggle(password, findViewById(R.id.toggleRegisterPassword));
         wirePasswordToggle(confirm, findViewById(R.id.toggleRegisterConfirm));
-        wirePasswordStrength(password, findViewById(R.id.registerPasswordStrength));
+        wirePasswordStrength(password,
+                findViewById(R.id.registerPasswordStrengthRow),
+                findViewById(R.id.registerStrengthSegment1),
+                findViewById(R.id.registerStrengthSegment2),
+                findViewById(R.id.registerStrengthSegment3),
+                findViewById(R.id.registerPasswordStrengthLabel));
 
         findViewById(R.id.loginLink).setOnClickListener(v -> switchMode(MODE_LOGIN));
         wireSocial(findViewById(R.id.registerSocialGoogle), R.string.auth_social_google);
@@ -382,7 +388,12 @@ public class AuthActivity extends AppCompatActivity {
         wireFieldFocus(confirm, findViewById(R.id.newConfirmField));
         wirePasswordToggle(password, findViewById(R.id.toggleNewPassword));
         wirePasswordToggle(confirm, findViewById(R.id.toggleNewConfirm));
-        wirePasswordStrength(password, findViewById(R.id.newPasswordStrength));
+        wirePasswordStrength(password,
+                findViewById(R.id.newPasswordStrengthRow),
+                findViewById(R.id.newPasswordStrengthSegment1),
+                findViewById(R.id.newPasswordStrengthSegment2),
+                findViewById(R.id.newPasswordStrengthSegment3),
+                findViewById(R.id.newPasswordStrengthLabel));
 
         findViewById(R.id.backToLoginLink).setOnClickListener(v -> switchMode(MODE_LOGIN));
 
@@ -464,7 +475,8 @@ public class AuthActivity extends AppCompatActivity {
                 hasFocus ? R.drawable.bg_auth_field_focused : R.drawable.bg_auth_field));
     }
 
-    private void wirePasswordStrength(EditText input, TextView label) {
+    private void wirePasswordStrength(EditText input, View row, View seg1, View seg2,
+                                      View seg3, TextView label) {
         input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -473,11 +485,11 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (TextUtils.isEmpty(s)) {
-                    label.setVisibility(View.GONE);
+                    row.setVisibility(View.GONE);
                     return;
                 }
+                row.setVisibility(View.VISIBLE);
                 int strength = passwordStrength(s.toString());
-                label.setVisibility(View.VISIBLE);
                 switch (strength) {
                     case 2:
                         label.setText(R.string.auth_password_strength_strong);
@@ -491,6 +503,15 @@ public class AuthActivity extends AppCompatActivity {
                         label.setText(R.string.auth_password_strength_weak);
                         label.setTextColor(getColor(R.color.color_danger));
                         break;
+                }
+                View[] segments = {seg1, seg2, seg3};
+                int fillColor = strength == 2 ? getColor(R.color.color_success)
+                        : strength == 1 ? getColor(R.color.color_warning)
+                        : getColor(R.color.color_danger);
+                int trackColor = getColor(R.color.neutral_200);
+                for (int i = 0; i < segments.length; i++) {
+                    segments[i].setBackgroundTintList(
+                            ColorStateList.valueOf(i < strength + 1 ? fillColor : trackColor));
                 }
             }
 

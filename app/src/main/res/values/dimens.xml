@@ -101,6 +101,7 @@
     <dimen name="size_avatar_md">44dp</dimen>
     <dimen name="size_avatar_lg">64dp</dimen>
     <dimen name="size_avatar_xl">96dp</dimen>
+    <dimen name="size_avatar_2xl">160dp</dimen>
 
     <dimen name="size_touch_min">48dp</dimen>
     <dimen name="size_button_sm">40dp</dimen>
@@ -119,6 +120,9 @@
     <!-- Auth screens -->
     <dimen name="social_button_size">56dp</dimen>
     <dimen name="button_max_width">340dp</dimen>
+
+    <!-- Password strength meter -->
+    <dimen name="password_meter_height">4dp</dimen>
 
     <dimen name="content_width_sm">480dp</dimen>
     <dimen name="content_width_md">704dp</dimen>

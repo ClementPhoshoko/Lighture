@@ -172,8 +172,8 @@
 
         <ImageView
             android:id="@+id/otpErrorAvatar"
-            android:layout_width="@dimen/size_avatar_xl"
-            android:layout_height="@dimen/size_avatar_xl"
+            android:layout_width="@dimen/size_avatar_2xl"
+            android:layout_height="@dimen/size_avatar_2xl"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/space_4"
             android:contentDescription="@string/auth_otp_invalid"
@@ -201,24 +201,25 @@
             android:text="@string/auth_otp_countdown"
             android:textColor="@color/text_secondary" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/otpVerifyButton"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_button_lg"
-            android:layout_marginTop="@dimen/space_6"
-            android:background="@drawable/bg_button_gradient"
-            android:drawableEnd="@drawable/ic_arrow_right"
-            android:drawablePadding="@dimen/space_2"
-            android:drawableTint="@color/text_inverse"
-            android:elevation="@dimen/elevation_card"
-            android:foreground="?attr/selectableItemBackground"
-            android:gravity="center"
-            android:paddingStart="@dimen/space_4"
-            android:paddingEnd="@dimen/space_4"
-            android:text="@string/auth_otp_verify"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.Lighture.Label"
-            android:textColor="@color/text_inverse" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_6">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/otpVerifyButton"
+                style="@style/Widget.Lighture.AuthButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/size_button_lg"
+                android:contentDescription="@string/auth_otp_verify_description"
+                android:text="@string/auth_otp_verify"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="@dimen/button_max_width"
+                tools:ignore="VisualLintButtonSize" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/otpResendRow"

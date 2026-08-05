@@ -2,6 +2,7 @@
 <!-- Registration content, inflated into the auth frame. -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -234,15 +235,57 @@
                     android:textColor="@color/input_text"
                     android:textColorHint="@color/input_placeholder" />
 
-                <TextView
-                    android:id="@+id/registerPasswordStrength"
-                    style="@style/TextAppearance.Lighture.Caption"
+                <LinearLayout
+                    android:id="@+id/registerPasswordStrengthRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_0_5"
-                    android:gravity="end"
-                    android:textColor="@color/text_tertiary"
-                    android:visibility="gone" />
+                    android:layout_marginTop="@dimen/space_1_5"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/registerStrengthRuler"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:id="@+id/registerStrengthSegment1"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/password_meter_height"
+                            android:layout_marginEnd="@dimen/space_0_5"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_password_segment" />
+
+                        <View
+                            android:id="@+id/registerStrengthSegment2"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/password_meter_height"
+                            android:layout_marginStart="@dimen/space_0_5"
+                            android:layout_marginEnd="@dimen/space_0_5"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_password_segment" />
+
+                        <View
+                            android:id="@+id/registerStrengthSegment3"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/password_meter_height"
+                            android:layout_marginStart="@dimen/space_0_5"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_password_segment" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/registerPasswordStrengthLabel"
+                        style="@style/TextAppearance.Lighture.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_2"
+                        android:textColor="@color/text_tertiary" />
+                </LinearLayout>
             </LinearLayout>
 
             <ImageButton
@@ -393,24 +436,25 @@
             </LinearLayout>
         </FrameLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/registerButton"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_button_lg"
-            android:layout_marginTop="@dimen/space_6"
-            android:background="@drawable/bg_button_gradient"
-            android:drawableEnd="@drawable/ic_arrow_right"
-            android:drawablePadding="@dimen/space_2"
-            android:drawableTint="@color/text_inverse"
-            android:elevation="@dimen/elevation_card"
-            android:foreground="?attr/selectableItemBackground"
-            android:gravity="center"
-            android:paddingStart="@dimen/space_4"
-            android:paddingEnd="@dimen/space_4"
-            android:text="@string/auth_register_button"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.Lighture.Label"
-            android:textColor="@color/text_inverse" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_6">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/registerButton"
+                style="@style/Widget.Lighture.AuthButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/size_button_lg"
+                android:contentDescription="@string/auth_register_description"
+                android:text="@string/auth_register_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="@dimen/button_max_width"
+                tools:ignore="VisualLintButtonSize" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/authDivider"
