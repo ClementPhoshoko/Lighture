@@ -4,12 +4,18 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -186,6 +192,10 @@ public class AuthActivity extends AppCompatActivity {
                 findViewById(R.id.registerPasswordStrengthLabel));
 
         findViewById(R.id.loginLink).setOnClickListener(v -> switchMode(MODE_LOGIN));
+        TextView agreement = findViewById(R.id.registerAgreement);
+        agreement.setText(buildRegisterAgreement());
+        agreement.setMovementMethod(LinkMovementMethod.getInstance());
+        agreement.setHighlightColor(Color.TRANSPARENT);
         wireSocial(findViewById(R.id.registerSocialGoogle), R.string.auth_social_google);
         wireSocial(findViewById(R.id.registerSocialApple), R.string.auth_social_apple);
         wireSocial(findViewById(R.id.registerSocialFacebook), R.string.auth_social_facebook);
@@ -554,6 +564,40 @@ public class AuthActivity extends AppCompatActivity {
     private void wireSocial(View button, int brandNameRes) {
         button.setOnClickListener(v -> showMessage(
                 getString(R.string.auth_snackbar_social, getString(brandNameRes))));
+    }
+
+    private CharSequence buildRegisterAgreement() {
+        String terms = getString(R.string.auth_register_terms);
+        String privacy = getString(R.string.auth_register_privacy);
+        SpannableString text = new SpannableString(
+                getString(R.string.auth_register_agreement, terms, privacy));
+        int termsStart = text.toString().indexOf(terms);
+        if (termsStart >= 0) {
+            text.setSpan(makeAgreementLink(R.string.auth_snackbar_terms_demo),
+                    termsStart, termsStart + terms.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        int privacyStart = text.toString().indexOf(privacy);
+        if (privacyStart >= 0) {
+            text.setSpan(makeAgreementLink(R.string.auth_snackbar_privacy_demo),
+                    privacyStart, privacyStart + privacy.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return text;
+    }
+
+    private ClickableSpan makeAgreementLink(int messageResId) {
+        return new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                showMessage(messageResId);
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(getColor(R.color.text_brand));
+                ds.setUnderlineText(false);
+            }
+        };
     }
 
     private void switchMode(int mode) {

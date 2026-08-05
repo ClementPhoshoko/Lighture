@@ -44,6 +44,11 @@
     <string name="auth_password_strength_strong">Strong</string>
     <string name="auth_login_prompt">Already have an account?</string>
     <string name="auth_login_link">Login</string>
+    <string name="auth_register_agreement">By creating an account, you agree to our %1$s and %2$s.</string>
+    <string name="auth_register_terms">Terms</string>
+    <string name="auth_register_privacy">Privacy Policy</string>
+    <string name="auth_snackbar_terms_demo">Terms of Service are coming soon.</string>
+    <string name="auth_snackbar_privacy_demo">Privacy Policy is coming soon.</string>
 
     <string name="auth_forgot_title">Forgot Password?</string>
     <string name="auth_forgot_subtitle">No worries! Enter your email address and we\'ll send you a code to reset your password.</string>

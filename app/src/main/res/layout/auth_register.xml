@@ -593,5 +593,14 @@
                 android:textColor="@color/text_brand" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/registerAgreement"
+            style="@style/TextAppearance.Lighture.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_3"
+            android:gravity="center"
+            android:textColor="@color/text_tertiary" />
+
     </LinearLayout>
 </ScrollView>
