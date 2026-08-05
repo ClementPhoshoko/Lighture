@@ -36,6 +36,8 @@
     <string name="auth_hint_name">Your name</string>
     <string name="auth_field_label_confirm">Confirm Password</string>
     <string name="auth_register_button">Sign Up</string>
+    <string name="auth_register_requirements_title">Password Requirements</string>
+    <string name="auth_register_requirements">Use 8+ characters with a mix of letters, numbers &amp; symbols for a stronger password.</string>
     <string name="auth_login_prompt">Already have an account?</string>
     <string name="auth_login_link">Login</string>
 
@@ -49,6 +51,7 @@
     <string name="auth_snackbar_empty">Enter your email and password to continue.</string>
     <string name="auth_snackbar_fill">Please fill in all fields.</string>
     <string name="auth_snackbar_password_mismatch">Passwords do not match.</string>
+    <string name="auth_snackbar_password_weak">Use 8+ characters with a mix of letters, numbers &amp; symbols for a stronger password.</string>
     <string name="auth_snackbar_invalid_email">Enter a valid email address.</string>
     <string name="auth_snackbar_login_demo">Welcome back! Sign-in is not wired up yet.</string>
     <string name="auth_snackbar_register_demo">Account created! Sign-up is not wired up yet.</string>

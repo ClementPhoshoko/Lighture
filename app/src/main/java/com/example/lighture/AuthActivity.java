@@ -150,6 +150,10 @@ public class AuthActivity extends AppCompatActivity {
             if (!validateEmailAndPassword(email, password)) {
                 return;
             }
+            if (!isStrongPassword(password.getText().toString())) {
+                showMessage(R.string.auth_snackbar_password_weak);
+                return;
+            }
             if (!TextUtils.equals(password.getText(), confirm.getText())) {
                 showMessage(R.string.auth_snackbar_password_mismatch);
                 return;
@@ -201,6 +205,26 @@ public class AuthActivity extends AppCompatActivity {
 
     private boolean isValidEmail(String value) {
         return Patterns.EMAIL_ADDRESS.matcher(value).matches();
+    }
+
+    private boolean isStrongPassword(String value) {
+        if (value.length() < 8) {
+            return false;
+        }
+        boolean hasLetter = false;
+        boolean hasDigit = false;
+        boolean hasSymbol = false;
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            if (Character.isLetter(c)) {
+                hasLetter = true;
+            } else if (Character.isDigit(c)) {
+                hasDigit = true;
+            } else {
+                hasSymbol = true;
+            }
+        }
+        return hasLetter && hasDigit && hasSymbol;
     }
 
     private void wireFieldFocus(EditText input, View card) {

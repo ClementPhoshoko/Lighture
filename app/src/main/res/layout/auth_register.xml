@@ -17,6 +17,7 @@
         android:paddingBottom="@dimen/space_8">
 
         <include
+            android:id="@+id/authHeader"
             layout="@layout/view_auth_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
             android:layout_marginTop="@dimen/space_4" />
 
         <TextView
+            android:id="@+id/registerTitle"
             style="@style/TextAppearance.Lighture.SectionTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +35,7 @@
             android:textColor="@color/text_primary" />
 
         <TextView
+            android:id="@+id/registerSubtitle"
             style="@style/TextAppearance.Lighture.BodySmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,11 +57,13 @@
             android:padding="@dimen/space_4">
 
             <FrameLayout
+                android:id="@+id/nameIconContainer"
                 android:layout_width="@dimen/size_touch_min"
                 android:layout_height="@dimen/size_touch_min"
                 android:background="@drawable/bg_icon_circle">
 
                 <ImageView
+                    android:id="@+id/nameIcon"
                     android:layout_width="@dimen/size_icon_md"
                     android:layout_height="@dimen/size_icon_md"
                     android:layout_gravity="center"
@@ -68,6 +73,7 @@
             </FrameLayout>
 
             <LinearLayout
+                android:id="@+id/nameFieldBody"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_3"
@@ -75,6 +81,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/nameLabel"
                     style="@style/TextAppearance.Lighture.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,12 +94,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_0_5"
+                    android:autofillHints=""
                     android:background="@null"
                     android:hint="@string/auth_hint_name"
                     android:imeOptions="actionNext"
                     android:importantForAutofill="yes"
                     android:inputType="textPersonName"
                     android:maxLines="1"
+                    android:minHeight="@dimen/size_touch_min"
                     android:textColor="@color/input_text"
                     android:textColorHint="@color/input_placeholder" />
             </LinearLayout>
@@ -111,11 +120,13 @@
             android:padding="@dimen/space_4">
 
             <FrameLayout
+                android:id="@+id/registerEmailIconContainer"
                 android:layout_width="@dimen/size_touch_min"
                 android:layout_height="@dimen/size_touch_min"
                 android:background="@drawable/bg_icon_circle">
 
                 <ImageView
+                    android:id="@+id/registerEmailIcon"
                     android:layout_width="@dimen/size_icon_md"
                     android:layout_height="@dimen/size_icon_md"
                     android:layout_gravity="center"
@@ -125,6 +136,7 @@
             </FrameLayout>
 
             <LinearLayout
+                android:id="@+id/registerEmailFieldBody"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_3"
@@ -132,6 +144,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/registerEmailLabel"
                     style="@style/TextAppearance.Lighture.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -144,12 +157,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_0_5"
+                    android:autofillHints=""
                     android:background="@null"
                     android:hint="@string/auth_hint_email"
                     android:imeOptions="actionNext"
                     android:importantForAutofill="yes"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
+                    android:minHeight="@dimen/size_touch_min"
                     android:textColor="@color/input_text"
                     android:textColorHint="@color/input_placeholder" />
             </LinearLayout>
@@ -168,11 +183,13 @@
             android:padding="@dimen/space_4">
 
             <FrameLayout
+                android:id="@+id/registerPasswordIconContainer"
                 android:layout_width="@dimen/size_touch_min"
                 android:layout_height="@dimen/size_touch_min"
                 android:background="@drawable/bg_icon_circle">
 
                 <ImageView
+                    android:id="@+id/registerPasswordIcon"
                     android:layout_width="@dimen/size_icon_md"
                     android:layout_height="@dimen/size_icon_md"
                     android:layout_gravity="center"
@@ -182,6 +199,7 @@
             </FrameLayout>
 
             <LinearLayout
+                android:id="@+id/registerPasswordFieldBody"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_3"
@@ -189,6 +207,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/registerPasswordLabel"
                     style="@style/TextAppearance.Lighture.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -201,12 +220,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_0_5"
+                    android:autofillHints=""
                     android:background="@null"
                     android:hint="@string/auth_hint_password"
                     android:imeOptions="actionNext"
                     android:importantForAutofill="yes"
                     android:inputType="textPassword"
                     android:maxLines="1"
+                    android:minHeight="@dimen/size_touch_min"
                     android:textColor="@color/input_text"
                     android:textColorHint="@color/input_placeholder" />
             </LinearLayout>
@@ -236,11 +257,13 @@
             android:padding="@dimen/space_4">
 
             <FrameLayout
+                android:id="@+id/registerConfirmIconContainer"
                 android:layout_width="@dimen/size_touch_min"
                 android:layout_height="@dimen/size_touch_min"
                 android:background="@drawable/bg_icon_circle">
 
                 <ImageView
+                    android:id="@+id/registerConfirmIcon"
                     android:layout_width="@dimen/size_icon_md"
                     android:layout_height="@dimen/size_icon_md"
                     android:layout_gravity="center"
@@ -250,6 +273,7 @@
             </FrameLayout>
 
             <LinearLayout
+                android:id="@+id/registerConfirmFieldBody"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_3"
@@ -257,6 +281,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/registerConfirmLabel"
                     style="@style/TextAppearance.Lighture.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -269,12 +294,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_0_5"
+                    android:autofillHints=""
                     android:background="@null"
                     android:hint="@string/auth_hint_password"
                     android:imeOptions="actionDone"
                     android:importantForAutofill="yes"
                     android:inputType="textPassword"
                     android:maxLines="1"
+                    android:minHeight="@dimen/size_touch_min"
                     android:textColor="@color/input_text"
                     android:textColorHint="@color/input_placeholder" />
             </LinearLayout>
@@ -291,6 +318,67 @@
                 app:tint="@color/icon_secondary" />
         </LinearLayout>
 
+        <!-- Password requirements card -->
+        <FrameLayout
+            android:id="@+id/requirementsCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:background="@drawable/bg_privacy_card">
+
+            <LinearLayout
+                android:id="@+id/requirementsContentRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/card_padding_compact">
+
+                <FrameLayout
+                    android:id="@+id/requirementsIconContainer"
+                    android:layout_width="@dimen/size_touch_min"
+                    android:layout_height="@dimen/size_touch_min"
+                    android:background="@drawable/bg_icon_circle">
+
+                    <ImageView
+                        android:id="@+id/requirementsIcon"
+                        android:layout_width="@dimen/size_icon_md"
+                        android:layout_height="@dimen/size_icon_md"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_shield"
+                        app:tint="@color/brand_primary" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/requirementsTextBlock"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_3"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/requirementsTitle"
+                        style="@style/TextAppearance.Lighture.CardTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/auth_register_requirements_title"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:id="@+id/requirementsBody"
+                        style="@style/TextAppearance.Lighture.BodySmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_0_5"
+                        android:text="@string/auth_register_requirements"
+                        android:textColor="@color/text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
@@ -303,12 +391,15 @@
             android:elevation="@dimen/elevation_card"
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
+            android:paddingStart="@dimen/space_4"
+            android:paddingEnd="@dimen/space_4"
             android:text="@string/auth_register_button"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.Lighture.Label"
             android:textColor="@color/text_inverse" />
 
         <LinearLayout
+            android:id="@+id/authDivider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_6"
@@ -316,12 +407,14 @@
             android:orientation="horizontal">
 
             <View
+                android:id="@+id/dividerLineStart"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"
                 android:background="@color/divider" />
 
             <TextView
+                android:id="@+id/dividerLabel"
                 style="@style/TextAppearance.Lighture.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -331,6 +424,7 @@
                 android:textColor="@color/text_tertiary" />
 
             <View
+                android:id="@+id/dividerLineEnd"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"
@@ -338,6 +432,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/socialRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_4"
@@ -351,9 +446,11 @@
                 android:background="@drawable/bg_social_button"
                 android:clickable="true"
                 android:elevation="@dimen/elevation_card"
+                android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
+                    android:id="@+id/registerSocialGoogleIcon"
                     android:layout_width="@dimen/size_icon_lg"
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="center"
@@ -371,9 +468,11 @@
                 android:background="@drawable/bg_social_button"
                 android:clickable="true"
                 android:elevation="@dimen/elevation_card"
+                android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
+                    android:id="@+id/registerSocialAppleIcon"
                     android:layout_width="@dimen/size_icon_lg"
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="center"
@@ -391,9 +490,11 @@
                 android:background="@drawable/bg_social_button"
                 android:clickable="true"
                 android:elevation="@dimen/elevation_card"
+                android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
+                    android:id="@+id/registerSocialFacebookIcon"
                     android:layout_width="@dimen/size_icon_lg"
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="center"
@@ -411,6 +512,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/loginPrompt"
                 style="@style/TextAppearance.Lighture.BodySmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
