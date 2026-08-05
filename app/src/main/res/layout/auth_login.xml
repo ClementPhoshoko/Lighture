@@ -4,6 +4,7 @@
      chain that centres itself on tall screens (no scrolling). -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/authLoginRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -72,11 +73,13 @@
         app:layout_constraintTop_toBottomOf="@id/loginSubtitle">
 
         <FrameLayout
+            android:id="@+id/emailIconContainer"
             android:layout_width="@dimen/size_touch_min"
             android:layout_height="@dimen/size_touch_min"
             android:background="@drawable/bg_icon_circle">
 
             <ImageView
+                android:id="@+id/emailIcon"
                 android:layout_width="@dimen/size_icon_md"
                 android:layout_height="@dimen/size_icon_md"
                 android:layout_gravity="center"
@@ -86,6 +89,7 @@
         </FrameLayout>
 
         <LinearLayout
+            android:id="@+id/emailFieldBody"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_3"
@@ -93,6 +97,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/emailLabel"
                 style="@style/TextAppearance.Lighture.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,11 +141,13 @@
         app:layout_constraintTop_toBottomOf="@id/emailField">
 
         <FrameLayout
+            android:id="@+id/passwordIconContainer"
             android:layout_width="@dimen/size_touch_min"
             android:layout_height="@dimen/size_touch_min"
             android:background="@drawable/bg_icon_circle">
 
             <ImageView
+                android:id="@+id/passwordIcon"
                 android:layout_width="@dimen/size_icon_md"
                 android:layout_height="@dimen/size_icon_md"
                 android:layout_gravity="center"
@@ -150,6 +157,7 @@
         </FrameLayout>
 
         <LinearLayout
+            android:id="@+id/passwordFieldBody"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_3"
@@ -157,6 +165,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/passwordLabel"
                 style="@style/TextAppearance.Lighture.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -250,12 +259,14 @@
         app:layout_constraintTop_toBottomOf="@id/loginButton">
 
         <View
+            android:id="@+id/dividerLineStart"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
             android:background="@color/divider" />
 
         <TextView
+            android:id="@+id/dividerLabel"
             style="@style/TextAppearance.Lighture.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -265,6 +276,7 @@
             android:textColor="@color/text_tertiary" />
 
         <View
+            android:id="@+id/dividerLineEnd"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"
@@ -297,6 +309,7 @@
                 android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
+                    android:id="@+id/socialGoogleIcon"
                     android:layout_width="@dimen/size_icon_lg"
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="center"
@@ -318,6 +331,7 @@
                 android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
+                    android:id="@+id/socialAppleIcon"
                     android:layout_width="@dimen/size_icon_lg"
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="center"
@@ -339,6 +353,7 @@
                 android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
+                    android:id="@+id/socialFacebookIcon"
                     android:layout_width="@dimen/size_icon_lg"
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="center"
@@ -362,17 +377,20 @@
         app:layout_constraintTop_toBottomOf="@id/socialRow">
 
         <LinearLayout
+            android:id="@+id/privacyCardBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/card_padding_compact">
 
             <FrameLayout
+                android:id="@+id/privacyIconContainer"
                 android:layout_width="@dimen/size_touch_min"
                 android:layout_height="@dimen/size_touch_min"
                 android:background="@drawable/bg_icon_circle">
 
                 <ImageView
+                    android:id="@+id/privacyIcon"
                     android:layout_width="@dimen/size_icon_md"
                     android:layout_height="@dimen/size_icon_md"
                     android:layout_gravity="center"
@@ -382,6 +400,7 @@
             </FrameLayout>
 
             <TextView
+                android:id="@+id/privacyTitle"
                 style="@style/TextAppearance.Lighture.CardTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -390,6 +409,7 @@
                 android:textColor="@color/text_primary" />
 
             <TextView
+                android:id="@+id/privacyBody"
                 style="@style/TextAppearance.Lighture.BodySmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -399,6 +419,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/privacyWatermark"
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:layout_gravity="end|center_vertical"
@@ -423,6 +444,7 @@
         app:layout_constraintTop_toBottomOf="@id/privacyCard">
 
         <TextView
+            android:id="@+id/signupPrompt"
             style="@style/TextAppearance.Lighture.BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
