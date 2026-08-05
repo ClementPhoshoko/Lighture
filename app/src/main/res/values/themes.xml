@@ -47,13 +47,16 @@
         <item name="colorOutlineVariant">@color/border_subtle</item>
 
         <!-- Backgrounds -->
+        <!-- The Canva fruit background (@drawable/bg_system) is light by default and
+             swaps to the dark variant in values-night automatically. -->
         <item name="android:colorBackground">@color/background_app</item>
         <item name="colorOnBackground">@color/text_primary</item>
-        <item name="android:windowBackground">@color/background_app</item>
+        <item name="android:windowBackground">@drawable/bg_system</item>
 
-        <!-- System bars -->
-        <item name="android:statusBarColor">@color/background_app</item>
-        <item name="android:navigationBarColor">@color/background_app</item>
+        <!-- System bars: transparent so the background image bleeds behind them
+             (activities already handle insets edge-to-edge). -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">@bool/light_status_bar</item>
         <item name="android:windowLightNavigationBar">@bool/light_navigation_bar</item>
 

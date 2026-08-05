@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_4"
         android:text="@string/splash_version"
-        android:textColor="@color/neutral_500"
+        android:textColor="@color/background_subtle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
