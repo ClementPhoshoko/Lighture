@@ -319,8 +319,7 @@
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="center"
                     android:contentDescription="@string/auth_social_google"
-                app:srcCompat="@drawable/ic_brand_google"
-                app:tint="@color/icon_primary" />
+                app:srcCompat="@drawable/ic_brand_google" />
         </FrameLayout>
 
         <FrameLayout
@@ -341,8 +340,7 @@
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="center"
                     android:contentDescription="@string/auth_social_apple"
-                app:srcCompat="@drawable/ic_brand_apple"
-                app:tint="@color/icon_primary" />
+                app:srcCompat="@drawable/ic_brand_apple" />
         </FrameLayout>
 
         <FrameLayout
@@ -363,8 +361,7 @@
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="center"
                     android:contentDescription="@string/auth_social_facebook"
-                app:srcCompat="@drawable/ic_brand_facebook"
-                app:tint="@color/icon_primary" />
+                app:srcCompat="@drawable/ic_brand_facebook" />
         </FrameLayout>
     </LinearLayout>
 
