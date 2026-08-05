@@ -7,6 +7,8 @@
 
     <!-- =============================================================
          TYPOGRAPHY
+         Bold/medium-forward weights: the product reads thick everywhere
+         (titles bold, labels semibold, body medium).
     ============================================================= -->
 
     <style name="TextAppearance.Lighture.Display" parent="TextAppearance.Material3.DisplayMedium">
@@ -25,37 +27,37 @@
 
     <style name="TextAppearance.Lighture.SectionTitle" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:textSize">@dimen/font_size_xl</item>
-        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
         <item name="android:lineSpacingMultiplier">1.30</item>
     </style>
 
     <style name="TextAppearance.Lighture.CardTitle" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:textSize">@dimen/font_size_lg</item>
-        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
         <item name="android:lineSpacingMultiplier">1.30</item>
     </style>
 
     <style name="TextAppearance.Lighture.Body" parent="TextAppearance.Material3.BodyLarge">
         <item name="android:textSize">@dimen/font_size_md</item>
-        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
         <item name="android:lineSpacingMultiplier">1.50</item>
     </style>
 
     <style name="TextAppearance.Lighture.BodySmall" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textSize">@dimen/font_size_sm</item>
-        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
         <item name="android:lineSpacingMultiplier">1.50</item>
     </style>
 
     <style name="TextAppearance.Lighture.Label" parent="TextAppearance.Material3.LabelLarge">
         <item name="android:textSize">@dimen/font_size_sm</item>
-        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
         <item name="android:lineSpacingMultiplier">1.25</item>
     </style>
 
     <style name="TextAppearance.Lighture.Caption" parent="TextAppearance.Material3.LabelMedium">
         <item name="android:textSize">@dimen/font_size_xs</item>
-        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
         <item name="android:lineSpacingMultiplier">1.30</item>
     </style>
 
