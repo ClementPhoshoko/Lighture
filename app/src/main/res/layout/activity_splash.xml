@@ -8,98 +8,15 @@
     android:background="@drawable/splash_background"
     tools:context=".SplashActivity">
 
-    <!-- Top: chefs-at-work avatar -->
-    <ImageView
-        android:id="@+id/avatarTop"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/splash_avatar_description"
-        android:scaleType="centerCrop"
-        android:src="@drawable/chef_teenagers"
-        app:layout_constraintHeight_percent="0.36"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Horizontal split: content zone sits above this line -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/contentBottomGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.56" />
 
-    <!-- Blend the avatar into the background -->
-    <View
-        android:id="@+id/avatarFade"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/splash_avatar_fade_height"
-        android:background="@drawable/bg_avatar_fade"
-        android:importantForAccessibility="no"
-        app:layout_constraintBottom_toBottomOf="@id/avatarTop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Small brand icon -->
-    <ImageView
-        android:id="@+id/splashLogo"
-        android:layout_width="@dimen/splash_logo_width"
-        android:layout_height="@dimen/splash_logo_height"
-        android:alpha="0"
-        android:contentDescription="@string/splash_content_description"
-        android:importantForAccessibility="no"
-        app:srcCompat="@drawable/splash_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/avatarTop"
-        android:layout_marginTop="@dimen/space_5" />
-
-    <!-- Floating food illustrations framing the icon -->
-    <ImageView
-        android:id="@+id/foodTopLeft"
-        android:layout_width="@dimen/splash_food_size"
-        android:layout_height="@dimen/splash_food_size"
-        android:alpha="0.22"
-        android:contentDescription="@string/splash_food_description"
-        android:rotation="-18"
-        app:srcCompat="@drawable/ic_food_apple"
-        app:layout_constraintEnd_toStartOf="@id/splashLogo"
-        app:layout_constraintTop_toTopOf="@id/splashLogo"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="-18dp" />
-
-    <ImageView
-        android:id="@+id/foodTopRight"
-        android:layout_width="@dimen/splash_food_size_lg"
-        android:layout_height="@dimen/splash_food_size_lg"
-        android:alpha="0.18"
-        android:contentDescription="@string/splash_food_description"
-        android:rotation="14"
-        app:srcCompat="@drawable/ic_food_bread"
-        app:layout_constraintStart_toEndOf="@id/splashLogo"
-        app:layout_constraintTop_toTopOf="@id/splashLogo"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="-22dp" />
-
-    <ImageView
-        android:id="@+id/foodBottomLeft"
-        android:layout_width="@dimen/splash_food_size"
-        android:layout_height="@dimen/splash_food_size"
-        android:alpha="0.20"
-        android:contentDescription="@string/splash_food_description"
-        android:rotation="12"
-        app:srcCompat="@drawable/ic_food_cheese"
-        app:layout_constraintEnd_toStartOf="@id/splashLogo"
-        app:layout_constraintBottom_toBottomOf="@id/splashLogo"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="-16dp" />
-
-    <ImageView
-        android:id="@+id/foodBottomRight"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:alpha="0.18"
-        android:contentDescription="@string/splash_food_description"
-        android:rotation="-10"
-        app:srcCompat="@drawable/ic_food_bottle"
-        app:layout_constraintStart_toEndOf="@id/splashLogo"
-        app:layout_constraintBottom_toBottomOf="@id/splashLogo"
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="-18dp" />
-
-    <!-- Bottom: system name and caption -->
+    <!-- Upper zone: small icon, system name and caption -->
     <LinearLayout
         android:id="@+id/splashContent"
         android:layout_width="wrap_content"
@@ -107,14 +24,25 @@
         android:alpha="0"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/contentBottomGuide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/splashLogo"
-        android:layout_marginTop="@dimen/space_4">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42">
+
+        <ImageView
+            android:id="@+id/splashLogo"
+            android:layout_width="@dimen/splash_logo_width"
+            android:layout_height="@dimen/splash_logo_height"
+            android:alpha="0"
+            android:contentDescription="@string/splash_content_description"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/splash_logo" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
             android:orientation="horizontal">
 
             <TextView
@@ -142,39 +70,31 @@
             android:layout_marginTop="@dimen/space_2"
             android:text="@string/splash_tagline"
             android:textColor="@color/text_secondary" />
-
-        <LinearLayout
-            android:id="@+id/splashLoadingRow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_5"
-            android:contentDescription="@string/splash_loading_description"
-            android:orientation="horizontal">
-
-            <View
-                android:id="@+id/splashDot1"
-                android:layout_width="@dimen/splash_dot_size"
-                android:layout_height="@dimen/splash_dot_size"
-                android:alpha="0.25"
-                android:background="@drawable/splash_dot" />
-
-            <View
-                android:id="@+id/splashDot2"
-                android:layout_width="@dimen/splash_dot_size"
-                android:layout_height="@dimen/splash_dot_size"
-                android:layout_marginStart="@dimen/space_1_5"
-                android:layout_marginEnd="@dimen/space_1_5"
-                android:alpha="0.25"
-                android:background="@drawable/splash_dot" />
-
-            <View
-                android:id="@+id/splashDot3"
-                android:layout_width="@dimen/splash_dot_size"
-                android:layout_height="@dimen/splash_dot_size"
-                android:alpha="0.25"
-                android:background="@drawable/splash_dot" />
-        </LinearLayout>
     </LinearLayout>
+
+    <!-- Bottom: chefs-at-work image fading in from the bottom edge -->
+    <ImageView
+        android:id="@+id/splashImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/splash_image_description"
+        android:scaleType="centerCrop"
+        android:src="@drawable/chef_teenagers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.44"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Soft fade at the image's top so it blends into the background -->
+    <View
+        android:id="@+id/splashImageFade"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/splash_image_fade_height"
+        android:background="@drawable/bg_image_fade"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/splashImage" />
 
     <!-- Version footer -->
     <TextView
@@ -182,11 +102,14 @@
         style="@style/TextAppearance.Lighture.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_4"
+        android:shadowColor="#4D000000"
+        android:shadowDy="1"
+        android:shadowRadius="3"
         android:text="@string/splash_version"
         android:textColor="@color/text_tertiary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="@dimen/space_4" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

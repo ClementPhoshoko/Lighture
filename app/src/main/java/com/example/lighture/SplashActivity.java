@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,11 +45,8 @@ public class SplashActivity extends AppCompatActivity {
             return insets;
         });
 
-        animateAvatar(findViewById(R.id.avatarTop));
         animateLogo(findViewById(R.id.splashLogo));
         animateContent(findViewById(R.id.splashContent));
-        animateDots();
-        animateFood();
 
         root.postDelayed(navigateRunnable, SPLASH_HOLD_MS);
     }
@@ -61,22 +57,6 @@ public class SplashActivity extends AppCompatActivity {
             root.removeCallbacks(navigateRunnable);
         }
         super.onDestroy();
-    }
-
-    private void animateAvatar(View avatar) {
-        ObjectAnimator fade = ObjectAnimator.ofFloat(avatar, View.ALPHA, 0f, 1f);
-        fade.setDuration(700L);
-
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(avatar, View.SCALE_X, 1.06f, 1f);
-        scaleX.setDuration(900L);
-
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(avatar, View.SCALE_Y, 1.06f, 1f);
-        scaleY.setDuration(900L);
-
-        AnimatorSet entry = new AnimatorSet();
-        entry.playTogether(fade, scaleX, scaleY);
-        entry.setInterpolator(new DecelerateInterpolator());
-        entry.start();
     }
 
     private void animateLogo(View logo) {
@@ -109,35 +89,6 @@ public class SplashActivity extends AppCompatActivity {
         fade.setStartDelay(250L);
         fade.setInterpolator(new AccelerateDecelerateInterpolator());
         fade.start();
-    }
-
-    private void animateDots() {
-        int[] dotIds = {R.id.splashDot1, R.id.splashDot2, R.id.splashDot3};
-        for (int i = 0; i < dotIds.length; i++) {
-            View dot = findViewById(dotIds[i]);
-            ObjectAnimator pulse = ObjectAnimator.ofFloat(dot, View.ALPHA, 0.25f, 1f);
-            pulse.setDuration(500L);
-            pulse.setStartDelay(i * 150L);
-            pulse.setRepeatCount(ValueAnimator.INFINITE);
-            pulse.setRepeatMode(ValueAnimator.REVERSE);
-            pulse.setInterpolator(new LinearInterpolator());
-            pulse.start();
-        }
-    }
-
-    private void animateFood() {
-        int[] ids = {R.id.foodTopLeft, R.id.foodTopRight, R.id.foodBottomLeft, R.id.foodBottomRight};
-        long[] delays = {900L, 1200L, 1000L, 1400L};
-        for (int i = 0; i < ids.length; i++) {
-            View food = findViewById(ids[i]);
-            ObjectAnimator drift = ObjectAnimator.ofFloat(food, View.TRANSLATION_Y, 0f, dp(6f));
-            drift.setDuration(2600L);
-            drift.setStartDelay(delays[i]);
-            drift.setRepeatCount(ValueAnimator.INFINITE);
-            drift.setRepeatMode(ValueAnimator.REVERSE);
-            drift.setInterpolator(new AccelerateDecelerateInterpolator());
-            drift.start();
-        }
     }
 
     private void exitToMain() {
