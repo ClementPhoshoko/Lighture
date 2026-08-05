@@ -21,13 +21,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/space_6" />
+            android:layout_marginTop="@dimen/space_4" />
 
         <TextView
             style="@style/TextAppearance.Lighture.SectionTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_8"
+            android:layout_marginTop="@dimen/space_6"
             android:gravity="center_horizontal"
             android:text="@string/auth_register_title"
             android:textColor="@color/text_primary" />

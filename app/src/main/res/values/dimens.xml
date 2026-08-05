@@ -117,10 +117,6 @@
     <dimen name="splash_logo_height">76dp</dimen>
 
     <!-- Auth screens -->
-    <dimen name="auth_logo_width">104dp</dimen>
-    <dimen name="auth_logo_height">141dp</dimen>
-    <dimen name="logo_glow_size">176dp</dimen>
-    <dimen name="logo_glow_radius">88dp</dimen>
     <dimen name="social_button_size">56dp</dimen>
 
     <dimen name="content_width_sm">480dp</dimen>

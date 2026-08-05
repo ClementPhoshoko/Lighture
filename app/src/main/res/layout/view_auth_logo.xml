@@ -1,37 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Reusable auth header: glowing logo + brand wordmark + tagline.
+<!-- Reusable auth header: brand wordmark + tagline (no tall logo so the
+     auth pages fit on screen without scrolling).
      Shared by login, register and forgot-password content. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="@dimen/logo_glow_size"
-            android:layout_height="@dimen/logo_glow_size"
-            android:layout_gravity="center"
-            android:importantForAccessibility="no"
-            android:src="@drawable/bg_logo_glow" />
-
-        <ImageView
-            android:layout_width="@dimen/auth_logo_width"
-            android:layout_height="@dimen/auth_logo_height"
-            android:layout_gravity="center"
-            android:contentDescription="@string/splash_content_description"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/splash_logo" />
-    </FrameLayout>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_3"
         android:orientation="horizontal">
 
         <TextView
