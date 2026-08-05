@@ -20,13 +20,22 @@
         android:paddingEnd="@dimen/page_padding_x"
         android:paddingBottom="@dimen/space_8">
 
+        <ImageView
+            android:id="@+id/authLogoImage"
+            android:layout_width="@dimen/splash_logo_width"
+            android:layout_height="@dimen/splash_logo_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_4"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/splash_logo" />
+
         <include
             android:id="@+id/authHeader"
             layout="@layout/view_auth_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/space_4" />
+            android:layout_marginTop="@dimen/space_2" />
 
         <ImageView
             android:id="@+id/successAvatar"

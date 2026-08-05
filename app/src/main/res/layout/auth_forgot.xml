@@ -18,15 +18,26 @@
         android:paddingEnd="@dimen/page_padding_x"
         android:paddingBottom="@dimen/space_8">
 
+        <ImageView
+            android:id="@+id/authLogoImage"
+            android:layout_width="@dimen/splash_logo_width"
+            android:layout_height="@dimen/splash_logo_height"
+            android:layout_marginTop="@dimen/space_4"
+            android:importantForAccessibility="no"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/splash_logo" />
+
         <include
             android:id="@+id/authHeader"
             layout="@layout/view_auth_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/page_padding_top"
+            android:layout_marginTop="@dimen/space_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/authLogoImage" />
 
         <TextView
             android:id="@+id/forgotTitle"
