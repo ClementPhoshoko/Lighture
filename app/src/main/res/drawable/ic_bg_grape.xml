@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M13 3a14.5 14.5 0 0 0 -1 6M12 8.9s-2.77 .52 -4.1 -.8s-.8 -4 -.8 -4s2.57 -.53 3.88 .8s1.02 4 1.02 4M14 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0M14 17a2 2 0 1 1 0 -4a2 2 0 0 1 0 4M10 17a2 2 0 1 1 0 -4a2 2 0 0 1 0 4M12 13a2 2 0 1 1 0 -4a2 2 0 0 1 0 4M16 13a2 2 0 1 1 0 -4a2 2 0 0 1 0 4M8 13a2 2 0 1 1 0 -4a2 2 0 0 1 0 4"
+        android:strokeColor="@color/bg_icon_fruit"
+        android:strokeWidth="2.4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000" />
+</vector>
