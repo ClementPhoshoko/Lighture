@@ -165,6 +165,7 @@ public class AuthActivity extends AppCompatActivity {
         wireFieldFocus(confirm, findViewById(R.id.registerConfirmField));
         wirePasswordToggle(password, findViewById(R.id.toggleRegisterPassword));
         wirePasswordToggle(confirm, findViewById(R.id.toggleRegisterConfirm));
+        wirePasswordStrength(password, findViewById(R.id.registerPasswordStrength));
 
         findViewById(R.id.loginLink).setOnClickListener(v -> switchMode(MODE_LOGIN));
         wireSocial(findViewById(R.id.registerSocialGoogle), R.string.auth_social_google);
@@ -364,6 +365,7 @@ public class AuthActivity extends AppCompatActivity {
         wireFieldFocus(confirm, findViewById(R.id.newConfirmField));
         wirePasswordToggle(password, findViewById(R.id.toggleNewPassword));
         wirePasswordToggle(confirm, findViewById(R.id.toggleNewConfirm));
+        wirePasswordStrength(password, findViewById(R.id.newPasswordStrength));
 
         findViewById(R.id.backToLoginLink).setOnClickListener(v -> switchMode(MODE_LOGIN));
 
@@ -428,6 +430,49 @@ public class AuthActivity extends AppCompatActivity {
     private void wireFieldFocus(EditText input, View card) {
         input.setOnFocusChangeListener((v, hasFocus) -> card.setBackgroundResource(
                 hasFocus ? R.drawable.bg_auth_field_focused : R.drawable.bg_auth_field));
+    }
+
+    private void wirePasswordStrength(EditText input, TextView label) {
+        input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (TextUtils.isEmpty(s)) {
+                    label.setVisibility(View.GONE);
+                    return;
+                }
+                int strength = passwordStrength(s.toString());
+                label.setVisibility(View.VISIBLE);
+                switch (strength) {
+                    case 2:
+                        label.setText(R.string.auth_password_strength_strong);
+                        label.setTextColor(getColor(R.color.color_success));
+                        break;
+                    case 1:
+                        label.setText(R.string.auth_password_strength_fair);
+                        label.setTextColor(getColor(R.color.color_warning));
+                        break;
+                    default:
+                        label.setText(R.string.auth_password_strength_weak);
+                        label.setTextColor(getColor(R.color.color_danger));
+                        break;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(android.text.Editable s) {
+            }
+        });
+    }
+
+    private int passwordStrength(String value) {
+        if (value.length() < 8) {
+            return 0;
+        }
+        return isStrongPassword(value) ? 2 : 1;
     }
 
     private void wirePasswordToggle(EditText input, ImageButton toggle) {
