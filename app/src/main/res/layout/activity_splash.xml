@@ -14,20 +14,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.56" />
+        app:layout_constraintGuide_begin="410dp" />
 
     <!-- Upper zone: small icon, system name and caption -->
+
+    <!-- Bottom: chefs-at-work image -->
     <LinearLayout
         android:id="@+id/splashContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="238dp"
+        android:layout_height="234dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/contentBottomGuide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42">
+        app:layout_constraintVertical_bias="0.746">
 
         <ImageView
             android:id="@+id/splashLogo"
@@ -70,17 +72,16 @@
             android:textColor="@color/neutral_600" />
     </LinearLayout>
 
-    <!-- Bottom: chefs-at-work image -->
     <ImageView
         android:id="@+id/splashImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/splash_image_description"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:src="@drawable/chef_teenagers"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.44"
         app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Version footer -->
