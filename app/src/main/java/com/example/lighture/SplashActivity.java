@@ -46,7 +46,6 @@ public class SplashActivity extends AppCompatActivity {
         });
 
         animateLogo(findViewById(R.id.splashLogo));
-        animateContent(findViewById(R.id.splashContent));
 
         root.postDelayed(navigateRunnable, SPLASH_HOLD_MS);
     }
@@ -60,17 +59,14 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void animateLogo(View logo) {
-        ObjectAnimator fade = ObjectAnimator.ofFloat(logo, View.ALPHA, 0f, 1f);
-        fade.setDuration(600L);
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(logo, View.SCALE_X, 0.92f, 1f);
+        scaleX.setDuration(600L);
 
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(logo, View.SCALE_X, 0.90f, 1f);
-        scaleX.setDuration(700L);
-
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(logo, View.SCALE_Y, 0.90f, 1f);
-        scaleY.setDuration(700L);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(logo, View.SCALE_Y, 0.92f, 1f);
+        scaleY.setDuration(600L);
 
         AnimatorSet entry = new AnimatorSet();
-        entry.playTogether(fade, scaleX, scaleY);
+        entry.playTogether(scaleX, scaleY);
         entry.setInterpolator(new DecelerateInterpolator());
         entry.start();
 
@@ -81,14 +77,6 @@ public class SplashActivity extends AppCompatActivity {
         floatAnim.setRepeatMode(ValueAnimator.REVERSE);
         floatAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         floatAnim.start();
-    }
-
-    private void animateContent(View content) {
-        ObjectAnimator fade = ObjectAnimator.ofFloat(content, View.ALPHA, 0f, 1f);
-        fade.setDuration(700L);
-        fade.setStartDelay(250L);
-        fade.setInterpolator(new AccelerateDecelerateInterpolator());
-        fade.start();
     }
 
     private void exitToMain() {

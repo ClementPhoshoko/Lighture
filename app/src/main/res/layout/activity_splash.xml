@@ -21,7 +21,6 @@
         android:id="@+id/splashContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="0"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/contentBottomGuide"
@@ -34,7 +33,6 @@
             android:id="@+id/splashLogo"
             android:layout_width="@dimen/splash_logo_width"
             android:layout_height="@dimen/splash_logo_height"
-            android:alpha="0"
             android:contentDescription="@string/splash_content_description"
             android:importantForAccessibility="no"
             app:srcCompat="@drawable/splash_logo" />
