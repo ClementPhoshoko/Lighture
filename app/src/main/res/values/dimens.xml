@@ -112,6 +112,19 @@
     <dimen name="size_top_bar">64dp</dimen>
     <dimen name="size_fab">64dp</dimen>
 
+    <!-- Splash screen -->
+    <dimen name="splash_logo_width">184dp</dimen>
+    <dimen name="splash_logo_height">249dp</dimen>
+    <dimen name="splash_glow_size">260dp</dimen>
+    <dimen name="splash_brand_size">@dimen/font_size_4xl</dimen>
+    <dimen name="splash_dot_size">8dp</dimen>
+    <dimen name="splash_sparkle_sm">14dp</dimen>
+    <dimen name="splash_sparkle_md">20dp</dimen>
+    <dimen name="splash_sparkle_lg">28dp</dimen>
+    <dimen name="splash_food_size">56dp</dimen>
+    <dimen name="splash_food_size_lg">80dp</dimen>
+    <dimen name="splash_content_gap">@dimen/space_5</dimen>
+
     <dimen name="content_width_sm">480dp</dimen>
     <dimen name="content_width_md">704dp</dimen>
     <dimen name="content_width_lg">1152dp</dimen>

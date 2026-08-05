@@ -78,4 +78,29 @@
     </style>
 
     <style name="Theme.Lighture" parent="Base.Theme.Lighture" />
+
+    <!-- =============================================================
+         SPLASH — premium branded launch screen.
+         Uses the core-splashscreen library for consistent behaviour on
+         every API level (24+). The system splash keeps the app icon on a
+         plain background, then the activity takes over with the full
+         branded composition.
+    ============================================================= -->
+    <style name="Theme.Lighture.Splash" parent="Theme.SplashScreen">
+
+        <!-- System splash (API 31+) -->
+        <item name="windowSplashScreenBackground">@color/background_app</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimationDuration">400</item>
+        <item name="postSplashScreenTheme">@style/Theme.Lighture</item>
+
+        <!-- Pre-31 fallback: the branded gradient is already the activity window -->
+        <item name="android:windowBackground">@drawable/splash_background</item>
+
+        <!-- Edge-to-edge, light system bars -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">@bool/light_status_bar</item>
+        <item name="android:windowLightNavigationBar">@bool/light_navigation_bar</item>
+    </style>
 </resources>
