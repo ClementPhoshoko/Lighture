@@ -321,6 +321,14 @@ public class AuthActivity extends AppCompatActivity {
             });
         }
 
+        boxes[boxes.length - 1].setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                verify.performClick();
+                return true;
+            }
+            return false;
+        });
+
         startResetTimer();
 
         verify.setOnClickListener(v -> {

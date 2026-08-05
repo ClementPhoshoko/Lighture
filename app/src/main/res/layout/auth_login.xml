@@ -14,7 +14,7 @@
         layout="@layout/view_auth_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_0_5"
+        android:layout_marginTop="@dimen/page_padding_top"
         app:layout_constraintBottom_toTopOf="@id/loginTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
