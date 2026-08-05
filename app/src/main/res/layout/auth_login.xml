@@ -7,7 +7,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authLoginRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipChildren="false">
 
     <include
         android:id="@+id/authHeader"
@@ -293,6 +294,7 @@
         android:layout_marginTop="@dimen/space_4"
         android:layout_marginEnd="@dimen/page_padding_x"
         android:baselineAligned="false"
+        android:clipChildren="false"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/privacyCard"
         app:layout_constraintEnd_toEndOf="parent"

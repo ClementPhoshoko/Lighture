@@ -498,6 +498,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_4"
             android:baselineAligned="false"
+            android:clipChildren="false"
             android:orientation="horizontal">
 
             <FrameLayout

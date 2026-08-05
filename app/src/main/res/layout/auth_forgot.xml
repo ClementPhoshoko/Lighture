@@ -11,6 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:paddingStart="@dimen/page_padding_x"
         android:paddingTop="@dimen/space_6"
         android:paddingEnd="@dimen/page_padding_x"

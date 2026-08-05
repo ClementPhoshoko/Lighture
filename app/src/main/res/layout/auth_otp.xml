@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_6"
             android:baselineAligned="false"
+            android:clipChildren="false"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
