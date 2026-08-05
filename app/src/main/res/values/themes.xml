@@ -47,11 +47,15 @@
         <item name="colorOutlineVariant">@color/border_subtle</item>
 
         <!-- Backgrounds -->
-        <!-- The Canva fruit background (@drawable/bg_system) is light by default and
-             swaps to the dark variant in values-night automatically. -->
+        <!-- Keep the window background a plain colour: a large bitmap here is
+             redrawn at the wrong scale during the splash-exit window transition
+             (the image visibly "loses structure" then snaps into place). The
+             Canva background (@drawable/bg_system, light/dark variants) is
+             applied as a normal view background on each screen instead, which
+             is only drawn after layout and never distorts. -->
         <item name="android:colorBackground">@color/background_app</item>
         <item name="colorOnBackground">@color/text_primary</item>
-        <item name="android:windowBackground">@drawable/bg_system</item>
+        <item name="android:windowBackground">@color/background_app</item>
 
         <!-- System bars: transparent so the background image bleeds behind them
              (activities already handle insets edge-to-edge). -->

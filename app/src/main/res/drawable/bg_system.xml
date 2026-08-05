@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/lighture_bg_light" />
+    <item>
+        <shape>
+            <solid android:color="@color/bg_dimmer" />
+        </shape>
+    </item>
+</layer-list>

@@ -105,6 +105,9 @@
     <color name="background_overlay">#7A100E0F</color>
     <color name="background_scrim">#4D1E1417</color>
 
+    <!-- Soft dimmer overlaid on the Canva system background so content pops. -->
+    <color name="bg_dimmer">#80FFFCFD</color>
+
     <color name="surface_primary">@color/neutral_0</color>
     <color name="surface_secondary">#FFF8F9</color>
     <color name="surface_tertiary">@color/neutral_100</color>
