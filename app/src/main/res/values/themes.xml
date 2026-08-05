@@ -61,7 +61,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">@bool/light_status_bar</item>
-        <item name="android:windowLightNavigationBar">@bool/light_navigation_bar</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">@bool/light_navigation_bar</item>
 
         <!-- Default typography -->
         <item name="android:textAppearance">@style/TextAppearance.Lighture.Body</item>
@@ -107,6 +107,6 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">@bool/light_status_bar</item>
-        <item name="android:windowLightNavigationBar">@bool/light_navigation_bar</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">@bool/light_navigation_bar</item>
     </style>
 </resources>
