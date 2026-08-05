@@ -222,6 +222,7 @@
         android:elevation="@dimen/elevation_card"
         android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
+        android:paddingEnd="@dimen/space_4"
         android:text="@string/auth_login_button"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.Lighture.Label"
