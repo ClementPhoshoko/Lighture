@@ -95,4 +95,44 @@
     <string name="auth_snackbar_invalid_email">Enter a valid email address.</string>
     <string name="auth_snackbar_register_demo">Account created! Sign-up is not wired up yet.</string>
     <string name="auth_snackbar_social">Sign-in via %1$s is coming soon.</string>
+
+    <!-- Home screen -->
+    <string name="home_greeting_morning">Good morning,</string>
+    <string name="home_greeting_afternoon">Good afternoon,</string>
+    <string name="home_greeting_evening">Good evening,</string>
+    <string name="home_greeting_name">friend</string>
+    <string name="home_subtitle">Here\'s what\'s fresh in your fridge today.</string>
+    <string name="home_notification_description">Notifications</string>
+
+    <string name="home_hero_title">Scan your fridge</string>
+    <string name="home_hero_subtitle">Point your camera at any shelf and we\'ll instantly identify the ingredients inside.</string>
+    <string name="home_hero_take_photo">Take Photo</string>
+    <string name="home_hero_live_scan">Live Scan</string>
+
+    <string name="home_recipes_title">Smart suggestions</string>
+    <string name="home_section_action">See all</string>
+
+    <plurals name="home_suggestion_uses">
+        <item quantity="one">Uses %1$d ingredient</item>
+        <item quantity="other">Uses %1$d ingredients</item>
+    </plurals>
+
+    <string name="home_overview_title">Your fridge Overview</string>
+    <string name="home_overview_items">Items tracked</string>
+    <string name="home_overview_expiring">Expiring soon</string>
+    <string name="home_overview_waste">Waste saved</string>
+
+    <string name="home_carousel_title">Fresh meal ideas</string>
+
+    <string name="home_snackbar_tab">%1$s is coming soon.</string>
+    <string name="home_snackbar_notifications">Notifications are coming soon.</string>
+    <string name="home_snackbar_photo">Photo capture is coming soon.</string>
+    <string name="home_snackbar_scan">Live scanning is coming soon.</string>
+    <string name="home_snackbar_recipe">Recipe details are coming soon.</string>
+
+    <!-- Bottom navigation -->
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_recipes">Recipes</string>
+    <string name="bottom_nav_fridge">Fridge</string>
+    <string name="bottom_nav_profile">Profile</string>
 </resources>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Recipe card: placeholder art area (gradient + produce icon) until real
+     food photos exist. clipToOutline keeps children inside the rounded card. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recipeCard"
+    android:layout_width="@dimen/recipe_card_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:clipToOutline="true"
+    android:elevation="@dimen/elevation_card"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/recipeArt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/recipe_art_height"
+        android:background="@drawable/bg_recipe_image">
+
+        <ImageView
+            android:id="@+id/recipeIcon"
+            android:layout_width="@dimen/size_icon_xl"
+            android:layout_height="@dimen/size_icon_xl"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_bg_pizza" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding_compact">
+
+        <TextView
+            android:id="@+id/recipeTitle"
+            style="@style/TextAppearance.Lighture.CardTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/text_primary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/size_icon_xs"
+                android:layout_height="@dimen/size_icon_xs"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_clock"
+                app:tint="@color/icon_tertiary" />
+
+            <TextView
+                android:id="@+id/recipeTime"
+                style="@style/TextAppearance.Lighture.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_1"
+                android:textColor="@color/text_secondary" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="@dimen/size_icon_xs"
+                android:layout_height="@dimen/size_icon_xs"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_heart"
+                app:tint="@color/icon_tertiary" />
+
+            <TextView
+                android:id="@+id/recipeLikes"
+                style="@style/TextAppearance.Lighture.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_0_5"
+                android:textColor="@color/text_secondary" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

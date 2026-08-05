@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Rounded panel behind fridge-overview stat content. The base fill is
+     overridden per card via android:backgroundTint (fresh/expiring/expired). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/icon_container_background" />
+    <corners android:radius="@dimen/radius_md" />
+</shape>

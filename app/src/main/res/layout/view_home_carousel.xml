@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fresh meal ideas carousel: a snap-aligned horizontal RecyclerView fed by
+     MainActivity (LinearSnapHelper + page dots built at runtime). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/carouselHeader"
+        layout="@layout/view_home_section_header" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/carouselList"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/carousel_height"
+        android:layout_marginTop="@dimen/space_3"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingStart="@dimen/space_5"
+        android:paddingEnd="@dimen/space_5" />
+
+    <LinearLayout
+        android:id="@+id/pagerDots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space_2"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" />
+
+</LinearLayout>

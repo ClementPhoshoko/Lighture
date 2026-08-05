@@ -1,0 +1,35 @@
+Plan: Embedded Help/Privacy hub (Lighture)
+
+Goal: Serve docs, privacy, support from lighture.akovolabs.co.za/help and embed them in-app via WebView (no browser jump).
+
+Phase 1 — Web side (/help site)
+
+Confirm akovolabs.co.za hosting exists (domain + static hosting, ~$0–5/mo).
+Build a mobile-first, responsive static site:
+Sections: Docs, Privacy, Support/FAQ, Contact, Terms.
+Top bar / collapsible sidebar nav (hamburger on small widths — it renders inside a narrow WebView).
+Fast load, simple layout, no heavy JS.
+Structure URLs so the app can deep-link:
+/help (hub, nav visible)
+/help/privacy, /help/docs, /help/support, /help/terms
+Set up server: HTTPS (mandatory — Android blocks mixed content), correct X-Frame-Options/CSP only if you ever need frame embedding (not needed for WebView).
+Phase 2 — App side (Android)
+
+Add one reusable WebView screen:
+WebView + WebViewClient (stay in-app), toolbar with back/close + in-page back nav, progress bar, loading/error states (offline banner + retry).
+Accept a URL extra; all entries reuse it.
+Safe default config: JS enabled only for your own domain, or off if site doesn't need it; clear cache on config change.
+Wire Settings entries:
+"Help & Support" → /help
+"Privacy Policy" → /help/privacy
+"Terms" → /help/terms
+"Contact / Support" → /help/support
+(Optional) Replace the current login privacy card link to point at /help/privacy using the same screen.
+Costs: Hosting ~$0–5/mo. App side: one small screen + links (a day of work). No paid SDKs.
+
+Caveats:
+
+Content lives on the web → needs internet; add a clear offline/error state.
+Policy updates are instant (no app release).
+If you ever want fully offline policies, switch that one page to a bundled HTML asset — same WebView screen, just a different source.
+Do later when: you reach Settings and have the /help site deployed.

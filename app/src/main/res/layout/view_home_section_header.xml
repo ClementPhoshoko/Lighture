@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Reusable section header. Consumers override the root id via <include
+     android:id> so each section can resolve its own title/action. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/space_1"
+    android:paddingBottom="@dimen/space_1">
+
+    <TextView
+        android:id="@+id/sectionTitle"
+        style="@style/TextAppearance.Lighture.SectionTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_primary" />
+
+    <TextView
+        android:id="@+id/sectionAction"
+        style="@style/TextAppearance.Lighture.Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_chevron_right"
+        android:drawablePadding="@dimen/space_1_5"
+        android:drawableTint="@color/text_brand"
+        android:gravity="center_vertical"
+        android:text="@string/home_section_action"
+        android:textColor="@color/text_brand" />
+
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home greeting + notification action. Greeting text is set at runtime
+     (time-of-day aware) by MainActivity. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/space_2"
+    android:paddingBottom="@dimen/space_2">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/homeGreeting"
+            style="@style/TextAppearance.Lighture.PageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/font_size_xl"
+            tools:text="Good morning," />
+
+        <TextView
+            android:id="@+id/homeSubtitle"
+            style="@style/TextAppearance.Lighture.BodySmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_0_5"
+            android:text="@string/home_subtitle"
+            android:textColor="@color/text_secondary" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/notificationWrap"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/space_3">
+
+        <ImageButton
+            android:id="@+id/notificationButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_icon_circle"
+            android:contentDescription="@string/home_notification_description"
+            android:padding="@dimen/space_3"
+            app:srcCompat="@drawable/ic_bell"
+            app:tint="@color/icon_primary" />
+
+        <View
+            android:id="@+id/notificationBadge"
+            android:layout_width="@dimen/notification_badge"
+            android:layout_height="@dimen/notification_badge"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="@dimen/space_0_5"
+            android:layout_marginEnd="@dimen/space_0_5"
+            android:background="@drawable/bg_notification_badge" />
+    </FrameLayout>
+
+</LinearLayout>

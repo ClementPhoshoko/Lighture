@@ -144,4 +144,21 @@
     <dimen name="glass_blur_md">18dp</dimen>
     <dimen name="glass_blur_lg">28dp</dimen>
 
+    <!-- =============================================================
+         HOME SCREEN
+    ============================================================= -->
+    <dimen name="hero_image_size">88dp</dimen>
+    <dimen name="hero_button_height">40dp</dimen>
+    <dimen name="hero_button_icon">16dp</dimen>
+    <dimen name="hero_button_icon_padding">2dp</dimen>
+    <dimen name="hero_buttons_gap">12dp</dimen>
+    <dimen name="recipe_card_width">240dp</dimen>
+    <dimen name="recipe_art_height">110dp</dimen>
+    <dimen name="carousel_height">220dp</dimen>
+    <dimen name="stat_icon_container">44dp</dimen>
+    <dimen name="notification_badge">10dp</dimen>
+    <dimen name="carousel_dot">8dp</dimen>
+    <dimen name="carousel_dot_active">20dp</dimen>
+    <dimen name="carousel_dot_gap">4dp</dimen>
+
 </resources>

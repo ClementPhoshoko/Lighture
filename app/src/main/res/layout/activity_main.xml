@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Home screen shell: themed fruit background with the greeting + hero
+     pinned at the top and only the sections below the hero scrolling. This
+     keeps a single vertical scroll region (no scrollable-in-scrollable).
+     MainActivity applies system-bar insets to homeTop (top), homeScroll, and
+     the bottom navigation (bottom). -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,16 +21,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/homeTop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/glass_background"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/page_padding_x"
+        android:paddingEnd="@dimen/page_padding_x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <include layout="@layout/view_home_header" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/homeScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeTop">
+
+        <LinearLayout
+            android:id="@+id/homeContent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Hello World!" />
-    </FrameLayout>
+            android:orientation="vertical"
+            android:paddingStart="@dimen/page_padding_x"
+            android:paddingTop="@dimen/page_padding_top"
+            android:paddingEnd="@dimen/page_padding_x"
+            android:paddingBottom="@dimen/space_8">
+
+            <include
+                android:id="@+id/homeHero"
+                layout="@layout/view_home_hero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <include
+                android:id="@+id/homeRecipes"
+                layout="@layout/view_home_recipes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8" />
+
+            <include
+                android:id="@+id/homeOverview"
+                layout="@layout/view_home_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8" />
+
+            <include
+                android:id="@+id/homeCarousel"
+                layout="@layout/view_home_carousel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8" />
+
+            <include
+                android:id="@+id/homeAdvisory"
+                layout="@layout/view_home_advisory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        style="@style/Widget.Lighture.BottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/space_0"
+        android:paddingBottom="@dimen/space_0"
+        app:itemActiveIndicatorStyle="@style/Widget.Lighture.BottomNavigationView.ActiveIndicator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

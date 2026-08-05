@@ -21,13 +21,15 @@
     <style name="TextAppearance.Lighture.PageTitle" parent="TextAppearance.Material3.HeadlineLarge">
         <item name="android:textSize">@dimen/font_size_3xl</item>
         <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:lineSpacingMultiplier">1.16</item>
         <item name="android:letterSpacing">-0.025</item>
     </style>
 
     <style name="TextAppearance.Lighture.SectionTitle" parent="TextAppearance.Material3.TitleLarge">
-        <item name="android:textSize">@dimen/font_size_xl</item>
+        <item name="android:textSize">@dimen/font_size_lg</item>
         <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:lineSpacingMultiplier">1.30</item>
     </style>
 
@@ -61,6 +63,15 @@
         <item name="android:lineSpacingMultiplier">1.30</item>
     </style>
 
+    <!-- Compact label for the small hero actions so the two buttons keep a
+         low profile beside the hero art. -->
+    <style name="TextAppearance.Lighture.HeroButton" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:lineSpacingMultiplier">1.10</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
     <!-- =============================================================
          SHAPES
     ============================================================= -->
@@ -78,6 +89,11 @@
     <style name="ShapeAppearance.Lighture.Button" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">@dimen/radius_button</item>
+    </style>
+
+    <style name="ShapeAppearance.Lighture.Button.Small" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_sm</item>
     </style>
 
     <style name="ShapeAppearance.Lighture.Chip" parent="ShapeAppearance.Material3.SmallComponent">
@@ -153,6 +169,56 @@
         <item name="android:minHeight">@dimen/size_button_md</item>
         <item name="rippleColor">@color/red_glow</item>
         <item name="android:textAppearance">@style/TextAppearance.Lighture.Label</item>
+    </style>
+
+    <!-- Buttons that sit on the feature-card gradient: a filled white CTA
+         (brand-red text/icon) and a bordered translucent variant. -->
+    <style name="Widget.Lighture.Button.HeroPrimary" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/text_inverse</item>
+        <item name="android:textColor">@color/brand_primary</item>
+        <item name="android:minHeight">@dimen/size_button_md</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Lighture.Button</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="elevation">0dp</item>
+        <item name="iconTint">@color/brand_primary</item>
+        <item name="android:textAppearance">@style/TextAppearance.Lighture.Label</item>
+    </style>
+
+    <!-- Hero secondary action: translucent white fill over the feature-card
+         gradient (70% alpha) with light/white content. No border. -->
+    <style name="Widget.Lighture.Button.HeroSecondary" parent="Widget.Material3.Button">
+        <item name="backgroundTint">#B3FFFFFF</item>
+        <item name="android:textColor">@color/text_inverse</item>
+        <item name="strokeColor">@android:color/transparent</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="android:minHeight">@dimen/size_button_md</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Lighture.Button</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="elevation">0dp</item>
+        <item name="iconTint">@color/text_inverse</item>
+        <item name="android:textAppearance">@style/TextAppearance.Lighture.Label</item>
+    </style>
+
+    <!-- Compact hero actions: fixed height, smaller icon, tight horizontal
+         padding so the two buttons sit side by side without dominating. -->
+    <style name="Widget.Lighture.Button.HeroPrimary.Small" parent="Widget.Lighture.Button.HeroPrimary">
+        <item name="android:minHeight">@dimen/hero_button_height</item>
+        <item name="android:paddingStart">@dimen/space_2_5</item>
+        <item name="android:paddingEnd">@dimen/space_2_5</item>
+        <item name="iconSize">@dimen/hero_button_icon</item>
+        <item name="iconPadding">@dimen/hero_button_icon_padding</item>
+        <item name="android:textAppearance">@style/TextAppearance.Lighture.HeroButton</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Lighture.Button.Small</item>
+    </style>
+
+    <style name="Widget.Lighture.Button.HeroSecondary.Small" parent="Widget.Lighture.Button.HeroSecondary">
+        <item name="android:minHeight">@dimen/hero_button_height</item>
+        <item name="android:paddingStart">@dimen/space_2_5</item>
+        <item name="android:paddingEnd">@dimen/space_2_5</item>
+        <item name="iconSize">@dimen/hero_button_icon</item>
+        <item name="iconPadding">@dimen/hero_button_icon_padding</item>
+        <item name="android:textAppearance">@style/TextAppearance.Lighture.HeroButton</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Lighture.Button.Small</item>
     </style>
 
     <!-- Shared look for the auth screens' primary CTA (AppCompatButton).
