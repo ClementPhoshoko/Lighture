@@ -115,7 +115,6 @@
     <!-- Splash screen -->
     <dimen name="splash_logo_width">56dp</dimen>
     <dimen name="splash_logo_height">76dp</dimen>
-    <dimen name="splash_image_fade_height">120dp</dimen>
 
     <dimen name="content_width_sm">480dp</dimen>
     <dimen name="content_width_md">704dp</dimen>
