@@ -47,12 +47,11 @@
         <item name="colorOutlineVariant">@color/border_subtle</item>
 
         <!-- Backgrounds -->
-        <!-- Keep the window background a plain colour: a large bitmap here is
-             redrawn at the wrong scale during the splash-exit window transition
-             (the image visibly "loses structure" then snaps into place). The
-             Canva background (@drawable/bg_system, light/dark variants) is
-             applied as a normal view background on each screen instead, which
-             is only drawn after layout and never distorts. -->
+        <!-- Window background stays a plain colour (a large bitmap here is
+             redrawn at the wrong scale during the splash-exit transition).
+             The themed fruit-icon background (@drawable/bg_system) is applied
+             as a normal view background on each screen: drawn post-layout, it
+             never distorts, and its colors resolve per light/dark mode. -->
         <item name="android:colorBackground">@color/background_app</item>
         <item name="colorOnBackground">@color/text_primary</item>
         <item name="android:windowBackground">@color/background_app</item>

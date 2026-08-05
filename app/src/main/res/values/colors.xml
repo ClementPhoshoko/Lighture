@@ -105,8 +105,14 @@
     <color name="background_overlay">#7A100E0F</color>
     <color name="background_scrim">#4D1E1417</color>
 
-    <!-- Soft dimmer overlaid on the Canva system background so content pops. -->
-    <color name="bg_dimmer">#80FFFCFD</color>
+    <!-- Decorative fruit/veg icons floating on the system background.
+         Tinted at low alpha so content pops; brighter in values-night. -->
+    <color name="bg_icon_vegetable">#594F9B5F</color>
+    <color name="bg_icon_fruit">#59DB6657</color>
+    <color name="bg_icon_dairy">#594D79B8</color>
+    <color name="bg_icon_protein">#59AA6649</color>
+    <color name="bg_icon_grain">#59A47A2F</color>
+    <color name="bg_icon_drink">#594F8EA3</color>
 
     <color name="surface_primary">@color/neutral_0</color>
     <color name="surface_secondary">#FFF8F9</color>
