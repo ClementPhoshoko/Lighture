@@ -8,28 +8,20 @@
     android:background="@drawable/splash_background"
     tools:context=".SplashActivity">
 
-    <!-- Horizontal split: content zone sits above this line -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/contentBottomGuide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="410dp" />
-
     <!-- Upper zone: small icon, system name and caption -->
 
-    <!-- Bottom: chefs-at-work image -->
     <LinearLayout
         android:id="@+id/splashContent"
         android:layout_width="238dp"
         android:layout_height="234dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/contentBottomGuide"
+        app:layout_constraintBottom_toTopOf="@id/splashImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.746">
+        app:layout_constraintVertical_bias="0.746"
+        android:layout_marginBottom="@dimen/space_6">
 
         <ImageView
             android:id="@+id/splashLogo"
