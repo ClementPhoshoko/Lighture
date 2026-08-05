@@ -38,8 +38,8 @@ public class FloatingFruitsView extends View {
 
     private static final int MIN_COUNT = 9;
     private static final int MAX_COUNT = 12;
-    private static final float MIN_SIZE_DP = 24f;
-    private static final float MAX_SIZE_DP = 40f;
+    private static final float MIN_SIZE_DP = 32f;
+    private static final float MAX_SIZE_DP = 52f;
     private static final int MAX_ROTATION_DEG = 20;
 
     private final Random random = new Random();
