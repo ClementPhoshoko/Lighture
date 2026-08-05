@@ -45,6 +45,8 @@
     <string name="auth_forgot_subtitle">No worries! Enter your email address and we\'ll send you a code to reset your password.</string>
     <string name="auth_forgot_button">Send Reset Code</string>
     <string name="auth_forgot_back">Back to Login</string>
+    <string name="auth_forgot_advisory_title">Check your inbox</string>
+    <string name="auth_forgot_advisory_body">We\'ll send a 6-digit code to the email you entered. It expires in 5 minutes.</string>
 
     <string name="auth_otp_title">Check your email</string>
     <string name="auth_otp_subtitle">We\'ve sent a 6-digit code to %1$s</string>
@@ -55,6 +57,7 @@
     <string name="auth_otp_resend">Resend Code</string>
     <string name="auth_otp_security_title">Keep your account safe</string>
     <string name="auth_otp_security_body">Never share your code with anyone. Lighture will never ask for it.</string>
+    <string name="auth_otp_spam_hint">Tip: Check your spam folder if you don\'t see the email.</string>
     <string name="auth_otp_verify">Verify Code</string>
     <string name="auth_otp_digit_description">Code digit %1$d of 6</string>
     <string name="auth_otp_sent">Demo code 123456 sent to %1$s</string>

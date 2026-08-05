@@ -301,5 +301,15 @@
             </LinearLayout>
         </FrameLayout>
 
+        <TextView
+            android:id="@+id/otpSpamHint"
+            style="@style/TextAppearance.Lighture.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:gravity="center_horizontal"
+            android:text="@string/auth_otp_spam_hint"
+            android:textColor="@color/text_tertiary" />
+
     </LinearLayout>
 </ScrollView>
