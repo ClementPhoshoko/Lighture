@@ -170,6 +170,16 @@
                 android:textColorHint="@color/input_placeholder" />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/otpErrorAvatar"
+            android:layout_width="@dimen/size_avatar_xl"
+            android:layout_height="@dimen/size_avatar_xl"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_4"
+            android:contentDescription="@string/auth_otp_invalid"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/otpError"
             style="@style/TextAppearance.Lighture.Caption"

@@ -72,7 +72,9 @@
     <string name="auth_field_label_new_password">New Password</string>
     <string name="auth_new_password_button">Save Password</string>
     <string name="auth_new_password_back">Back to Login</string>
-    <string name="auth_new_password_success">Password updated! You can now log in.</string>
+    <string name="auth_success_title">Password updated!</string>
+    <string name="auth_success_subtitle">You can now log in with your new password.</string>
+    <string name="auth_success_button">Back to Login</string>
 
     <string name="auth_show_password">Show password</string>
     <string name="auth_hide_password">Hide password</string>
@@ -81,8 +83,6 @@
     <string name="auth_snackbar_password_mismatch">Passwords do not match.</string>
     <string name="auth_snackbar_password_weak">Use 8+ characters with a mix of letters, numbers &amp; symbols for a stronger password.</string>
     <string name="auth_snackbar_invalid_email">Enter a valid email address.</string>
-    <string name="auth_snackbar_login_demo">Welcome back! Sign-in is not wired up yet.</string>
     <string name="auth_snackbar_register_demo">Account created! Sign-up is not wired up yet.</string>
-    <string name="auth_snackbar_forgot_demo">Reset link sent! Password reset is not wired up yet.</string>
     <string name="auth_snackbar_social">Sign-in via %1$s is coming soon.</string>
 </resources>

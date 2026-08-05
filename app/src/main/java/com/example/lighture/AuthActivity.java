@@ -1,6 +1,8 @@
 package com.example.lighture;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.InputFilter;
@@ -15,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -26,6 +29,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Locale;
 
 /**
@@ -43,8 +48,11 @@ public class AuthActivity extends AppCompatActivity {
     public static final int MODE_FORGOT = 2;
     public static final int MODE_OTP = 3;
     public static final int MODE_NEW_PASSWORD = 4;
+    public static final int MODE_SUCCESS = 5;
 
     private static final String DEMO_OTP = "123456";
+    private static final String ASSET_SUCCESS_AVATAR = "success_with_fresh_salad.png";
+    private static final String ASSET_FAILURE_AVATAR = "failure_with_fresh_salad.png";
     private static final long OTP_COUNTDOWN_MILLIS = 5 * 60 * 1000L;
     private static final long OTP_COUNTDOWN_TICK = 1000L;
 
@@ -83,6 +91,7 @@ public class AuthActivity extends AppCompatActivity {
                 : mode == MODE_FORGOT ? R.layout.auth_forgot
                 : mode == MODE_OTP ? R.layout.auth_otp
                 : mode == MODE_NEW_PASSWORD ? R.layout.auth_new_password
+                : mode == MODE_SUCCESS ? R.layout.auth_success
                 : R.layout.auth_login;
         LayoutInflater.from(this).inflate(layout, container, true);
         wire(mode);
@@ -101,6 +110,9 @@ public class AuthActivity extends AppCompatActivity {
                 break;
             case MODE_NEW_PASSWORD:
                 wireNewPassword();
+                break;
+            case MODE_SUCCESS:
+                wireSuccess();
                 break;
             case MODE_LOGIN:
             default:
@@ -246,6 +258,7 @@ public class AuthActivity extends AppCompatActivity {
                 findViewById(R.id.otpDigit6)
         };
         final TextView error = findViewById(R.id.otpError);
+        final ImageView errorAvatar = findViewById(R.id.otpErrorAvatar);
         final Button verify = findViewById(R.id.otpVerifyButton);
         final TextView resendLink = findViewById(R.id.resendLink);
 
@@ -287,6 +300,7 @@ public class AuthActivity extends AppCompatActivity {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     error.setVisibility(View.GONE);
+                    errorAvatar.setVisibility(View.GONE);
                     if (s.length() == 1 && index < boxes.length - 1) {
                         boxes[index + 1].requestFocus();
                     } else if (s.length() == 0 && index > 0) {
@@ -313,6 +327,8 @@ public class AuthActivity extends AppCompatActivity {
                     box.setBackgroundResource(R.drawable.bg_otp_box_error);
                     box.setText("");
                 }
+                loadAssetImage(errorAvatar, ASSET_FAILURE_AVATAR);
+                errorAvatar.setVisibility(View.VISIBLE);
                 error.setVisibility(View.VISIBLE);
                 boxes[0].requestFocus();
                 refreshState.run();
@@ -328,6 +344,7 @@ public class AuthActivity extends AppCompatActivity {
                 box.setText("");
             }
             error.setVisibility(View.GONE);
+            errorAvatar.setVisibility(View.GONE);
             refreshState.run();
             boxes[0].requestFocus();
             startResetTimer();
@@ -386,9 +403,24 @@ public class AuthActivity extends AppCompatActivity {
                 showMessage(R.string.auth_snackbar_password_mismatch);
                 return;
             }
-            showMessage(R.string.auth_new_password_success);
-            switchMode(MODE_LOGIN);
+            switchMode(MODE_SUCCESS);
         });
+    }
+
+    private void wireSuccess() {
+        loadAssetImage((ImageView) findViewById(R.id.successAvatar), ASSET_SUCCESS_AVATAR);
+        findViewById(R.id.successButton).setOnClickListener(v -> switchMode(MODE_LOGIN));
+    }
+
+    private void loadAssetImage(ImageView target, String assetPath) {
+        try {
+            InputStream stream = getAssets().open(assetPath);
+            Bitmap bitmap = BitmapFactory.decodeStream(stream);
+            stream.close();
+            target.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            target.setImageDrawable(null);
+        }
     }
 
     private boolean validateEmailAndPassword(EditText email, EditText password) {
