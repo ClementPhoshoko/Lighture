@@ -20,15 +20,15 @@ import androidx.core.view.WindowInsetsCompat;
 
 /**
  * Premium branded splash. Holds for a short branded beat, then hands off to
- * {@link MainActivity}. Uses core-splashscreen so the system splash and this
- * screen blend seamlessly on every API level (24+).
+ * {@link AuthActivity} (login). Uses core-splashscreen so the system splash
+ * and this screen blend seamlessly on every API level (24+).
  */
 public class SplashActivity extends AppCompatActivity {
 
     private static final long SPLASH_HOLD_MS = 2600L;
 
     private View root;
-    private final Runnable navigateRunnable = this::exitToMain;
+    private final Runnable navigateRunnable = this::exitToAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +79,15 @@ public class SplashActivity extends AppCompatActivity {
         floatAnim.start();
     }
 
-    private void exitToMain() {
+    private void exitToAuth() {
         ObjectAnimator fade = ObjectAnimator.ofFloat(root, View.ALPHA, 1f, 0f);
         fade.setDuration(280L);
         fade.setInterpolator(new AccelerateDecelerateInterpolator());
         fade.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, AuthActivity.class)
+                        .putExtra(AuthActivity.EXTRA_MODE, AuthActivity.MODE_LOGIN);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();

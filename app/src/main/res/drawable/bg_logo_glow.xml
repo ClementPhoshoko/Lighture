@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Soft radial glow placed behind the auth logo. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:type="radial"
+        android:startColor="@color/red_glow_strong"
+        android:centerColor="@color/red_100"
+        android:endColor="#00FFFFFF"
+        android:gradientRadius="@dimen/logo_glow_radius" />
+</shape>

@@ -8,4 +8,50 @@
     <string name="splash_version">v1.0.0</string>
     <string name="splash_content_description">Lighture logo</string>
     <string name="splash_image_description">Chefs cooking together</string>
+
+    <!-- Auth screens -->
+    <string name="auth_tagline">See it. Save it. Savor it.</string>
+
+    <string name="auth_login_title">Welcome back!</string>
+    <string name="auth_login_subtitle">Login to continue scanning your fridge and discovering new recipes.</string>
+    <string name="auth_field_label_email">Email Address</string>
+    <string name="auth_hint_email">example@email.com</string>
+    <string name="auth_field_label_password">Password</string>
+    <string name="auth_hint_password">Enter your password</string>
+    <string name="auth_forgot_password">Forgot Password?</string>
+    <string name="auth_login_button">Login</string>
+    <string name="auth_login_description">Log in to your Lighture account</string>
+    <string name="auth_or_continue">or continue with</string>
+    <string name="auth_social_google">Continue with Google</string>
+    <string name="auth_social_apple">Continue with Apple</string>
+    <string name="auth_social_facebook">Continue with Facebook</string>
+    <string name="auth_privacy_title">Your data is safe with us</string>
+    <string name="auth_privacy_body">We respect your privacy and keep your information secure.</string>
+    <string name="auth_signup_prompt">Don\'t have an account?</string>
+    <string name="auth_signup_link">Sign up</string>
+
+    <string name="auth_register_title">Create Account</string>
+    <string name="auth_register_subtitle">Join Lighture and start turning your fridge into delicious meals.</string>
+    <string name="auth_field_label_name">Full Name</string>
+    <string name="auth_hint_name">Your name</string>
+    <string name="auth_field_label_confirm">Confirm Password</string>
+    <string name="auth_register_button">Sign Up</string>
+    <string name="auth_login_prompt">Already have an account?</string>
+    <string name="auth_login_link">Login</string>
+
+    <string name="auth_forgot_title">Reset Password</string>
+    <string name="auth_forgot_subtitle">Enter your email and we\'ll send you a link to reset your password.</string>
+    <string name="auth_forgot_button">Send Reset Link</string>
+    <string name="auth_forgot_back">Back to Login</string>
+
+    <string name="auth_show_password">Show password</string>
+    <string name="auth_hide_password">Hide password</string>
+    <string name="auth_snackbar_empty">Enter your email and password to continue.</string>
+    <string name="auth_snackbar_fill">Please fill in all fields.</string>
+    <string name="auth_snackbar_password_mismatch">Passwords do not match.</string>
+    <string name="auth_snackbar_invalid_email">Enter a valid email address.</string>
+    <string name="auth_snackbar_login_demo">Welcome back! Sign-in is not wired up yet.</string>
+    <string name="auth_snackbar_register_demo">Account created! Sign-up is not wired up yet.</string>
+    <string name="auth_snackbar_forgot_demo">Reset link sent! Password reset is not wired up yet.</string>
+    <string name="auth_snackbar_social">Sign-in via %1$s is coming soon.</string>
 </resources>
