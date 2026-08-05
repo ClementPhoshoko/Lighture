@@ -32,19 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Soft red glow behind the icon -->
-    <View
-        android:id="@+id/splashGlow"
-        android:layout_width="@dimen/splash_glow_size"
-        android:layout_height="@dimen/splash_glow_size"
-        android:alpha="0.55"
-        android:background="@drawable/splash_glow"
-        app:layout_constraintBottom_toBottomOf="@id/splashLogo"
-        app:layout_constraintEnd_toEndOf="@id/splashLogo"
-        app:layout_constraintStart_toStartOf="@id/splashLogo"
-        app:layout_constraintTop_toTopOf="@id/splashLogo" />
-
-    <!-- Middle: small brand icon -->
+    <!-- Small brand icon -->
     <ImageView
         android:id="@+id/splashLogo"
         android:layout_width="@dimen/splash_logo_width"
@@ -56,46 +44,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/avatarTop"
-        android:layout_marginTop="@dimen/space_6" />
+        android:layout_marginTop="@dimen/space_5" />
 
-    <!-- Sparkles around the icon -->
-    <ImageView
-        android:id="@+id/sparkleTopLeft"
-        android:layout_width="@dimen/splash_sparkle_sm"
-        android:layout_height="@dimen/splash_sparkle_sm"
-        android:alpha="0"
-        android:contentDescription="@string/splash_sparkle_description"
-        app:srcCompat="@drawable/ic_sparkle"
-        app:layout_constraintEnd_toStartOf="@id/splashLogo"
-        app:layout_constraintTop_toTopOf="@id/splashLogo"
-        android:layout_marginEnd="4dp"
-        android:layout_marginTop="10dp" />
-
-    <ImageView
-        android:id="@+id/sparkleTopRight"
-        android:layout_width="@dimen/splash_sparkle_md"
-        android:layout_height="@dimen/splash_sparkle_md"
-        android:alpha="0"
-        android:contentDescription="@string/splash_sparkle_description"
-        app:srcCompat="@drawable/ic_sparkle"
-        app:layout_constraintStart_toEndOf="@id/splashLogo"
-        app:layout_constraintTop_toTopOf="@id/splashLogo"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="0dp" />
-
-    <ImageView
-        android:id="@+id/sparkleBottomRight"
-        android:layout_width="@dimen/splash_sparkle_sm"
-        android:layout_height="@dimen/splash_sparkle_sm"
-        android:alpha="0"
-        android:contentDescription="@string/splash_sparkle_description"
-        app:srcCompat="@drawable/ic_sparkle"
-        app:layout_constraintStart_toEndOf="@id/splashLogo"
-        app:layout_constraintBottom_toBottomOf="@id/splashLogo"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="16dp" />
-
-    <!-- Floating food illustrations around the icon -->
+    <!-- Floating food illustrations framing the icon -->
     <ImageView
         android:id="@+id/foodTopLeft"
         android:layout_width="@dimen/splash_food_size"
@@ -106,8 +57,8 @@
         app:srcCompat="@drawable/ic_food_apple"
         app:layout_constraintEnd_toStartOf="@id/splashLogo"
         app:layout_constraintTop_toTopOf="@id/splashLogo"
-        android:layout_marginEnd="2dp"
-        android:layout_marginTop="-22dp" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="-18dp" />
 
     <ImageView
         android:id="@+id/foodTopRight"
@@ -119,8 +70,8 @@
         app:srcCompat="@drawable/ic_food_bread"
         app:layout_constraintStart_toEndOf="@id/splashLogo"
         app:layout_constraintTop_toTopOf="@id/splashLogo"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="-26dp" />
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="-22dp" />
 
     <ImageView
         android:id="@+id/foodBottomLeft"
@@ -132,8 +83,8 @@
         app:srcCompat="@drawable/ic_food_cheese"
         app:layout_constraintEnd_toStartOf="@id/splashLogo"
         app:layout_constraintBottom_toBottomOf="@id/splashLogo"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="-18dp" />
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="-16dp" />
 
     <ImageView
         android:id="@+id/foodBottomRight"
@@ -145,10 +96,10 @@
         app:srcCompat="@drawable/ic_food_bottle"
         app:layout_constraintStart_toEndOf="@id/splashLogo"
         app:layout_constraintBottom_toBottomOf="@id/splashLogo"
-        android:layout_marginStart="-4dp"
-        android:layout_marginBottom="-20dp" />
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="-18dp" />
 
-    <!-- Bottom: system name, caption and loading cue -->
+    <!-- Bottom: system name and caption -->
     <LinearLayout
         android:id="@+id/splashContent"
         android:layout_width="wrap_content"

@@ -8,7 +8,6 @@
     <string name="splash_version">v1.0.0</string>
     <string name="splash_content_description">Lighture logo</string>
     <string name="splash_avatar_description">Chefs cooking together</string>
-    <string name="splash_sparkle_description">Sparkle decoration</string>
     <string name="splash_food_description">Food illustration</string>
     <string name="splash_loading_description">Loading indicator</string>
 </resources>

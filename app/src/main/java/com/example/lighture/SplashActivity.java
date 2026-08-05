@@ -48,9 +48,7 @@ public class SplashActivity extends AppCompatActivity {
 
         animateAvatar(findViewById(R.id.avatarTop));
         animateLogo(findViewById(R.id.splashLogo));
-        animateGlow(findViewById(R.id.splashGlow));
         animateContent(findViewById(R.id.splashContent));
-        animateSparkles();
         animateDots();
         animateFood();
 
@@ -105,45 +103,12 @@ public class SplashActivity extends AppCompatActivity {
         floatAnim.start();
     }
 
-    private void animateGlow(View glow) {
-        ObjectAnimator pulse = ObjectAnimator.ofFloat(glow, View.ALPHA, 0.55f, 1f);
-        pulse.setDuration(1600L);
-        pulse.setRepeatCount(ValueAnimator.INFINITE);
-        pulse.setRepeatMode(ValueAnimator.REVERSE);
-        pulse.setInterpolator(new AccelerateDecelerateInterpolator());
-        pulse.start();
-    }
-
     private void animateContent(View content) {
         ObjectAnimator fade = ObjectAnimator.ofFloat(content, View.ALPHA, 0f, 1f);
         fade.setDuration(700L);
         fade.setStartDelay(250L);
         fade.setInterpolator(new AccelerateDecelerateInterpolator());
         fade.start();
-    }
-
-    private void animateSparkles() {
-        int[] ids = {R.id.sparkleTopLeft, R.id.sparkleTopRight, R.id.sparkleBottomRight};
-        long[] delays = {100L, 280L, 460L};
-        for (int i = 0; i < ids.length; i++) {
-            View sparkle = findViewById(ids[i]);
-            ObjectAnimator fade = ObjectAnimator.ofFloat(sparkle, View.ALPHA, 0f, 1f);
-            fade.setDuration(1400L);
-            fade.setStartDelay(delays[i]);
-            fade.setRepeatCount(ValueAnimator.INFINITE);
-            fade.setRepeatMode(ValueAnimator.REVERSE);
-            fade.setInterpolator(new LinearInterpolator());
-
-            ObjectAnimator scaleX = ObjectAnimator.ofFloat(sparkle, View.SCALE_X, 0.6f, 1f);
-            scaleX.setDuration(1400L);
-            scaleX.setStartDelay(delays[i]);
-            scaleX.setRepeatCount(ValueAnimator.INFINITE);
-            scaleX.setRepeatMode(ValueAnimator.REVERSE);
-
-            AnimatorSet set = new AnimatorSet();
-            set.playTogether(fade, scaleX);
-            set.start();
-        }
     }
 
     private void animateDots() {
