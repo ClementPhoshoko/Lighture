@@ -383,39 +383,55 @@
             android:orientation="vertical"
             android:padding="@dimen/card_padding_compact">
 
-            <FrameLayout
-                android:id="@+id/privacyIconContainer"
-                android:layout_width="@dimen/size_touch_min"
-                android:layout_height="@dimen/size_touch_min"
-                android:background="@drawable/bg_icon_circle">
-
-                <ImageView
-                    android:id="@+id/privacyIcon"
-                    android:layout_width="@dimen/size_icon_md"
-                    android:layout_height="@dimen/size_icon_md"
-                    android:layout_gravity="center"
-                    android:importantForAccessibility="no"
-                    app:srcCompat="@drawable/ic_shield"
-                    app:tint="@color/icon_brand" />
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/privacyTitle"
-                style="@style/TextAppearance.Lighture.CardTitle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/privacyContentRow"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_2"
-                android:text="@string/auth_privacy_title"
-                android:textColor="@color/text_primary" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/privacyBody"
-                style="@style/TextAppearance.Lighture.BodySmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_1"
-                android:text="@string/auth_privacy_body"
-                android:textColor="@color/text_secondary" />
+                <FrameLayout
+                    android:id="@+id/privacyIconContainer"
+                    android:layout_width="@dimen/size_touch_min"
+                    android:layout_height="@dimen/size_touch_min"
+                    android:background="@drawable/bg_icon_circle">
+
+                    <ImageView
+                        android:id="@+id/privacyIcon"
+                        android:layout_width="@dimen/size_icon_md"
+                        android:layout_height="@dimen/size_icon_md"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_shield"
+                        app:tint="@color/icon_brand" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/privacyTextBlock"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_3"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/privacyTitle"
+                        style="@style/TextAppearance.Lighture.CardTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/auth_privacy_title"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:id="@+id/privacyBody"
+                        style="@style/TextAppearance.Lighture.BodySmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_0_5"
+                        android:text="@string/auth_privacy_body"
+                        android:textColor="@color/text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <ImageView
