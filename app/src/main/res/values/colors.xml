@@ -1,5 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Lighture — Design Tokens
+  Visual source of truth: design_token.css (light theme).
+  Dark theme overrides live in values-night/colors.xml.
+-->
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!-- =============================================================
+         1. BRAND COLOUR PRIMITIVES
+    ============================================================= -->
+    <color name="red_50">#FFF5F6</color>
+    <color name="red_100">#FFE9EC</color>
+    <color name="red_200">#FFCFD6</color>
+    <color name="red_300">#FFA7B4</color>
+    <color name="red_400">#FF7084</color>
+    <color name="red_500">#F0445D</color>
+    <color name="red_600">#D92D4A</color>
+    <color name="red_700">#B91C3B</color>
+    <color name="red_800">#981B35</color>
+    <color name="red_900">#7F1D32</color>
+    <color name="red_950">#450A17</color>
+
+    <!-- Bright accent: icons, decorative highlights and glow. -->
+    <color name="red_accent">#FF526B</color>
+    <color name="red_accent_soft">#FF8091</color>
+    <color name="red_glow">#4DFF526B</color>
+    <color name="red_glow_strong">#75FF526B</color>
+
+    <!-- Primary action red: dark enough for white button text. -->
+    <color name="brand_primary">@color/red_600</color>
+    <color name="brand_primary_hover">@color/red_700</color>
+    <color name="brand_primary_pressed">@color/red_800</color>
+    <color name="brand_primary_subtle">@color/red_50</color>
+    <color name="brand_primary_soft">@color/red_100</color>
+    <color name="brand_primary_muted">@color/red_200</color>
+    <color name="brand_primary_accent">@color/red_accent</color>
+
+    <!-- =============================================================
+         2. NEUTRAL COLOUR PRIMITIVES
+         Warm neutrals prevent the white interface from feeling sterile.
+    ============================================================= -->
+    <color name="neutral_0">#FFFFFF</color>
+    <color name="neutral_25">#FFFDFD</color>
+    <color name="neutral_50">#FCFAFB</color>
+    <color name="neutral_100">#F8F4F5</color>
+    <color name="neutral_200">#EFE8EA</color>
+    <color name="neutral_300">#DFD5D8</color>
+    <color name="neutral_400">#AAA0A3</color>
+    <color name="neutral_500">#7C7376</color>
+    <color name="neutral_600">#625A5D</color>
+    <color name="neutral_700">#464043</color>
+    <color name="neutral_800">#2D292B</color>
+    <color name="neutral_900">#1B181A</color>
+    <color name="neutral_950">#100E0F</color>
+
+    <!-- =============================================================
+         3. SEMANTIC COLOURS
+    ============================================================= -->
+    <color name="color_success">#2F8F4E</color>
+    <color name="color_success_strong">#1F6F3B</color>
+    <color name="color_success_soft">#EDF9F0</color>
+    <color name="color_success_border">#CCEBD4</color>
+
+    <color name="color_warning">#B86800</color>
+    <color name="color_warning_strong">#8C4F00</color>
+    <color name="color_warning_soft">#FFF7E8</color>
+    <color name="color_warning_border">#F4D7A0</color>
+
+    <color name="color_danger">#C62845</color>
+    <color name="color_danger_strong">#981B35</color>
+    <color name="color_danger_soft">#FFF0F3</color>
+    <color name="color_danger_border">#FFC7D1</color>
+
+    <color name="color_info">#2869B2</color>
+    <color name="color_info_strong">#1F5189</color>
+    <color name="color_info_soft">#EDF5FF</color>
+    <color name="color_info_border">#C8DDF6</color>
+
+    <!-- Fridge freshness statuses -->
+    <color name="fresh_color">@color/color_success</color>
+    <color name="fresh_background">@color/color_success_soft</color>
+    <color name="fresh_border">@color/color_success_border</color>
+
+    <color name="expiring_color">@color/color_warning</color>
+    <color name="expiring_background">@color/color_warning_soft</color>
+    <color name="expiring_border">@color/color_warning_border</color>
+
+    <color name="expired_color">@color/color_danger</color>
+    <color name="expired_background">@color/color_danger_soft</color>
+    <color name="expired_border">@color/color_danger_border</color>
+
+    <color name="unknown_color">@color/neutral_600</color>
+    <color name="unknown_background">@color/neutral_100</color>
+    <color name="unknown_border">@color/neutral_200</color>
+
+    <!-- =============================================================
+         4. APPLICATION SURFACES
+    ============================================================= -->
+    <color name="background_app">#FFFCFD</color>
+    <color name="background_page">#FFFAFB</color>
+    <color name="background_elevated">@color/neutral_0</color>
+    <color name="background_muted">#FFF7F8</color>
+    <color name="background_subtle">@color/neutral_50</color>
+    <color name="background_overlay">#7A100E0F</color>
+    <color name="background_scrim">#4D1E1417</color>
+
+    <color name="surface_primary">@color/neutral_0</color>
+    <color name="surface_secondary">#FFF8F9</color>
+    <color name="surface_tertiary">@color/neutral_100</color>
+    <color name="surface_red_tint">#D1FFF1F4</color>
+    <color name="surface_disabled">#F4EFF1</color>
+    <color name="surface_inverse">@color/neutral_900</color>
+
+    <!-- =============================================================
+         5. TEXT AND ICON COLOURS
+    ============================================================= -->
+    <color name="text_primary">#181518</color>
+    <color name="text_secondary">#625B5E</color>
+    <color name="text_tertiary">#8C8387</color>
+    <color name="text_disabled">#B6ADB0</color>
+    <color name="text_inverse">#FFFFFF</color>
+    <color name="text_brand">@color/brand_primary</color>
+    <color name="text_link">@color/red_700</color>
+
+    <color name="icon_primary">#282326</color>
+    <color name="icon_secondary">#766E71</color>
+    <color name="icon_tertiary">#A59CA0</color>
+    <color name="icon_brand">@color/red_accent</color>
+    <color name="icon_inverse">#FFFFFF</color>
+    <color name="icon_disabled">#C2B9BC</color>
+
+    <!-- =============================================================
+         6. BORDERS AND DIVIDERS
+    ============================================================= -->
+    <color name="border_subtle">#123D262D</color>
+    <color name="border_default">#1F3D262D</color>
+    <color name="border_strong">#333D262D</color>
+    <color name="border_brand">#57D92D4A</color>
+    <color name="border_focus">@color/red_500</color>
+    <color name="divider">#143D262D</color>
+
+    <!-- =============================================================
+         7. GLASS DESIGN TOKENS
+         Use on elevated cards, bottom navigation, floating controls
+         and scan overlays. Do not use on every surface.
+    ============================================================= -->
+    <color name="glass_background">#B8FFFFFF</color>
+    <color name="glass_background_strong">#E0FFFFFF</color>
+    <color name="glass_background_soft">#A3FFFAFB</color>
+    <color name="glass_background_red">#B8FFEFF3</color>
+
+    <color name="glass_border">#D1FFFFFF</color>
+    <color name="glass_border_soft">#94FFFFFF</color>
+    <color name="glass_outline">#1AD92D4A</color>
+
+    <!-- =============================================================
+         8. COMPONENT TOKENS
+    ============================================================= -->
+
+    <!-- Cards -->
+    <color name="card_background">@color/surface_primary</color>
+    <color name="card_background_tinted">@color/surface_secondary</color>
+    <color name="card_border">@color/border_subtle</color>
+    <color name="feature_card_text">#FFFFFF</color>
+
+    <!-- Primary button -->
+    <color name="button_primary_background">@color/brand_primary</color>
+    <color name="button_primary_background_hover">@color/brand_primary_hover</color>
+    <color name="button_primary_background_pressed">@color/brand_primary_pressed</color>
+    <color name="button_primary_text">#FFFFFF</color>
+    <color name="button_primary_border">#00000000</color>
+
+    <!-- Secondary button -->
+    <color name="button_secondary_background">@color/neutral_0</color>
+    <color name="button_secondary_background_hover">@color/red_50</color>
+    <color name="button_secondary_background_pressed">@color/red_100</color>
+    <color name="button_secondary_text">@color/brand_primary</color>
+    <color name="button_secondary_border">@color/border_brand</color>
+
+    <!-- Soft tinted button -->
+    <color name="button_soft_background">@color/red_50</color>
+    <color name="button_soft_background_hover">@color/red_100</color>
+    <color name="button_soft_background_pressed">@color/red_200</color>
+    <color name="button_soft_text">@color/red_700</color>
+    <color name="button_soft_border">#14D92D4A</color>
+
+    <!-- Ghost button -->
+    <color name="button_ghost_background">#00000000</color>
+    <color name="button_ghost_background_hover">#0FD92D4A</color>
+    <color name="button_ghost_background_pressed">#1AD92D4A</color>
+    <color name="button_ghost_text">@color/brand_primary</color>
+
+    <!-- Inputs -->
+    <color name="input_background">#EBFFFFFF</color>
+    <color name="input_background_focus">@color/neutral_0</color>
+    <color name="input_border">@color/border_default</color>
+    <color name="input_border_hover">@color/border_strong</color>
+    <color name="input_border_focus">@color/border_focus</color>
+    <color name="input_text">@color/text_primary</color>
+    <color name="input_placeholder">@color/text_tertiary</color>
+
+    <!-- Chips and segmented controls -->
+    <color name="chip_background">@color/neutral_100</color>
+    <color name="chip_background_selected">@color/red_100</color>
+    <color name="chip_text">@color/text_secondary</color>
+    <color name="chip_text_selected">@color/red_700</color>
+    <color name="chip_border">#00000000</color>
+    <color name="chip_border_selected">#1FD92D4A</color>
+
+    <!-- Icon container -->
+    <color name="icon_container_background">@color/red_50</color>
+    <color name="icon_container_background_strong">@color/red_100</color>
+    <color name="icon_container_colour">@color/red_accent</color>
+
+    <!-- Badges -->
+    <color name="badge_brand_background">@color/red_50</color>
+    <color name="badge_brand_text">@color/red_700</color>
+    <color name="badge_brand_border">#1AD92D4A</color>
+
+    <!-- Bottom navigation -->
+    <color name="bottom_nav_background">#E6FFFFFF</color>
+    <color name="bottom_nav_border">#143D262D</color>
+    <color name="bottom_nav_item">@color/icon_secondary</color>
+    <color name="bottom_nav_item_active">@color/brand_primary_accent</color>
+    <color name="bottom_nav_indicator">@color/red_50</color>
+
+    <!-- Top app bar -->
+    <color name="top_bar_background">#E0FFFCFD</color>
+    <color name="top_bar_border">#00000000</color>
+    <color name="top_bar_title">@color/text_primary</color>
+
+    <!-- Floating icon button -->
+    <color name="floating_button_background">@color/glass_background_strong</color>
+    <color name="floating_button_border">@color/glass_border</color>
+    <color name="floating_button_icon">@color/brand_primary_accent</color>
+
+    <!-- Progress -->
+    <color name="progress_track">@color/red_100</color>
+    <color name="progress_indicator">@color/red_accent</color>
+
+    <!-- Scan interface -->
+    <color name="scan_frame_colour">@color/red_accent</color>
+    <color name="scan_grid_colour">#42FFFFFF</color>
+    <color name="scan_overlay_background">#8A100E0F</color>
+    <color name="scan_status_background">#C2181416</color>
+    <color name="scan_status_border">#24FFFFFF</color>
+    <color name="scan_status_text">#FFFFFF</color>
+
+    <!-- Skeleton loading -->
+    <color name="skeleton_base">#F2ECEE</color>
+    <color name="skeleton_highlight">#FFFAFB</color>
+
+    <!-- Snackbar and toast -->
+    <color name="toast_background">#F01B181A</color>
+    <color name="toast_text">#FFFFFF</color>
+    <color name="toast_action">#FF9BAB</color>
+
+    <!-- =============================================================
+         9. FOOD CATEGORY ACCENTS
+         Secondary visual cues. Brand red remains dominant.
+    ============================================================= -->
+    <color name="food_vegetable">#4F9B5F</color>
+    <color name="food_vegetable_soft">#EEF8F0</color>
+
+    <color name="food_fruit">#DB6657</color>
+    <color name="food_fruit_soft">#FFF0ED</color>
+
+    <color name="food_dairy">#4D79B8</color>
+    <color name="food_dairy_soft">#EFF5FC</color>
+
+    <color name="food_protein">#AA6649</color>
+    <color name="food_protein_soft">#FAF1ED</color>
+
+    <color name="food_grain">#A47A2F</color>
+    <color name="food_grain_soft">#FBF5E9</color>
+
+    <color name="food_drink">#4F8EA3</color>
+    <color name="food_drink_soft">#EEF7F9</color>
+
 </resources>

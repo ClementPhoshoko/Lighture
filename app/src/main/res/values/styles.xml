@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Lighture — Component and typography styles.
+  Typography uses the bundled Inter font (regular/medium/semibold/bold).
+-->
+<resources>
+
+    <!-- =============================================================
+         TYPOGRAPHY
+    ============================================================= -->
+
+    <style name="TextAppearance.Lighture.Display" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="android:textSize">@dimen/font_size_4xl</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:lineSpacingMultiplier">1.16</item>
+        <item name="android:letterSpacing">-0.025</item>
+    </style>
+
+    <style name="TextAppearance.Lighture.PageTitle" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textSize">@dimen/font_size_3xl</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:lineSpacingMultiplier">1.16</item>
+        <item name="android:letterSpacing">-0.025</item>
+    </style>
+
+    <style name="TextAppearance.Lighture.SectionTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">@dimen/font_size_xl</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:lineSpacingMultiplier">1.30</item>
+    </style>
+
+    <style name="TextAppearance.Lighture.CardTitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">@dimen/font_size_lg</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:lineSpacingMultiplier">1.30</item>
+    </style>
+
+    <style name="TextAppearance.Lighture.Body" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">@dimen/font_size_md</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:lineSpacingMultiplier">1.50</item>
+    </style>
+
+    <style name="TextAppearance.Lighture.BodySmall" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">@dimen/font_size_sm</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:lineSpacingMultiplier">1.50</item>
+    </style>
+
+    <style name="TextAppearance.Lighture.Label" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">@dimen/font_size_sm</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:lineSpacingMultiplier">1.25</item>
+    </style>
+
+    <style name="TextAppearance.Lighture.Caption" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">@dimen/font_size_xs</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:lineSpacingMultiplier">1.30</item>
+    </style>
+
+    <!-- =============================================================
+         SHAPES
+    ============================================================= -->
+
+    <style name="ShapeAppearance.Lighture.Card" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_card</item>
+    </style>
+
+    <style name="ShapeAppearance.Lighture.FeatureCard" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_card_feature</item>
+    </style>
+
+    <style name="ShapeAppearance.Lighture.Button" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_button</item>
+    </style>
+
+    <style name="ShapeAppearance.Lighture.Chip" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_chip</item>
+    </style>
+
+    <style name="ShapeAppearance.Lighture.Fab" parent="ShapeAppearance.Material3.Corner.Full">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_pill</item>
+    </style>
+
+    <!-- =============================================================
+         CARDS
+    ============================================================= -->
+
+    <style name="Widget.Lighture.Card" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <item name="cardCornerRadius">@dimen/radius_card</item>
+        <item name="cardElevation">@dimen/elevation_card</item>
+        <item name="strokeColor">@color/card_border</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="Widget.Lighture.Card.Feature" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/feature_card_text</item>
+        <item name="cardCornerRadius">@dimen/radius_card_feature</item>
+        <item name="cardElevation">@dimen/elevation_card_feature</item>
+        <item name="android:background">@drawable/bg_feature_card</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- =============================================================
+         BUTTONS
+    ============================================================= -->
+
+    <style name="Widget.Lighture.Button.Primary" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/button_primary_background</item>
+        <item name="android:textColor">@color/button_primary_text</item>
+        <item name="android:minHeight">@dimen/size_button_md</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Lighture.Button</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="elevation">0dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Lighture.Label</item>
+    </style>
+
+    <style name="Widget.Lighture.Button.Secondary" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="backgroundTint">@color/button_secondary_background</item>
+        <item name="android:textColor">@color/button_secondary_text</item>
+        <item name="strokeColor">@color/button_secondary_border</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:minHeight">@dimen/size_button_md</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Lighture.Button</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="elevation">0dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Lighture.Label</item>
+    </style>
+
+    <style name="Widget.Lighture.Button.Soft" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/button_soft_background</item>
+        <item name="android:textColor">@color/button_soft_text</item>
+        <item name="strokeColor">@color/button_soft_border</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:minHeight">@dimen/size_button_md</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Lighture.Button</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="elevation">0dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Lighture.Label</item>
+    </style>
+
+    <style name="Widget.Lighture.Button.Ghost" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/button_ghost_text</item>
+        <item name="android:minHeight">@dimen/size_button_md</item>
+        <item name="rippleColor">@color/red_glow</item>
+        <item name="android:textAppearance">@style/TextAppearance.Lighture.Label</item>
+    </style>
+
+    <style name="Widget.Lighture.Button.ToggleGroup" parent="Widget.Material3.Button.TonalButton" />
+
+    <!-- =============================================================
+         CHIPS
+    ============================================================= -->
+
+    <style name="Widget.Lighture.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Lighture.Chip</item>
+        <item name="chipBackgroundColor">@color/chip_background_selector</item>
+        <item name="android:textColor">@color/chip_text_selector</item>
+        <item name="chipStrokeColor">@color/chip_stroke_selector</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Lighture.Label</item>
+        <item name="chipMinHeight">@dimen/size_button_sm</item>
+    </style>
+
+    <!-- =============================================================
+         BOTTOM NAVIGATION
+    ============================================================= -->
+
+    <style name="Widget.Lighture.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@color/bottom_nav_background</item>
+        <item name="android:elevation">@dimen/elevation_bottom_nav</item>
+        <item name="itemIconTint">@color/bottom_nav_item_selector</item>
+        <item name="itemTextColor">@color/bottom_nav_item_selector</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.Lighture.BottomNavigationView.ActiveIndicator</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <style name="Widget.Lighture.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/bottom_nav_indicator</item>
+    </style>
+
+    <!-- =============================================================
+         TOP APP BAR
+    ============================================================= -->
+
+    <style name="Widget.Lighture.TopAppBar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/top_bar_background</item>
+        <item name="android:minHeight">@dimen/size_top_bar</item>
+        <item name="android:elevation">0dp</item>
+        <item name="titleTextAppearance">@style/TextAppearance.Lighture.PageTitle</item>
+        <item name="titleTextColor">@color/top_bar_title</item>
+        <item name="navigationIconTint">@color/icon_primary</item>
+    </style>
+
+    <!-- =============================================================
+         FLOATING ACTION BUTTON
+    ============================================================= -->
+
+    <style name="Widget.Lighture.FloatingActionButton" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">@color/floating_button_background</item>
+        <item name="tint">@color/floating_button_icon</item>
+        <item name="borderWidth">1dp</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Lighture.Fab</item>
+        <item name="elevation">@dimen/elevation_floating</item>
+    </style>
+
+    <!-- =============================================================
+         INPUTS
+    ============================================================= -->
+
+    <style name="Widget.Lighture.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">@dimen/radius_input</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/radius_input</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/radius_input</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/radius_input</item>
+        <item name="boxStrokeColor">@color/input_border_selector</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">@color/input_placeholder</item>
+        <item name="android:textColorHint">@color/input_placeholder</item>
+    </style>
+
+    <style name="Widget.Lighture.TextInputEditText" parent="Widget.Material3.TextInputEditText.OutlinedBox">
+        <item name="android:textColor">@color/input_text</item>
+        <item name="android:textColorHint">@color/input_placeholder</item>
+    </style>
+
+    <!-- =============================================================
+         PROGRESS
+    ============================================================= -->
+
+    <style name="Widget.Lighture.ProgressIndicator.Linear" parent="Widget.Material3.LinearProgressIndicator">
+        <item name="trackColor">@color/progress_track</item>
+        <item name="indicatorColor">@color/progress_indicator</item>
+    </style>
+
+    <style name="Widget.Lighture.ProgressIndicator.Circular" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="trackColor">@color/progress_track</item>
+        <item name="indicatorColor">@color/progress_indicator</item>
+        <item name="indicatorSize">@dimen/size_icon_md</item>
+        <item name="trackThickness">3dp</item>
+    </style>
+
+</resources>

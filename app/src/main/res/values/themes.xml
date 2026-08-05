@@ -1,8 +1,80 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!--
+      Lighture — Application theme.
+      All colours are resolved through @color tokens, so the values-night
+      colours.xml automatically provides the dark mode variant.
+    -->
     <style name="Base.Theme.Lighture" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Brand -->
+        <item name="colorPrimary">@color/brand_primary</item>
+        <item name="colorOnPrimary">@color/button_primary_text</item>
+        <item name="colorPrimaryContainer">@color/brand_primary_soft</item>
+        <item name="colorOnPrimaryContainer">@color/red_700</item>
+
+        <!-- Accent -->
+        <item name="colorSecondary">@color/red_accent</item>
+        <item name="colorOnSecondary">@color/button_primary_text</item>
+        <item name="colorSecondaryContainer">@color/icon_container_background</item>
+        <item name="colorOnSecondaryContainer">@color/red_700</item>
+
+        <!-- Tertiary (neutral brand support) -->
+        <item name="colorTertiary">@color/food_dairy</item>
+        <item name="colorOnTertiary">@color/button_primary_text</item>
+        <item name="colorTertiaryContainer">@color/food_dairy_soft</item>
+        <item name="colorOnTertiaryContainer">@color/color_info_strong</item>
+
+        <!-- Error / danger -->
+        <item name="colorError">@color/color_danger</item>
+        <item name="colorOnError">@color/button_primary_text</item>
+        <item name="colorErrorContainer">@color/color_danger_soft</item>
+        <item name="colorOnErrorContainer">@color/color_danger_strong</item>
+
+        <!-- Surfaces -->
+        <item name="colorSurface">@color/surface_primary</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorSurfaceVariant">@color/surface_tertiary</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+
+        <item name="colorSurfaceContainerLowest">@color/neutral_0</item>
+        <item name="colorSurfaceContainerLow">@color/background_muted</item>
+        <item name="colorSurfaceContainer">@color/surface_secondary</item>
+        <item name="colorSurfaceContainerHigh">@color/surface_tertiary</item>
+        <item name="colorSurfaceContainerHighest">@color/neutral_200</item>
+
+        <!-- Outlines -->
+        <item name="colorOutline">@color/border_default</item>
+        <item name="colorOutlineVariant">@color/border_subtle</item>
+
+        <!-- Backgrounds -->
+        <item name="android:colorBackground">@color/background_app</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+        <item name="android:windowBackground">@color/background_app</item>
+
+        <!-- System bars -->
+        <item name="android:statusBarColor">@color/background_app</item>
+        <item name="android:navigationBarColor">@color/background_app</item>
+        <item name="android:windowLightStatusBar">@bool/light_status_bar</item>
+        <item name="android:windowLightNavigationBar">@bool/light_navigation_bar</item>
+
+        <!-- Default typography -->
+        <item name="android:textAppearance">@style/TextAppearance.Lighture.Body</item>
+
+        <!-- Material Components default styles -->
+        <item name="materialCardViewStyle">@style/Widget.Lighture.Card</item>
+        <item name="materialButtonStyle">@style/Widget.Lighture.Button.Primary</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.Lighture.Button.Secondary</item>
+        <item name="materialButtonToggleGroupStyle">@style/Widget.Lighture.Button.ToggleGroup</item>
+        <item name="chipStyle">@style/Widget.Lighture.Chip</item>
+        <item name="bottomNavigationStyle">@style/Widget.Lighture.BottomNavigationView</item>
+        <item name="toolbarStyle">@style/Widget.Lighture.TopAppBar</item>
+        <item name="floatingActionButtonStyle">@style/Widget.Lighture.FloatingActionButton</item>
+        <item name="textInputStyle">@style/Widget.Lighture.TextInputLayout</item>
+
+        <!-- Focus highlight -->
+        <item name="android:colorControlActivated">@color/brand_primary</item>
+        <item name="android:colorControlHighlight">@color/red_glow</item>
+
     </style>
 
     <style name="Theme.Lighture" parent="Base.Theme.Lighture" />

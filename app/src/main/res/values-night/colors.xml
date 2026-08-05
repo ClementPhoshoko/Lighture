@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Lighture — Design Tokens (dark theme overrides)
+  The product remains light-first. These overrides let the same semantic
+  tokens support a future dark mode. Only tokens that change are listed.
+-->
+<resources>
+
+    <!-- Surfaces -->
+    <color name="background_app">#110F10</color>
+    <color name="background_page">#151214</color>
+    <color name="background_elevated">#1D191B</color>
+    <color name="background_muted">#21191C</color>
+    <color name="background_subtle">#1A1719</color>
+    <color name="background_overlay">#9E000000</color>
+    <color name="background_scrim">#85000000</color>
+
+    <color name="surface_primary">#1D191B</color>
+    <color name="surface_secondary">#251B1F</color>
+    <color name="surface_tertiary">#292326</color>
+    <color name="surface_red_tint">#575A192A</color>
+    <color name="surface_disabled">#292528</color>
+    <color name="surface_inverse">#FFFFFF</color>
+
+    <!-- Text -->
+    <color name="text_primary">#FFF9FA</color>
+    <color name="text_secondary">#D3C9CC</color>
+    <color name="text_tertiary">#A99DA1</color>
+    <color name="text_disabled">#756C6F</color>
+    <color name="text_inverse">#181518</color>
+    <color name="text_brand">#FF8192</color>
+    <color name="text_link">#FF9AAA</color>
+
+    <!-- Icons -->
+    <color name="icon_primary">#FFF7F8</color>
+    <color name="icon_secondary">#C0B5B8</color>
+    <color name="icon_tertiary">#8F8588</color>
+    <color name="icon_brand">#FF7084</color>
+    <color name="icon_inverse">#181518</color>
+    <color name="icon_disabled">#675F62</color>
+
+    <!-- Borders -->
+    <color name="border_subtle">#12FFEEF3</color>
+    <color name="border_default">#1FFFEEF3</color>
+    <color name="border_strong">#33FFEEF3</color>
+    <color name="border_brand">#57FF7084</color>
+    <color name="border_focus">#FF7084</color>
+    <color name="divider">#14FFEEF3</color>
+
+    <!-- Glass -->
+    <color name="glass_background">#B3201B1E</color>
+    <color name="glass_background_strong">#E0201B1E</color>
+    <color name="glass_background_soft">#9E1B1719</color>
+    <color name="glass_background_red">#AD441824</color>
+    <color name="glass_border">#1AFFFFFF</color>
+    <color name="glass_border_soft">#12FFFFFF</color>
+    <color name="glass_outline">#24FF7084</color>
+
+    <!-- Components -->
+    <color name="input_background">#EB241F21</color>
+    <color name="input_background_focus">#292326</color>
+
+    <color name="chip_background">#292326</color>
+    <color name="chip_background_selected">#2EF0445D</color>
+    <color name="chip_text_selected">#FF9AAA</color>
+
+    <color name="icon_container_background">#1FF0445D</color>
+    <color name="icon_container_background_strong">#33F0445D</color>
+    <color name="icon_container_colour">#FF7084</color>
+
+    <color name="bottom_nav_background">#E6191517</color>
+    <color name="bottom_nav_border">#14FFEEF3</color>
+    <color name="bottom_nav_item_active">#FF7084</color>
+    <color name="bottom_nav_indicator">#24F0445D</color>
+
+    <color name="top_bar_background">#DB110F10</color>
+
+    <color name="floating_button_background">#E0241F21</color>
+    <color name="floating_button_border">#1AFFFFFF</color>
+    <color name="floating_button_icon">#FF7084</color>
+
+    <color name="skeleton_base">#292326</color>
+    <color name="skeleton_highlight">#373033</color>
+
+    <!-- Freshness statuses -->
+    <color name="fresh_background">#242F8F4E</color>
+    <color name="fresh_border">#384ABE6C</color>
+    <color name="fresh_color">#79D692</color>
+
+    <color name="expiring_background">#24B86800</color>
+    <color name="expiring_border">#3DEBA141</color>
+    <color name="expiring_color">#F0B15D</color>
+
+    <color name="expired_background">#26C62845</color>
+    <color name="expired_border">#3DFF7084</color>
+    <color name="expired_color">#FF8293</color>
+
+</resources>
