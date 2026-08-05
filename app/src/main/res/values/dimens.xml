@@ -133,7 +133,7 @@
          CSS shadows are not directly expressible in Android XML; the
          closest reliable token is elevation.
     ============================================================= -->
-    <dimen name="elevation_card">2dp</dimen>
+    <dimen name="elevation_card">3dp</dimen>
     <dimen name="elevation_card_feature">3dp</dimen>
     <dimen name="elevation_floating">4dp</dimen>
     <dimen name="elevation_dialog">6dp</dimen>

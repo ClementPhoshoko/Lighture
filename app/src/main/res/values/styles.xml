@@ -164,7 +164,7 @@
         <item name="android:drawableEnd">@drawable/ic_arrow_right</item>
         <item name="android:drawablePadding">@dimen/space_2</item>
         <item name="android:drawableTint">@color/text_inverse</item>
-        <item name="android:elevation">@dimen/elevation_card</item>
+        <item name="android:elevation">@dimen/elevation_floating</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingStart">@dimen/space_4</item>
         <item name="android:paddingEnd">@dimen/space_4</item>
