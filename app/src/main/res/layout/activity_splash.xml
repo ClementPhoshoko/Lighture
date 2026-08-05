@@ -57,9 +57,10 @@
         <TextView
             android:id="@+id/splashTagline"
             style="@style/TextAppearance.Lighture.BodySmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_2"
+            android:gravity="center_horizontal"
             android:text="@string/splash_tagline"
             android:textColor="@color/neutral_600" />
     </LinearLayout>
