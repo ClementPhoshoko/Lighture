@@ -51,6 +51,7 @@ public class SplashActivity extends AppCompatActivity {
         animateContent(findViewById(R.id.splashContent));
         animateSparkles();
         animateDots();
+        animateFood();
 
         root.postDelayed(navigateRunnable, SPLASH_HOLD_MS);
     }
@@ -139,6 +140,21 @@ public class SplashActivity extends AppCompatActivity {
             pulse.setRepeatMode(ValueAnimator.REVERSE);
             pulse.setInterpolator(new LinearInterpolator());
             pulse.start();
+        }
+    }
+
+    private void animateFood() {
+        int[] ids = {R.id.foodTopLeft, R.id.foodTopRight, R.id.foodBottomLeft, R.id.foodBottomRight};
+        long[] delays = {900L, 1200L, 1000L, 1400L};
+        for (int i = 0; i < ids.length; i++) {
+            View food = findViewById(ids[i]);
+            ObjectAnimator drift = ObjectAnimator.ofFloat(food, View.TRANSLATION_Y, 0f, dp(6f));
+            drift.setDuration(2600L);
+            drift.setStartDelay(delays[i]);
+            drift.setRepeatCount(ValueAnimator.INFINITE);
+            drift.setRepeatMode(ValueAnimator.REVERSE);
+            drift.setInterpolator(new AccelerateDecelerateInterpolator());
+            drift.start();
         }
     }
 

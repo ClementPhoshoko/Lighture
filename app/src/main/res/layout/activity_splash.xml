@@ -145,32 +145,29 @@
 
             <TextView
                 android:id="@+id/splashBrandStart"
+                style="@style/TextAppearance.Lighture.Display"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/splash_brand_start"
-                android:textColor="@color/text_primary"
-                android:textStyle="bold"
-                android:textSize="@dimen/splash_brand_size" />
+                android:textColor="@color/text_primary" />
 
             <TextView
                 android:id="@+id/splashBrandAccent"
+                style="@style/TextAppearance.Lighture.Display"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/splash_brand_accent"
-                android:textColor="@color/red_accent"
-                android:textStyle="bold"
-                android:textSize="@dimen/splash_brand_size" />
+                android:textColor="@color/red_accent" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/splashTagline"
+            style="@style/TextAppearance.Lighture.BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_2"
-            android:fontFamily="@font/inter_regular"
             android:text="@string/splash_tagline"
-            android:textColor="@color/text_secondary"
-            android:textSize="@dimen/font_size_md" />
+            android:textColor="@color/text_secondary" />
 
         <LinearLayout
             android:id="@+id/splashLoadingRow"
@@ -206,24 +203,22 @@
 
         <TextView
             android:id="@+id/splashLoadingText"
+            style="@style/TextAppearance.Lighture.BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_2_5"
-            android:fontFamily="@font/inter_regular"
             android:text="@string/splash_loading"
-            android:textColor="@color/text_tertiary"
-            android:textSize="@dimen/font_size_sm" />
+            android:textColor="@color/text_tertiary" />
     </LinearLayout>
 
     <!-- Version footer -->
     <TextView
         android:id="@+id/splashVersion"
+        style="@style/TextAppearance.Lighture.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_medium"
         android:text="@string/splash_version"
         android:textColor="@color/text_tertiary"
-        android:textSize="@dimen/font_size_xs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
