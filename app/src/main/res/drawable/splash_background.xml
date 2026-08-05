@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Lighture splash background — very subtle warm-white to blush gradient.
-  Tint only; content lives in the splash layout.
--->
+<!-- Lighture splash background — flat white, no tint. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <gradient
-        android:angle="270"
-        android:startColor="@color/background_app"
-        android:centerColor="@color/background_muted"
-        android:endColor="@color/red_50" />
+    <solid android:color="@color/neutral_0" />
 </shape>

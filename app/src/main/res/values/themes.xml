@@ -89,7 +89,7 @@
     <style name="Theme.Lighture.Splash" parent="Theme.SplashScreen">
 
         <!-- System splash (API 31+) -->
-        <item name="windowSplashScreenBackground">@color/background_app</item>
+        <item name="windowSplashScreenBackground">@color/neutral_0</item>
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
         <item name="windowSplashScreenAnimationDuration">400</item>
         <item name="postSplashScreenTheme">@style/Theme.Lighture</item>
