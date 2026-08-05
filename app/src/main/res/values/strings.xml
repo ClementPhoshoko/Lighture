@@ -41,10 +41,32 @@
     <string name="auth_login_prompt">Already have an account?</string>
     <string name="auth_login_link">Login</string>
 
-    <string name="auth_forgot_title">Reset Password</string>
-    <string name="auth_forgot_subtitle">Enter your email and we\'ll send you a link to reset your password.</string>
-    <string name="auth_forgot_button">Send Reset Link</string>
+    <string name="auth_forgot_title">Forgot Password?</string>
+    <string name="auth_forgot_subtitle">No worries! Enter your email address and we\'ll send you a code to reset your password.</string>
+    <string name="auth_forgot_button">Send Reset Code</string>
     <string name="auth_forgot_back">Back to Login</string>
+
+    <string name="auth_otp_title">Check your email</string>
+    <string name="auth_otp_subtitle">We\'ve sent a 6-digit code to %1$s</string>
+    <string name="auth_otp_your_email">your email</string>
+    <string name="auth_otp_countdown">Code will expire in %1$s</string>
+    <string name="auth_otp_expired">Code expired. Request a new one.</string>
+    <string name="auth_otp_resend_prompt">Didn\'t receive the code?</string>
+    <string name="auth_otp_resend">Resend Code</string>
+    <string name="auth_otp_security_title">Keep your account safe</string>
+    <string name="auth_otp_security_body">Never share your code with anyone. Lighture will never ask for it.</string>
+    <string name="auth_otp_verify">Verify Code</string>
+    <string name="auth_otp_digit_description">Code digit %1$d of 6</string>
+    <string name="auth_otp_sent">Demo code 123456 sent to %1$s</string>
+    <string name="auth_otp_resent">A new demo code 123456 has been sent.</string>
+    <string name="auth_otp_invalid">That code is incorrect. Try again.</string>
+
+    <string name="auth_new_password_title">Create New Password</string>
+    <string name="auth_new_password_subtitle">Your new password must be different from your previous password.</string>
+    <string name="auth_field_label_new_password">New Password</string>
+    <string name="auth_new_password_button">Save Password</string>
+    <string name="auth_new_password_back">Back to Login</string>
+    <string name="auth_new_password_success">Password updated! You can now log in.</string>
 
     <string name="auth_show_password">Show password</string>
     <string name="auth_hide_password">Hide password</string>

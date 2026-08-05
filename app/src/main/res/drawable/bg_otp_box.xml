@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- OTP digit box: white glass surface with input radius. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/glass_background_strong" />
+    <corners android:radius="@dimen/radius_input" />
+</shape>

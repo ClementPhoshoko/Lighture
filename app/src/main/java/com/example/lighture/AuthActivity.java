@@ -2,8 +2,11 @@ package com.example.lighture;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,19 +26,30 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Locale;
+
 /**
- * Reusable auth frame. One activity hosts the login, register and
- * forgot-password content over a stable fruit-icon background; mode switching
- * reuses this single activity instance via {@code onNewIntent}.
+ * Reusable auth frame. One activity hosts the login, register,
+ * forgot-password, OTP and new-password content over a stable fruit-icon
+ * background; mode switching reuses this single activity instance via
+ * {@code onNewIntent}.
  */
 public class AuthActivity extends AppCompatActivity {
 
     public static final String EXTRA_MODE = "extra_auth_mode";
+    public static final String EXTRA_EMAIL = "extra_auth_email";
     public static final int MODE_LOGIN = 0;
     public static final int MODE_REGISTER = 1;
     public static final int MODE_FORGOT = 2;
+    public static final int MODE_OTP = 3;
+    public static final int MODE_NEW_PASSWORD = 4;
+
+    private static final String DEMO_OTP = "123456";
+    private static final long OTP_COUNTDOWN_MILLIS = 5 * 60 * 1000L;
+    private static final long OTP_COUNTDOWN_TICK = 1000L;
 
     private View root;
+    private CountDownTimer resetTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +75,15 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void buildContent() {
+        cancelResetTimer();
         FrameLayout container = findViewById(R.id.authContent);
         container.removeAllViews();
         int mode = getIntent().getIntExtra(EXTRA_MODE, MODE_LOGIN);
         int layout = mode == MODE_REGISTER ? R.layout.auth_register
-                : mode == MODE_FORGOT ? R.layout.auth_forgot : R.layout.auth_login;
+                : mode == MODE_FORGOT ? R.layout.auth_forgot
+                : mode == MODE_OTP ? R.layout.auth_otp
+                : mode == MODE_NEW_PASSWORD ? R.layout.auth_new_password
+                : R.layout.auth_login;
         LayoutInflater.from(this).inflate(layout, container, true);
         wire(mode);
     }
@@ -78,10 +96,29 @@ public class AuthActivity extends AppCompatActivity {
             case MODE_FORGOT:
                 wireForgot();
                 break;
+            case MODE_OTP:
+                wireOtp();
+                break;
+            case MODE_NEW_PASSWORD:
+                wireNewPassword();
+                break;
             case MODE_LOGIN:
             default:
                 wireLogin();
                 break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        cancelResetTimer();
+        super.onDestroy();
+    }
+
+    private void cancelResetTimer() {
+        if (resetTimer != null) {
+            resetTimer.cancel();
+            resetTimer = null;
         }
     }
 
@@ -182,11 +219,172 @@ public class AuthActivity extends AppCompatActivity {
                 showMessage(R.string.auth_snackbar_fill);
                 return;
             }
-            if (!isValidEmail(email.getText().toString())) {
+            String address = email.getText().toString();
+            if (!isValidEmail(address)) {
                 showMessage(R.string.auth_snackbar_invalid_email);
                 return;
             }
-            showMessage(R.string.auth_snackbar_forgot_demo);
+            showMessage(getString(R.string.auth_otp_sent, address));
+            switchMode(MODE_OTP, address);
+        });
+    }
+
+    private void wireOtp() {
+        String email = getIntent().getStringExtra(EXTRA_EMAIL);
+        String target = email == null || email.trim().isEmpty()
+                ? getString(R.string.auth_otp_your_email) : email;
+        ((TextView) findViewById(R.id.otpSubtitle))
+                .setText(getString(R.string.auth_otp_subtitle, target));
+
+        final EditText[] boxes = new EditText[]{
+                findViewById(R.id.otpDigit1),
+                findViewById(R.id.otpDigit2),
+                findViewById(R.id.otpDigit3),
+                findViewById(R.id.otpDigit4),
+                findViewById(R.id.otpDigit5),
+                findViewById(R.id.otpDigit6)
+        };
+        final TextView error = findViewById(R.id.otpError);
+        final Button verify = findViewById(R.id.otpVerifyButton);
+        final TextView resendLink = findViewById(R.id.resendLink);
+
+        InputFilter digitsOnly = (source, start, end, dest, dstart, dend) -> {
+            StringBuilder filtered = new StringBuilder(end - start);
+            for (int i = start; i < end; i++) {
+                char c = source.charAt(i);
+                if (Character.isDigit(c)) {
+                    filtered.append(c);
+                }
+            }
+            return filtered.toString();
+        };
+
+        final Runnable refreshState = () -> {
+            boolean filled = true;
+            for (EditText box : boxes) {
+                if (TextUtils.isEmpty(box.getText())) {
+                    filled = false;
+                    break;
+                }
+            }
+            verify.setEnabled(filled);
+            verify.setAlpha(filled ? 1f : 0.45f);
+        };
+
+        for (int i = 0; i < boxes.length; i++) {
+            final int index = i;
+            EditText box = boxes[index];
+            box.setContentDescription(getString(R.string.auth_otp_digit_description, index + 1));
+            box.setFilters(new InputFilter[]{digitsOnly});
+            box.setOnFocusChangeListener((v, hasFocus) -> v.setBackgroundResource(
+                    hasFocus ? R.drawable.bg_otp_box_focused : R.drawable.bg_otp_box));
+            box.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    error.setVisibility(View.GONE);
+                    if (s.length() == 1 && index < boxes.length - 1) {
+                        boxes[index + 1].requestFocus();
+                    } else if (s.length() == 0 && index > 0) {
+                        boxes[index - 1].requestFocus();
+                    }
+                    refreshState.run();
+                }
+
+                @Override
+                public void afterTextChanged(android.text.Editable s) {
+                }
+            });
+        }
+
+        startResetTimer();
+
+        verify.setOnClickListener(v -> {
+            StringBuilder code = new StringBuilder();
+            for (EditText box : boxes) {
+                code.append(box.getText());
+            }
+            if (!DEMO_OTP.equals(code.toString())) {
+                for (EditText box : boxes) {
+                    box.setBackgroundResource(R.drawable.bg_otp_box_error);
+                    box.setText("");
+                }
+                error.setVisibility(View.VISIBLE);
+                boxes[0].requestFocus();
+                refreshState.run();
+                return;
+            }
+            switchMode(MODE_NEW_PASSWORD, target);
+        });
+
+        resendLink.setOnClickListener(v -> {
+            showMessage(R.string.auth_otp_resent);
+            for (EditText box : boxes) {
+                box.setBackgroundResource(R.drawable.bg_otp_box);
+                box.setText("");
+            }
+            error.setVisibility(View.GONE);
+            refreshState.run();
+            boxes[0].requestFocus();
+            startResetTimer();
+        });
+    }
+
+    private void startResetTimer() {
+        cancelResetTimer();
+        final TextView countdown = findViewById(R.id.otpCountdown);
+        final TextView resendLink = findViewById(R.id.resendLink);
+        resendLink.setEnabled(false);
+        resendLink.setAlpha(0.45f);
+        resetTimer = new CountDownTimer(OTP_COUNTDOWN_MILLIS, OTP_COUNTDOWN_TICK) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long totalSeconds = millisUntilFinished / 1000;
+                String stamp = String.format(Locale.US, "%02d:%02d",
+                        totalSeconds / 60, totalSeconds % 60);
+                countdown.setText(getString(R.string.auth_otp_countdown, stamp));
+            }
+
+            @Override
+            public void onFinish() {
+                countdown.setText(R.string.auth_otp_expired);
+                resendLink.setEnabled(true);
+                resendLink.setAlpha(1f);
+            }
+        }.start();
+    }
+
+    private void wireNewPassword() {
+        EditText password = findViewById(R.id.newPasswordInput);
+        EditText confirm = findViewById(R.id.newConfirmInput);
+        wireFieldFocus(password, findViewById(R.id.newPasswordField));
+        wireFieldFocus(confirm, findViewById(R.id.newConfirmField));
+        wirePasswordToggle(password, findViewById(R.id.toggleNewPassword));
+        wirePasswordToggle(confirm, findViewById(R.id.toggleNewConfirm));
+
+        findViewById(R.id.backToLoginLink).setOnClickListener(v -> switchMode(MODE_LOGIN));
+
+        Button save = findViewById(R.id.savePasswordButton);
+        confirm.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                save.performClick();
+                return true;
+            }
+            return false;
+        });
+        save.setOnClickListener(v -> {
+            if (!isStrongPassword(password.getText().toString())) {
+                showMessage(R.string.auth_snackbar_password_weak);
+                return;
+            }
+            if (!TextUtils.equals(password.getText(), confirm.getText())) {
+                showMessage(R.string.auth_snackbar_password_mismatch);
+                return;
+            }
+            showMessage(R.string.auth_new_password_success);
             switchMode(MODE_LOGIN);
         });
     }
@@ -253,8 +451,13 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void switchMode(int mode) {
+        switchMode(mode, null);
+    }
+
+    private void switchMode(int mode, String email) {
         Intent intent = new Intent(this, AuthActivity.class)
                 .putExtra(EXTRA_MODE, mode)
+                .putExtra(EXTRA_EMAIL, email)
                 .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
