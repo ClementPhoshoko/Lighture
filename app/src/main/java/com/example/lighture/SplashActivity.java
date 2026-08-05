@@ -46,6 +46,7 @@ public class SplashActivity extends AppCompatActivity {
             return insets;
         });
 
+        animateAvatar(findViewById(R.id.avatarTop));
         animateLogo(findViewById(R.id.splashLogo));
         animateGlow(findViewById(R.id.splashGlow));
         animateContent(findViewById(R.id.splashContent));
@@ -62,6 +63,22 @@ public class SplashActivity extends AppCompatActivity {
             root.removeCallbacks(navigateRunnable);
         }
         super.onDestroy();
+    }
+
+    private void animateAvatar(View avatar) {
+        ObjectAnimator fade = ObjectAnimator.ofFloat(avatar, View.ALPHA, 0f, 1f);
+        fade.setDuration(700L);
+
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(avatar, View.SCALE_X, 1.06f, 1f);
+        scaleX.setDuration(900L);
+
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(avatar, View.SCALE_Y, 1.06f, 1f);
+        scaleY.setDuration(900L);
+
+        AnimatorSet entry = new AnimatorSet();
+        entry.playTogether(fade, scaleX, scaleY);
+        entry.setInterpolator(new DecelerateInterpolator());
+        entry.start();
     }
 
     private void animateLogo(View logo) {
