@@ -5,7 +5,7 @@
     <gradient
         android:type="linear"
         android:angle="0"
-        android:startColor="@color/red_accent"
-        android:endColor="@color/brand_primary" />
+        android:startColor="@color/brand_primary"
+        android:endColor="@color/red_700" />
     <corners android:radius="@dimen/radius_button" />
 </shape>

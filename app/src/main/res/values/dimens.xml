@@ -102,7 +102,7 @@
     <dimen name="size_avatar_lg">64dp</dimen>
     <dimen name="size_avatar_xl">96dp</dimen>
 
-    <dimen name="size_touch_min">44dp</dimen>
+    <dimen name="size_touch_min">48dp</dimen>
     <dimen name="size_button_sm">40dp</dimen>
     <dimen name="size_button_md">48dp</dimen>
     <dimen name="size_button_lg">56dp</dimen>
@@ -118,6 +118,7 @@
 
     <!-- Auth screens -->
     <dimen name="social_button_size">56dp</dimen>
+    <dimen name="button_max_width">340dp</dimen>
 
     <dimen name="content_width_sm">480dp</dimen>
     <dimen name="content_width_md">704dp</dimen>

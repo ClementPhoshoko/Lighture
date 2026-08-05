@@ -4,6 +4,7 @@
      chain that centres itself on tall screens (no scrolling). -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authLoginRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -35,7 +36,8 @@
         app:layout_constraintBottom_toTopOf="@id/loginSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/authHeader" />
+        app:layout_constraintTop_toBottomOf="@id/authHeader"
+        app:layout_constraintWidth_max="@dimen/content_width_sm" />
 
     <TextView
         android:id="@+id/loginSubtitle"
@@ -51,7 +53,8 @@
         app:layout_constraintBottom_toTopOf="@id/emailField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginTitle" />
+        app:layout_constraintTop_toBottomOf="@id/loginTitle"
+        app:layout_constraintWidth_max="@dimen/content_width_sm" />
 
     <!-- Email field -->
     <LinearLayout
@@ -70,7 +73,8 @@
         app:layout_constraintBottom_toTopOf="@id/passwordField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginSubtitle">
+        app:layout_constraintTop_toBottomOf="@id/loginSubtitle"
+        app:layout_constraintWidth_max="@dimen/content_width_sm">
 
         <FrameLayout
             android:id="@+id/emailIconContainer"
@@ -85,7 +89,7 @@
                 android:layout_gravity="center"
                 android:importantForAccessibility="no"
                 app:srcCompat="@drawable/ic_email"
-                app:tint="@color/icon_brand" />
+                app:tint="@color/brand_primary" />
         </FrameLayout>
 
         <LinearLayout
@@ -117,8 +121,9 @@
                 android:importantForAutofill="yes"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:minHeight="@dimen/size_touch_min"
                 android:textColor="@color/input_text"
-                android:textColorHint="@color/input_placeholder" />
+                android:textColorHint="@color/text_secondary" />
         </LinearLayout>
     </LinearLayout>
 
@@ -131,6 +136,7 @@
         android:layout_marginTop="@dimen/space_4"
         android:layout_marginEnd="@dimen/page_padding_x"
         android:background="@drawable/bg_auth_field_selector"
+        android:baselineAligned="false"
         android:elevation="@dimen/elevation_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -138,7 +144,8 @@
         app:layout_constraintBottom_toTopOf="@id/forgotPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailField">
+        app:layout_constraintTop_toBottomOf="@id/emailField"
+        app:layout_constraintWidth_max="@dimen/content_width_sm">
 
         <FrameLayout
             android:id="@+id/passwordIconContainer"
@@ -153,7 +160,7 @@
                 android:layout_gravity="center"
                 android:importantForAccessibility="no"
                 app:srcCompat="@drawable/ic_lock"
-                app:tint="@color/icon_brand" />
+                app:tint="@color/brand_primary" />
         </FrameLayout>
 
         <LinearLayout
@@ -178,14 +185,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_0_5"
-                android:autofillHints="" android:background="@null"
+                android:autofillHints=""
+                android:background="@null"
                 android:hint="@string/auth_hint_password"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="yes"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:minHeight="@dimen/size_touch_min"
                 android:textColor="@color/input_text"
-                android:textColorHint="@color/input_placeholder" />
+                android:textColorHint="@color/text_secondary" />
         </LinearLayout>
 
         <ImageButton
@@ -215,7 +224,7 @@
         android:text="@string/auth_forgot_password"
         android:textColor="@color/text_link"
         app:layout_constraintBottom_toTopOf="@id/loginButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/passwordField"
         app:layout_constraintTop_toBottomOf="@id/passwordField" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -242,7 +251,9 @@
         app:layout_constraintBottom_toTopOf="@id/authDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/forgotPassword" />
+        app:layout_constraintTop_toBottomOf="@id/forgotPassword"
+        app:layout_constraintWidth_max="@dimen/button_max_width"
+        tools:ignore="VisualLintButtonSize" />
 
     <LinearLayout
         android:id="@+id/authDivider"
@@ -251,12 +262,14 @@
         android:layout_marginStart="@dimen/page_padding_x"
         android:layout_marginTop="@dimen/space_6"
         android:layout_marginEnd="@dimen/page_padding_x"
+        android:baselineAligned="false"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/socialRow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginButton">
+        app:layout_constraintTop_toBottomOf="@id/loginButton"
+        app:layout_constraintWidth_max="@dimen/content_width_sm">
 
         <View
             android:id="@+id/dividerLineStart"
@@ -273,7 +286,7 @@
             android:layout_marginStart="@dimen/space_3"
             android:layout_marginEnd="@dimen/space_3"
             android:text="@string/auth_or_continue"
-            android:textColor="@color/text_tertiary" />
+            android:textColor="@color/text_secondary" />
 
         <View
             android:id="@+id/dividerLineEnd"
@@ -295,18 +308,19 @@
         app:layout_constraintBottom_toTopOf="@id/privacyCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/authDivider">
+        app:layout_constraintTop_toBottomOf="@id/authDivider"
+        app:layout_constraintWidth_max="@dimen/content_width_sm">
 
         <FrameLayout
             android:id="@+id/socialGoogle"
             android:layout_width="0dp"
             android:layout_height="@dimen/social_button_size"
             android:layout_weight="1"
-                android:background="@drawable/bg_social_button"
-                android:clickable="true"
-                android:elevation="@dimen/elevation_card"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
+            android:background="@drawable/bg_social_button"
+            android:clickable="true"
+            android:elevation="@dimen/elevation_card"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
                     android:id="@+id/socialGoogleIcon"
@@ -324,11 +338,11 @@
             android:layout_height="@dimen/social_button_size"
             android:layout_marginStart="@dimen/space_2"
             android:layout_weight="1"
-                android:background="@drawable/bg_social_button"
-                android:clickable="true"
-                android:elevation="@dimen/elevation_card"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
+            android:background="@drawable/bg_social_button"
+            android:clickable="true"
+            android:elevation="@dimen/elevation_card"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
                     android:id="@+id/socialAppleIcon"
@@ -346,11 +360,11 @@
             android:layout_height="@dimen/social_button_size"
             android:layout_marginStart="@dimen/space_2"
             android:layout_weight="1"
-                android:background="@drawable/bg_social_button"
-                android:clickable="true"
-                android:elevation="@dimen/elevation_card"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
+            android:background="@drawable/bg_social_button"
+            android:clickable="true"
+            android:elevation="@dimen/elevation_card"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
 
                 <ImageView
                     android:id="@+id/socialFacebookIcon"
@@ -371,66 +385,61 @@
         android:layout_marginTop="@dimen/space_6"
         android:layout_marginEnd="@dimen/page_padding_x"
         android:background="@drawable/bg_privacy_card"
-        app:layout_constraintBottom_toTopOf="@id/authFooter"
+        app:layout_constraintBottom_toTopOf="@id/signupPrompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/socialRow">
+        app:layout_constraintTop_toBottomOf="@id/socialRow"
+        app:layout_constraintWidth_max="@dimen/content_width_sm">
 
         <LinearLayout
-            android:id="@+id/privacyCardBody"
+            android:id="@+id/privacyContentRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:padding="@dimen/card_padding_compact">
 
+            <FrameLayout
+                android:id="@+id/privacyIconContainer"
+                android:layout_width="@dimen/size_touch_min"
+                android:layout_height="@dimen/size_touch_min"
+                android:background="@drawable/bg_icon_circle">
+
+                <ImageView
+                    android:id="@+id/privacyIcon"
+                    android:layout_width="@dimen/size_icon_md"
+                    android:layout_height="@dimen/size_icon_md"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/ic_shield"
+                    app:tint="@color/brand_primary" />
+            </FrameLayout>
+
             <LinearLayout
-                android:id="@+id/privacyContentRow"
-                android:layout_width="match_parent"
+                android:id="@+id/privacyTextBlock"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginStart="@dimen/space_3"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                <FrameLayout
-                    android:id="@+id/privacyIconContainer"
-                    android:layout_width="@dimen/size_touch_min"
-                    android:layout_height="@dimen/size_touch_min"
-                    android:background="@drawable/bg_icon_circle">
-
-                    <ImageView
-                        android:id="@+id/privacyIcon"
-                        android:layout_width="@dimen/size_icon_md"
-                        android:layout_height="@dimen/size_icon_md"
-                        android:layout_gravity="center"
-                        android:importantForAccessibility="no"
-                        app:srcCompat="@drawable/ic_shield"
-                        app:tint="@color/icon_brand" />
-                </FrameLayout>
-
-                <LinearLayout
-                    android:id="@+id/privacyTextBlock"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/privacyTitle"
+                    style="@style/TextAppearance.Lighture.CardTitle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_3"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="@string/auth_privacy_title"
+                    android:textColor="@color/text_primary" />
 
-                    <TextView
-                        android:id="@+id/privacyTitle"
-                        style="@style/TextAppearance.Lighture.CardTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/auth_privacy_title"
-                        android:textColor="@color/text_primary" />
-
-                    <TextView
-                        android:id="@+id/privacyBody"
-                        style="@style/TextAppearance.Lighture.BodySmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_0_5"
-                        android:text="@string/auth_privacy_body"
-                        android:textColor="@color/text_secondary" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/privacyBody"
+                    style="@style/TextAppearance.Lighture.BodySmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_0_5"
+                    android:text="@string/auth_privacy_body"
+                    android:textColor="@color/text_secondary" />
             </LinearLayout>
         </LinearLayout>
 
@@ -443,42 +452,38 @@
             android:alpha="0.18"
             android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_shield"
-            app:tint="@color/icon_brand" />
+            app:tint="@color/brand_primary" />
     </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/authFooter"
+    <TextView
+        android:id="@+id/signupPrompt"
+        style="@style/TextAppearance.Lighture.BodySmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_6"
         android:layout_marginBottom="@dimen/space_4"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:text="@string/auth_signup_prompt"
+        android:textColor="@color/text_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/signUpLink"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/privacyCard">
+        app:layout_constraintTop_toBottomOf="@id/privacyCard" />
 
-        <TextView
-            android:id="@+id/signupPrompt"
-            style="@style/TextAppearance.Lighture.BodySmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/auth_signup_prompt"
-            android:textColor="@color/text_secondary" />
-
-        <TextView
-            android:id="@+id/signUpLink"
-            style="@style/TextAppearance.Lighture.Label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:paddingStart="@dimen/space_1"
-            android:paddingTop="@dimen/space_1"
-            android:paddingEnd="@dimen/space_1"
-            android:paddingBottom="@dimen/space_1"
-            android:text="@string/auth_signup_link"
-            android:textColor="@color/text_brand" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/signUpLink"
+        style="@style/TextAppearance.Lighture.Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:paddingStart="@dimen/space_1"
+        android:paddingTop="@dimen/space_1"
+        android:paddingEnd="@dimen/space_1"
+        android:paddingBottom="@dimen/space_1"
+        android:text="@string/auth_signup_link"
+        android:textColor="@color/text_brand"
+        app:layout_constraintBaseline_toBaselineOf="@id/signupPrompt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/signupPrompt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
