@@ -154,6 +154,7 @@
     <dimen name="hero_buttons_gap">12dp</dimen>
     <dimen name="recipe_card_width">240dp</dimen>
     <dimen name="recipe_art_height">110dp</dimen>
+    <dimen name="recipe_list_art">96dp</dimen>
     <dimen name="carousel_height">220dp</dimen>
     <dimen name="stat_icon_container">44dp</dimen>
     <dimen name="notification_badge">10dp</dimen>

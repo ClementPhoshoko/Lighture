@@ -122,10 +122,13 @@
         <item quantity="other">%1$d ingredients</item>
     </plurals>
 
-    <string name="home_overview_title">Your fridge Overview</string>
+    <string name="home_overview_title">Your fridge overview</string>
     <string name="home_overview_items">Items tracked</string>
     <string name="home_overview_expiring">Expiring soon</string>
     <string name="home_overview_waste">Waste saved</string>
+    <string name="home_overview_badge_items">+6 added</string>
+    <string name="home_overview_badge_expiring">Check soon</string>
+    <string name="home_overview_badge_waste">Good job!</string>
 
     <string name="home_carousel_title">Fresh meal ideas</string>
 
@@ -134,6 +137,27 @@
     <string name="home_snackbar_photo">Photo capture is coming soon.</string>
     <string name="home_snackbar_scan">Live scanning is coming soon.</string>
     <string name="home_snackbar_recipe">Recipe details are coming soon.</string>
+
+    <!-- Recipes screen -->
+    <string name="recipes_title">Recipes</string>
+    <string name="recipes_subtitle">Discover delicious meals you can make with what you have.</string>
+    <string name="recipes_search_description">Search recipes</string>
+
+    <string name="recipes_chip_all">All Recipes</string>
+    <string name="recipes_chip_quick">Quick &amp; Easy</string>
+    <string name="recipes_chip_vegetarian">Vegetarian</string>
+    <string name="recipes_chip_high_protein">High Protein</string>
+    <string name="recipes_chip_low_waste">Low Waste</string>
+
+    <string name="recipes_filter">Filter</string>
+    <string name="recipes_sort_by">Sort by: Recommended</string>
+
+    <string name="recipes_more_ingredients">+%1$d</string>
+    <string name="recipes_favorite_description">Add to favourites</string>
+
+    <string name="recipes_snackbar_search">Recipe search is coming soon.</string>
+    <string name="recipes_snackbar_filter">Recipe filters are coming soon.</string>
+    <string name="recipes_snackbar_sort">Sorting is coming soon.</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_home">Home</string>

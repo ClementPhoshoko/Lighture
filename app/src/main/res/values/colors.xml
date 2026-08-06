@@ -124,9 +124,9 @@
     <!-- =============================================================
          5. TEXT AND ICON COLOURS
     ============================================================= -->
-    <color name="text_primary">#181518</color>
-    <color name="text_secondary">#625B5E</color>
-    <color name="text_tertiary">#8C8387</color>
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_tertiary">#9CA3AF</color>
     <color name="text_disabled">#B6ADB0</color>
     <color name="text_inverse">#FFFFFF</color>
     <color name="text_brand">@color/brand_primary</color>

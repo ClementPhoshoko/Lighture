@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Soft green radial glow behind the "items" stat icon. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:type="radial"
+        android:gradientRadius="22dp"
+        android:startColor="@color/food_vegetable_soft"
+        android:endColor="@color/neutral_0" />
+</shape>

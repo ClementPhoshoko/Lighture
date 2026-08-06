@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Soft pink radial glow behind the "waste" stat icon. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:type="radial"
+        android:gradientRadius="22dp"
+        android:startColor="@color/brand_primary_subtle"
+        android:endColor="@color/neutral_0" />
+</shape>

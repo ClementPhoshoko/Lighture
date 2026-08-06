@@ -1,5 +1,6 @@
 package com.example.lighture;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -46,6 +47,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final String ASSET_HERO_IMAGE = "home_fridge_hero_image.png";
+
+    private static final String ASSET_MOCK_DISH_IMAGE = "salad_image.png";
 
     private static final long ADVISORY_INTERVAL_MS = 10_000L;
     private static final long ADVISORY_SLIDE_MS = 350L;
@@ -206,6 +209,10 @@ public class MainActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.navHome) {
                 return true;
             }
+            if (item.getItemId() == R.id.navRecipes) {
+                startActivity(new Intent(this, RecipesActivity.class));
+                return true;
+            }
             showComingSoon(item.getTitle().toString());
             return false;
         });
@@ -356,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
             holder.title.setText(recipe.title);
             holder.time.setText(recipe.time);
             holder.likes.setText(recipe.likes);
-            holder.icon.setImageResource(recipe.artRes);
+            loadAssetImage(holder.icon, ASSET_MOCK_DISH_IMAGE);
             holder.tag.setText(recipe.tag);
             holder.tag.getBackground().mutate()
                     .setTintList(ColorStateList.valueOf(getColor(recipe.tagBgRes)));
@@ -410,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
             HomeData.Suggestion suggestion = suggestions.get(position);
             holder.title.setText(suggestion.title);
             holder.time.setText(suggestion.time);
-            holder.icon.setImageResource(suggestion.artRes);
+            loadAssetImage(holder.icon, ASSET_MOCK_DISH_IMAGE);
             holder.uses.setText(getResources().getQuantityString(
                     R.plurals.home_suggestion_ingredients,
                     suggestion.ingredientCount, suggestion.ingredientCount));

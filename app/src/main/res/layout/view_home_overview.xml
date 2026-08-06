@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Fridge overview: three stat cards. Children sit on a tinted panel whose
-     color signals the stat's status (fresh / expiring / expired). Values
-     default to "0" until real fridge data exists; icons are the themed
-     produce art already in the app. -->
+<!-- Fridge overview: uses the shared section header like the other home
+     sections, with three stat cards (items / expiring / waste) below. Each
+     card is a tinted panel with a gradient icon circle, the value and label,
+     a status badge pill at the bottom, and a faint produce illustration in
+     the corner. Values default to "0" until real fridge data exists. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -16,35 +19,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_3"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <!-- Items tracked -->
+        <FrameLayout
             android:id="@+id/statItems"
-            style="@style/Widget.Lighture.Card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/bg_overview_stat_card"
+            android:backgroundTint="@color/fresh_background">
+
+            <ImageView
+                android:layout_width="@dimen/space_14"
+                android:layout_height="@dimen/space_14"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="@dimen/space_1"
+                android:alpha="0.09"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_bg_cheese" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_stat_panel"
-                android:backgroundTint="@color/fresh_background"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:padding="@dimen/space_4">
+                android:paddingStart="@dimen/space_2"
+                android:paddingEnd="@dimen/space_2"
+                android:paddingTop="@dimen/space_3"
+                android:paddingBottom="@dimen/space_3">
 
                 <FrameLayout
                     android:layout_width="@dimen/stat_icon_container"
                     android:layout_height="@dimen/stat_icon_container"
-                    android:background="@drawable/bg_icon_circle">
+                    android:background="@drawable/bg_icon_circle_green">
 
                     <ImageView
                         android:layout_width="@dimen/size_icon_md"
                         android:layout_height="@dimen/size_icon_md"
                         android:layout_gravity="center"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_bg_cheese" />
+                        android:src="@drawable/ic_outline_basket"
+                        app:tint="@color/fresh_color" />
                 </FrameLayout>
 
                 <TextView
@@ -53,8 +70,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_2"
-                    android:text="0"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_primary"
+                    tools:text="0" />
 
                 <TextView
                     android:id="@+id/statItemsLabel"
@@ -64,38 +81,80 @@
                     android:layout_marginTop="@dimen/space_0_5"
                     android:gravity="center"
                     android:text="@string/home_overview_items"
-                    android:textColor="@color/text_secondary" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:textColor="@color/text_primary" />
 
-        <LinearLayout
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_3"
+                    android:background="@drawable/bg_stat_badge"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/space_1_5"
+                    android:paddingEnd="@dimen/space_1_5"
+                    android:paddingTop="@dimen/space_0_5"
+                    android:paddingBottom="@dimen/space_0_5">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_icon_xs"
+                        android:layout_height="@dimen/size_icon_xs"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_outline_trend_up"
+                        app:tint="@color/fresh_color" />
+
+                    <TextView
+                        style="@style/TextAppearance.Lighture.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_1"
+                        android:text="@string/home_overview_badge_items"
+                        android:textColor="@color/fresh_color" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Expiring soon -->
+        <FrameLayout
             android:id="@+id/statExpiring"
-            style="@style/Widget.Lighture.Card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_3"
-            android:layout_weight="1">
+            android:layout_marginStart="@dimen/space_2"
+            android:layout_weight="1"
+            android:background="@drawable/bg_overview_stat_card"
+            android:backgroundTint="@color/expiring_background">
+
+            <ImageView
+                android:layout_width="@dimen/space_14"
+                android:layout_height="@dimen/space_14"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="@dimen/space_1"
+                android:alpha="0.09"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_bg_carrot" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_stat_panel"
-                android:backgroundTint="@color/expiring_background"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:padding="@dimen/space_4">
+                android:paddingStart="@dimen/space_2"
+                android:paddingEnd="@dimen/space_2"
+                android:paddingTop="@dimen/space_3"
+                android:paddingBottom="@dimen/space_3">
 
                 <FrameLayout
                     android:layout_width="@dimen/stat_icon_container"
                     android:layout_height="@dimen/stat_icon_container"
-                    android:background="@drawable/bg_icon_circle">
+                    android:background="@drawable/bg_icon_circle_orange">
 
                     <ImageView
                         android:layout_width="@dimen/size_icon_md"
                         android:layout_height="@dimen/size_icon_md"
                         android:layout_gravity="center"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_bg_carrot" />
+                        android:src="@drawable/ic_outline_clock"
+                        app:tint="@color/expiring_color" />
                 </FrameLayout>
 
                 <TextView
@@ -104,8 +163,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_2"
-                    android:text="0"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_primary"
+                    tools:text="0" />
 
                 <TextView
                     android:id="@+id/statExpiringLabel"
@@ -115,38 +174,80 @@
                     android:layout_marginTop="@dimen/space_0_5"
                     android:gravity="center"
                     android:text="@string/home_overview_expiring"
-                    android:textColor="@color/text_secondary" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:textColor="@color/text_primary" />
 
-        <LinearLayout
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_3"
+                    android:background="@drawable/bg_stat_badge"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/space_1_5"
+                    android:paddingEnd="@dimen/space_1_5"
+                    android:paddingTop="@dimen/space_0_5"
+                    android:paddingBottom="@dimen/space_0_5">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_icon_xs"
+                        android:layout_height="@dimen/size_icon_xs"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_outline_clock"
+                        app:tint="@color/expiring_color" />
+
+                    <TextView
+                        style="@style/TextAppearance.Lighture.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_1"
+                        android:text="@string/home_overview_badge_expiring"
+                        android:textColor="@color/expiring_color" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Waste saved -->
+        <FrameLayout
             android:id="@+id/statWaste"
-            style="@style/Widget.Lighture.Card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_3"
-            android:layout_weight="1">
+            android:layout_marginStart="@dimen/space_2"
+            android:layout_weight="1"
+            android:background="@drawable/bg_overview_stat_card"
+            android:backgroundTint="@color/expired_background">
+
+            <ImageView
+                android:layout_width="@dimen/space_14"
+                android:layout_height="@dimen/space_14"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="@dimen/space_1"
+                android:alpha="0.09"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_bg_salad" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_stat_panel"
-                android:backgroundTint="@color/expired_background"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:padding="@dimen/space_4">
+                android:paddingStart="@dimen/space_2"
+                android:paddingEnd="@dimen/space_2"
+                android:paddingTop="@dimen/space_3"
+                android:paddingBottom="@dimen/space_3">
 
                 <FrameLayout
                     android:layout_width="@dimen/stat_icon_container"
                     android:layout_height="@dimen/stat_icon_container"
-                    android:background="@drawable/bg_icon_circle">
+                    android:background="@drawable/bg_icon_circle_red">
 
                     <ImageView
                         android:layout_width="@dimen/size_icon_md"
                         android:layout_height="@dimen/size_icon_md"
                         android:layout_gravity="center"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_bg_salad" />
+                        android:src="@drawable/ic_outline_trash"
+                        app:tint="@color/expired_color" />
                 </FrameLayout>
 
                 <TextView
@@ -155,8 +256,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_2"
-                    android:text="0"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="@color/text_primary"
+                    tools:text="0" />
 
                 <TextView
                     android:id="@+id/statWasteLabel"
@@ -166,9 +267,38 @@
                     android:layout_marginTop="@dimen/space_0_5"
                     android:gravity="center"
                     android:text="@string/home_overview_waste"
-                    android:textColor="@color/text_secondary" />
+                    android:textColor="@color/text_primary" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_3"
+                    android:background="@drawable/bg_stat_badge"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/space_1_5"
+                    android:paddingEnd="@dimen/space_1_5"
+                    android:paddingTop="@dimen/space_0_5"
+                    android:paddingBottom="@dimen/space_0_5">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_icon_xs"
+                        android:layout_height="@dimen/size_icon_xs"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_outline_leaf"
+                        app:tint="@color/expired_color" />
+
+                    <TextView
+                        style="@style/TextAppearance.Lighture.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_1"
+                        android:text="@string/home_overview_badge_waste"
+                        android:textColor="@color/expired_color" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
 
 </LinearLayout>

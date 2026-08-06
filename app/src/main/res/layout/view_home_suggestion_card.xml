@@ -24,11 +24,10 @@
 
             <ImageView
                 android:id="@+id/suggestionIcon"
-                android:layout_width="@dimen/size_icon_xl"
-                android:layout_height="@dimen/size_icon_xl"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:contentDescription="@null"
-                app:tint="@color/red_900" />
+                android:scaleType="centerCrop" />
 
             <LinearLayout
                 android:id="@+id/suggestionTimePill"
