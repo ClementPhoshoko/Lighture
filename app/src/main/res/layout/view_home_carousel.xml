@@ -16,9 +16,7 @@
         android:layout_height="@dimen/carousel_height"
         android:layout_marginTop="@dimen/space_3"
         android:clipToPadding="false"
-        android:overScrollMode="never"
-        android:paddingStart="@dimen/space_5"
-        android:paddingEnd="@dimen/space_5" />
+        android:overScrollMode="never" />
 
     <LinearLayout
         android:id="@+id/pagerDots"

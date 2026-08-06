@@ -1,5 +1,6 @@
 package com.example.lighture;
 
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
@@ -239,8 +240,10 @@ public class MainActivity extends AppCompatActivity {
             public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
                                        @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
                 int gap = getResources().getDimensionPixelSize(R.dimen.space_2);
-                outRect.left = gap;
-                outRect.right = gap;
+                int position = parent.getChildAdapterPosition(view);
+                int count = parent.getAdapter() != null ? parent.getAdapter().getItemCount() : 0;
+                outRect.left = position == 0 ? 0 : gap;
+                outRect.right = position == count - 1 ? 0 : gap;
             }
         });
         list.setAdapter(adapter);
@@ -354,6 +357,10 @@ public class MainActivity extends AppCompatActivity {
             holder.time.setText(recipe.time);
             holder.likes.setText(recipe.likes);
             holder.icon.setImageResource(recipe.artRes);
+            holder.tag.setText(recipe.tag);
+            holder.tag.getBackground().mutate()
+                    .setTintList(ColorStateList.valueOf(getColor(recipe.tagBgRes)));
+            holder.tag.setTextColor(getColor(recipe.tagTextRes));
             holder.card.setOnClickListener(v -> showMessage(R.string.home_snackbar_recipe));
         }
 
@@ -367,6 +374,7 @@ public class MainActivity extends AppCompatActivity {
             final TextView title;
             final TextView time;
             final TextView likes;
+            final TextView tag;
             final ImageView icon;
 
             RecipeViewHolder(@NonNull View itemView) {
@@ -375,6 +383,7 @@ public class MainActivity extends AppCompatActivity {
                 title = itemView.findViewById(R.id.recipeTitle);
                 time = itemView.findViewById(R.id.recipeTime);
                 likes = itemView.findViewById(R.id.recipeLikes);
+                tag = itemView.findViewById(R.id.recipeTag);
                 icon = itemView.findViewById(R.id.recipeIcon);
             }
         }
@@ -403,7 +412,11 @@ public class MainActivity extends AppCompatActivity {
             holder.time.setText(suggestion.time);
             holder.icon.setImageResource(suggestion.artRes);
             holder.uses.setText(getResources().getQuantityString(
-                    R.plurals.home_suggestion_uses, suggestion.ingredientCount, suggestion.ingredientCount));
+                    R.plurals.home_suggestion_ingredients,
+                    suggestion.ingredientCount, suggestion.ingredientCount));
+            holder.uses.getBackground().mutate()
+                    .setTintList(ColorStateList.valueOf(getColor(R.color.tag_easy_background)));
+            holder.uses.setTextColor(getColor(R.color.tag_easy_text));
             holder.card.setOnClickListener(v -> showMessage(R.string.home_snackbar_recipe));
         }
 

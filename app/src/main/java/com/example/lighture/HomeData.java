@@ -20,12 +20,19 @@ public final class HomeData {
         public final String time;
         public final String likes;
         public final int artRes;
+        public final String tag;
+        public final int tagBgRes;
+        public final int tagTextRes;
 
-        Recipe(String title, String time, String likes, int artRes) {
+        Recipe(String title, String time, String likes, int artRes,
+               String tag, int tagBgRes, int tagTextRes) {
             this.title = title;
             this.time = time;
             this.likes = likes;
             this.artRes = artRes;
+            this.tag = tag;
+            this.tagBgRes = tagBgRes;
+            this.tagTextRes = tagTextRes;
         }
     }
 
@@ -68,12 +75,18 @@ public final class HomeData {
     /** Meal-idea carousel entries, in display order. */
     public static List<Recipe> recipes() {
         return new ArrayList<>(Arrays.asList(
-                new Recipe("Creamy garlic pasta", "18 min", "248", R.drawable.ic_bg_pizza),
-                new Recipe("Rainbow veggie bowl", "22 min", "183", R.drawable.ic_bg_salad),
-                new Recipe("Tomato & basil toast", "10 min", "96", R.drawable.ic_bg_bread),
-                new Recipe("Cheesy omelette breakfast", "12 min", "412", R.drawable.ic_bg_egg_fried),
-                new Recipe("Smoky sausage stir-fry", "25 min", "367", R.drawable.ic_bg_sausage),
-                new Recipe("Lemon herb grilled fish", "28 min", "520", R.drawable.ic_bg_fish)
+                new Recipe("Creamy garlic pasta", "18 min", "248", R.drawable.ic_bg_pizza,
+                        "Easy", R.color.tag_easy_background, R.color.tag_easy_text),
+                new Recipe("Rainbow veggie bowl", "22 min", "183", R.drawable.ic_bg_salad,
+                        "Vegetarian", R.color.tag_vegetarian_background, R.color.tag_vegetarian_text),
+                new Recipe("Tomato & basil toast", "10 min", "96", R.drawable.ic_bg_bread,
+                        "Quick", R.color.tag_quick_background, R.color.tag_quick_text),
+                new Recipe("Cheesy omelette breakfast", "12 min", "412", R.drawable.ic_bg_egg_fried,
+                        "Easy", R.color.tag_easy_background, R.color.tag_easy_text),
+                new Recipe("Smoky sausage stir-fry", "25 min", "367", R.drawable.ic_bg_sausage,
+                        "Quick", R.color.tag_quick_background, R.color.tag_quick_text),
+                new Recipe("Lemon herb grilled fish", "28 min", "520", R.drawable.ic_bg_fish,
+                        "Healthy", R.color.tag_healthy_background, R.color.tag_healthy_text)
         ));
     }
 

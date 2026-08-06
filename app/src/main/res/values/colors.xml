@@ -227,6 +227,16 @@
     <color name="badge_brand_text">@color/red_700</color>
     <color name="badge_brand_border">#1AD92D4A</color>
 
+    <!-- Recipe card tags (Easy / Healthy / Quick / Vegetarian) -->
+    <color name="tag_easy_background">@color/red_50</color>
+    <color name="tag_easy_text">@color/red_700</color>
+    <color name="tag_healthy_background">@color/food_vegetable_soft</color>
+    <color name="tag_healthy_text">@color/food_vegetable</color>
+    <color name="tag_quick_background">@color/color_warning_soft</color>
+    <color name="tag_quick_text">@color/color_warning</color>
+    <color name="tag_vegetarian_background">#F2EFF9</color>
+    <color name="tag_vegetarian_text">#6B4FA1</color>
+
     <!-- Bottom navigation -->
     <color name="bottom_nav_background">#E6FFFFFF</color>
     <color name="bottom_nav_border">#143D262D</color>
