@@ -142,8 +142,8 @@
     <!-- =============================================================
          6. BORDERS AND DIVIDERS
     ============================================================= -->
-    <color name="border_subtle">#123D262D</color>
-    <color name="border_default">#1F3D262D</color>
+    <color name="border_subtle">#1F3D262D</color>
+    <color name="border_default">#293D262D</color>
     <color name="border_strong">#333D262D</color>
     <color name="border_brand">#57D92D4A</color>
     <color name="border_focus">@color/red_500</color>

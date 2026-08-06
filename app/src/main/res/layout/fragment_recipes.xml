@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Recipes screen shell: pinned header with system-bar insets, a scrollable
-     recipe list with header content (category chips, filter/sort row) and
-     the shared bottom navigation. Optimized for performance by using
-     RecyclerView as the main scrollable container. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recipesRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_page"
-    tools:context=".RecipesActivity">
+    android:background="@color/background_page">
 
     <LinearLayout
         android:id="@+id/recipesTop"
@@ -59,22 +52,9 @@
         android:paddingEnd="@dimen/page_padding_x"
         android:paddingBottom="@dimen/space_8"
         android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recipesStickyHeader" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
-        style="@style/Widget.Lighture.BottomNavigationView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/space_0"
-        android:paddingBottom="@dimen/space_0"
-        app:itemActiveIndicatorStyle="@style/Widget.Lighture.BottomNavigationView.ActiveIndicator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:layout_constraintTop_toBottomOf="@id/recipesStickyHeader" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

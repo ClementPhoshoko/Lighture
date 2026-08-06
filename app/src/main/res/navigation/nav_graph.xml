@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navHome">
+
+    <fragment
+        android:id="@+id/navHome"
+        android:name="com.example.lighture.HomeFragment"
+        android:label="@string/bottom_nav_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navRecipes"
+        android:name="com.example.lighture.RecipesFragment"
+        android:label="@string/bottom_nav_recipes"
+        tools:layout="@layout/fragment_recipes" />
+
+    <fragment
+        android:id="@+id/navFridge"
+        android:name="com.example.lighture.FridgeFragment"
+        android:label="@string/bottom_nav_fridge"
+        tools:layout="@layout/fragment_fridge" />
+
+    <fragment
+        android:id="@+id/navProfile"
+        android:name="com.example.lighture.ProfileFragment"
+        android:label="@string/bottom_nav_profile"
+        tools:layout="@layout/fragment_coming_soon" />
+
+</navigation>

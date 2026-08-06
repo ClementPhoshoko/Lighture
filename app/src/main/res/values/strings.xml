@@ -173,6 +173,41 @@
     <string name="recipes_empty_title">No recipes yet</string>
     <string name="recipes_empty_body">Your personalized recipe ideas will appear here once you generate them.</string>
 
+    <!-- Fridge screen -->
+    <string name="fridge_title">My Fridge</string>
+    <string name="fridge_subtitle">Track your ingredients, check freshness, and reduce waste.</string>
+    <string name="fridge_scan">Scan Fridge</string>
+    <string name="fridge_scan_description">Scan your fridge</string>
+
+    <string name="fridge_overview_title">Fridge Overview</string>
+    <string name="fridge_stat_items">Items in fridge</string>
+    <string name="fridge_stat_fresh">Fresh items</string>
+    <string name="fridge_stat_expiring">Expiring soon</string>
+    <string name="fridge_stat_saved">Potential saved</string>
+
+    <string name="fridge_filter_all">All Items</string>
+    <string name="fridge_filter_fresh">Fresh</string>
+    <string name="fridge_filter_expiring">Expiring Soon</string>
+    <string name="fridge_filter_expired">Expired</string>
+
+    <string name="fridge_status_fresh">Fresh</string>
+    <string name="fridge_status_expiring">Expiring Soon</string>
+    <string name="fridge_status_expired">Expired</string>
+
+    <string name="fridge_waste_title">Reduce food waste</string>
+    <string name="fridge_waste_body">You have %1$d items expiring soon. Use them in recipes to save money!</string>
+    <string name="fridge_waste_action">View Recipes</string>
+
+    <string name="fridge_history_title">Fridge History</string>
+    <string name="fridge_history_action">View all</string>
+    <string name="fridge_history_item_title">Fridge scanned</string>
+    <string name="fridge_history_item_subtitle">Today, 9:20 AM</string>
+    <string name="fridge_history_item_detected">%1$d items detected</string>
+
+    <string name="fridge_snackbar_scan">Fridge scanning is coming soon.</string>
+    <string name="fridge_snackbar_item">Item details are coming soon.</string>
+    <string name="fridge_snackbar_history">Full fridge history is coming soon.</string>
+
     <!-- Bottom navigation -->
     <string name="bottom_nav_home">Home</string>
     <string name="bottom_nav_recipes">Recipes</string>

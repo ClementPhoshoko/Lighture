@@ -1,11 +1,11 @@
 package com.example.lighture;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.transition.TransitionManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -14,26 +14,21 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Recipes screen: category chips, filter/sort row and the recipe list over the
- * shared bottom navigation. Chip selection filters the catalogue; search,
- * filter and sort remain stubs until their pipelines land.
- */
-public class RecipesActivity extends AppCompatActivity {
+public class RecipesFragment extends Fragment {
 
     private final List<Recipe> fullRecipesList = new ArrayList<>();
     private RecipesAdapter adapter;
@@ -41,32 +36,35 @@ public class RecipesActivity extends AppCompatActivity {
     private String currentSearchQuery = "";
     private String currentSortMode = "Recommended";
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_recipes);
-
-        applyInsets();
-        setupRecipesList();
-        wireChips();
-        wireHeaderActions();
-        wireFilterRow();
-        wireBottomNavigation();
-        animateContentIn();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_recipes, container, false);
     }
 
-    private void animateContentIn() {
-        findViewById(R.id.recipesTop).startAnimation(
-                AnimationUtils.loadAnimation(this, R.anim.activity_content_in));
-        findViewById(R.id.recipesStickyHeader).startAnimation(
-                AnimationUtils.loadAnimation(this, R.anim.activity_content_in));
-        findViewById(R.id.recipesList).startAnimation(
-                AnimationUtils.loadAnimation(this, R.anim.activity_content_in));
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        applyInsets(view);
+        setupRecipesList(view);
+        wireChips(view);
+        wireHeaderActions(view);
+        wireFilterRow(view);
+        animateContentIn(view);
     }
 
-    private void applyInsets() {
-        View recipesTop = findViewById(R.id.recipesTop);
+    private void animateContentIn(View root) {
+        root.findViewById(R.id.recipesTop).startAnimation(
+                AnimationUtils.loadAnimation(requireContext(), R.anim.activity_content_in));
+        root.findViewById(R.id.recipesStickyHeader).startAnimation(
+                AnimationUtils.loadAnimation(requireContext(), R.anim.activity_content_in));
+        root.findViewById(R.id.recipesList).startAnimation(
+                AnimationUtils.loadAnimation(requireContext(), R.anim.activity_content_in));
+    }
+
+    private void applyInsets(View root) {
+        View recipesTop = root.findViewById(R.id.recipesTop);
         int topInitialPaddingStart = recipesTop.getPaddingStart();
         int topInitialPaddingEnd = recipesTop.getPaddingEnd();
         int topInitialPaddingTop = recipesTop.getPaddingTop();
@@ -77,7 +75,7 @@ public class RecipesActivity extends AppCompatActivity {
             return insets;
         });
 
-        View stickyHeader = findViewById(R.id.recipesStickyHeader);
+        View stickyHeader = root.findViewById(R.id.recipesStickyHeader);
         int stickyInitialPaddingStart = stickyHeader.getPaddingStart();
         int stickyInitialPaddingEnd = stickyHeader.getPaddingEnd();
 
@@ -87,7 +85,7 @@ public class RecipesActivity extends AppCompatActivity {
             return insets;
         });
 
-        View recipesList = findViewById(R.id.recipesList);
+        View recipesList = root.findViewById(R.id.recipesList);
         int listInitialPaddingStart = recipesList.getPaddingStart();
         int listInitialPaddingEnd = recipesList.getPaddingEnd();
         int listInitialPaddingBottom = recipesList.getPaddingBottom();
@@ -97,35 +95,29 @@ public class RecipesActivity extends AppCompatActivity {
             v.setPadding(bars.left + listInitialPaddingStart, v.getPaddingTop(), bars.right + listInitialPaddingEnd, bars.bottom + listInitialPaddingBottom);
             return insets;
         });
-
-        View bottomNav = findViewById(R.id.bottomNav);
-        ViewCompat.setOnApplyWindowInsetsListener(bottomNav, (v, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left, 0, bars.right, bars.bottom);
-            return insets;
-        });
     }
 
-    private void setupRecipesList() {
+    private void setupRecipesList(View root) {
+        fullRecipesList.clear();
         fullRecipesList.addAll(RecipesData.all());
         adapter = new RecipesAdapter(fullRecipesList, new RecipesAdapter.OnRecipeActionListener() {
             @Override
             public void onRecipeClick(Recipe recipe) {
-                showMessage(getString(R.string.home_snackbar_recipe));
+                showMessage(R.string.home_snackbar_recipe);
             }
 
             @Override
             public void onGenerateRecipes() {
-                showMessage(getString(R.string.recipes_snackbar_generate));
+                showMessage(R.string.recipes_snackbar_generate);
             }
         });
 
-        RecyclerView list = findViewById(R.id.recipesList);
-        list.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView list = root.findViewById(R.id.recipesList);
+        list.setLayoutManager(new LinearLayoutManager(requireContext()));
         list.setAdapter(adapter);
     }
 
-    private void wireChips() {
+    private void wireChips(View root) {
         List<CategoryAdapter.Category> categories = new ArrayList<>();
         categories.add(new CategoryAdapter.Category(RecipesData.CATEGORY_ALL, R.drawable.ic_grid, true));
         categories.add(new CategoryAdapter.Category(RecipesData.CATEGORY_QUICK, R.drawable.ic_clock, false));
@@ -134,8 +126,8 @@ public class RecipesActivity extends AppCompatActivity {
         categories.add(new CategoryAdapter.Category(RecipesData.CATEGORY_LOW_WASTE, R.drawable.ic_recycle, false));
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(categories, category -> filter(category.name));
-        RecyclerView categoryList = findViewById(R.id.recipesCategoryList);
-        categoryList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        RecyclerView categoryList = root.findViewById(R.id.recipesCategoryList);
+        categoryList.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
         categoryList.setAdapter(categoryAdapter);
     }
 
@@ -165,7 +157,6 @@ public class RecipesActivity extends AppCompatActivity {
                 return Integer.compare(t1, t2);
             });
         } else if (getString(R.string.recipes_sort_newest).equals(currentSortMode)) {
-            // Placeholder: newest means reverse order of initial list
             List<Recipe> reversed = new ArrayList<>();
             for (int i = filtered.size() - 1; i >= 0; i--) {
                 reversed.add(filtered.get(i));
@@ -184,27 +175,27 @@ public class RecipesActivity extends AppCompatActivity {
         }
     }
 
-    private void wireHeaderActions() {
-        View root = findViewById(R.id.recipesHeaderRoot);
-        View titleContainer = findViewById(R.id.recipesTitleContainer);
-        View searchContainer = findViewById(R.id.recipesSearchBarContainer);
-        EditText searchInput = findViewById(R.id.recipesSearchInput);
+    private void wireHeaderActions(View root) {
+        View headerRoot = root.findViewById(R.id.recipesHeaderRoot);
+        View titleContainer = root.findViewById(R.id.recipesTitleContainer);
+        View searchContainer = root.findViewById(R.id.recipesSearchBarContainer);
+        EditText searchInput = root.findViewById(R.id.recipesSearchInput);
 
-        findViewById(R.id.recipesSearchButton).setOnClickListener(v -> {
-            TransitionManager.beginDelayedTransition((ViewGroup) root);
+        root.findViewById(R.id.recipesSearchButton).setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition((ViewGroup) headerRoot);
             titleContainer.setVisibility(View.GONE);
             searchContainer.setVisibility(View.VISIBLE);
             searchInput.requestFocus();
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) imm.showSoftInput(searchInput, InputMethodManager.SHOW_IMPLICIT);
         });
 
-        findViewById(R.id.recipesSearchClose).setOnClickListener(v -> {
-            TransitionManager.beginDelayedTransition((ViewGroup) root);
+        root.findViewById(R.id.recipesSearchClose).setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition((ViewGroup) headerRoot);
             searchContainer.setVisibility(View.GONE);
             titleContainer.setVisibility(View.VISIBLE);
             searchInput.setText("");
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) imm.hideSoftInputFromWindow(searchInput.getWindowToken(), 0);
         });
 
@@ -221,15 +212,15 @@ public class RecipesActivity extends AppCompatActivity {
         });
     }
 
-    private void wireFilterRow() {
-        findViewById(R.id.recipesFilterButton)
-                .setOnClickListener(v -> showMessage(getString(R.string.recipes_snackbar_filter)));
+    private void wireFilterRow(View root) {
+        root.findViewById(R.id.recipesFilterButton)
+                .setOnClickListener(v -> showMessage(R.string.recipes_snackbar_filter));
         
-        View sortButton = findViewById(R.id.recipesSortButton);
+        View sortButton = root.findViewById(R.id.recipesSortButton);
         TextView sortValueLabel = sortButton.findViewById(R.id.recipesSortValueLabel);
         
         sortButton.setOnClickListener(v -> {
-            PopupMenu popup = new PopupMenu(this, sortButton);
+            PopupMenu popup = new PopupMenu(requireContext(), sortButton);
             popup.getMenu().add(getString(R.string.recipes_sort_recommended));
             popup.getMenu().add(getString(R.string.recipes_sort_fastest));
             popup.getMenu().add(getString(R.string.recipes_sort_newest));
@@ -244,29 +235,10 @@ public class RecipesActivity extends AppCompatActivity {
         });
     }
 
-    private void wireBottomNavigation() {
-        BottomNavigationView nav = findViewById(R.id.bottomNav);
-        nav.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.navRecipes) {
-                return true;
-            }
-            if (itemId == R.id.navHome) {
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                finish();
-                return true;
-            }
-            showMessage(getString(R.string.home_snackbar_tab, item.getTitle().toString()));
-            return false;
-        });
-        nav.setSelectedItemId(R.id.navRecipes);
-    }
-
-    private void showMessage(String message) {
-        View root = findViewById(R.id.recipesRoot);
-        Snackbar.make(root, message, Snackbar.LENGTH_SHORT).show();
+    private void showMessage(int resId) {
+        View view = getView();
+        if (view != null) {
+            Snackbar.make(view, resId, Snackbar.LENGTH_SHORT).show();
+        }
     }
 }

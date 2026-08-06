@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fridge history section: reuses the shared section header for the
+     "Fridge History / View all" row, then a single scan history card. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/fridgeHistoryHeader"
+        layout="@layout/view_home_section_header" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/fridgeHistoryCard"
+        style="@style/Widget.Lighture.Card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_3"
+        android:layout_marginStart="@dimen/space_0_5"
+        android:layout_marginEnd="@dimen/space_0_5"
+        android:foreground="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/card_padding_compact">
+
+            <FrameLayout
+                android:layout_width="@dimen/stat_icon_container"
+                android:layout_height="@dimen/stat_icon_container"
+                android:background="@drawable/bg_icon_circle">
+
+                <ImageView
+                    android:layout_width="@dimen/size_icon_md"
+                    android:layout_height="@dimen/size_icon_md"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_outline_fridge"
+                    app:tint="@color/icon_brand" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_3"
+                android:layout_weight="1"
+                android:baselineAligned="false"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fridgeHistoryItemTitle"
+                    style="@style/TextAppearance.Lighture.Label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fridge_history_item_title"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/fridgeHistoryItemSubtitle"
+                    style="@style/TextAppearance.Lighture.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_0_5"
+                    android:text="@string/fridge_history_item_subtitle"
+                    android:textColor="@color/text_secondary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_2"
+                android:baselineAligned="false"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fridgeHistoryItemDetected"
+                    style="@style/TextAppearance.Lighture.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_secondary" />
+
+                <ImageView
+                    android:layout_width="@dimen/size_icon_lg"
+                    android:layout_height="@dimen/size_icon_lg"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/space_1"
+                    android:background="@drawable/bg_icon_circle"
+                    android:contentDescription="@null"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/icon_primary" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

@@ -36,6 +36,7 @@
                 android:layout_gravity="bottom|start"
                 android:layout_margin="@dimen/space_2"
                 android:background="@drawable/bg_time_chip"
+                android:baselineAligned="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/space_2"

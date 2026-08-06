@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fridge page header: title + subtitle column with a compact "Scan Fridge"
+     action button on the right, mirroring the Recipes page header layout. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/space_2"
+    android:paddingBottom="@dimen/space_2">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fridgeTitle"
+            style="@style/TextAppearance.Lighture.PageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fridge_title"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/font_size_xl" />
+
+        <TextView
+            android:id="@+id/fridgeSubtitle"
+            style="@style/TextAppearance.Lighture.BodySmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_0_5"
+            android:maxLines="2"
+            android:text="@string/fridge_subtitle"
+            android:textColor="@color/text_secondary" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fridgeScanButton"
+        style="@style/Widget.Lighture.Button.Soft"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_button_md"
+        android:layout_marginStart="@dimen/space_3"
+        android:paddingStart="@dimen/space_3"
+        android:paddingEnd="@dimen/space_3"
+        android:text="@string/fridge_scan"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_camera"
+        app:iconPadding="@dimen/space_1_5"
+        app:iconSize="@dimen/size_icon_sm"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Lighture.Button.Small" />
+</LinearLayout>
