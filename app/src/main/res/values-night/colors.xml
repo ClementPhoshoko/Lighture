@@ -80,7 +80,7 @@
     <color name="bottom_nav_background">#E6191517</color>
     <color name="bottom_nav_border">#14FFEEF3</color>
     <color name="bottom_nav_item_active">#FF7084</color>
-    <color name="bottom_nav_indicator">#24F0445D</color>
+    <color name="bottom_nav_indicator">#33F0445D</color>
 
     <color name="top_bar_background">#DB110F10</color>
 

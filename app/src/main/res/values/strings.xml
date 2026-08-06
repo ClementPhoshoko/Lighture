@@ -158,6 +158,14 @@
     <string name="recipes_snackbar_search">Recipe search is coming soon.</string>
     <string name="recipes_snackbar_filter">Recipe filters are coming soon.</string>
     <string name="recipes_snackbar_sort">Sorting is coming soon.</string>
+    <string name="recipes_snackbar_generate">AI recipe generation is coming soon.</string>
+
+    <string name="recipes_ai_title">Abracadabra, Dinner\'s Ready</string>
+    <string name="recipes_ai_body">Get personalized recipe ideas based on your fridge ingredients.</string>
+    <string name="recipes_ai_generate">Generate Recipes</string>
+
+    <string name="recipes_empty_title">No recipes yet</string>
+    <string name="recipes_empty_body">Your personalized recipe ideas will appear here once you generate them.</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_home">Home</string>

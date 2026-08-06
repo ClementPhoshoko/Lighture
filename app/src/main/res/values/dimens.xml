@@ -110,6 +110,8 @@
 
     <dimen name="size_input">48dp</dimen>
     <dimen name="size_bottom_nav">76dp</dimen>
+    <dimen name="bottom_nav_indicator_width">84dp</dimen>
+    <dimen name="bottom_nav_indicator_height">56dp</dimen>
     <dimen name="size_top_bar">64dp</dimen>
     <dimen name="size_fab">64dp</dimen>
 
@@ -154,7 +156,8 @@
     <dimen name="hero_buttons_gap">12dp</dimen>
     <dimen name="recipe_card_width">240dp</dimen>
     <dimen name="recipe_art_height">110dp</dimen>
-    <dimen name="recipe_list_art">96dp</dimen>
+    <dimen name="recipe_list_art">120dp</dimen>
+    <dimen name="recipes_empty_avatar_size">128dp</dimen>
     <dimen name="carousel_height">220dp</dimen>
     <dimen name="stat_icon_container">44dp</dimen>
     <dimen name="notification_badge">10dp</dimen>

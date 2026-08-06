@@ -242,7 +242,7 @@
     <color name="bottom_nav_border">#143D262D</color>
     <color name="bottom_nav_item">@color/icon_secondary</color>
     <color name="bottom_nav_item_active">@color/brand_primary_accent</color>
-    <color name="bottom_nav_indicator">@color/red_50</color>
+    <color name="bottom_nav_indicator">@color/red_100</color>
 
     <!-- Top app bar -->
     <color name="top_bar_background">#E0FFFCFD</color>

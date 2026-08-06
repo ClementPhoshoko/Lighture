@@ -22,13 +22,22 @@ import java.util.List;
  * up to three compact pills with a "+N" overflow pill; the count badge reuses
  * the shared "Uses N ingredients" plural.
  */
-public final class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder> {
+public final class RecipesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public interface OnRecipeActionListener {
         void onRecipeClick(Recipe recipe);
+
+        void onGenerateRecipes();
     }
 
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_RECIPE = 1;
+    private static final int TYPE_EMPTY = 2;
+
     private static final int MAX_INGREDIENT_PILLS = 3;
+
+    private static final String ASSET_RECIPE_IMAGE = "salad_image.png";
+    private static final String ASSET_EMPTY_IMAGE = "robot_chef.png";
 
     private final List<Recipe> recipes;
     private final OnRecipeActionListener listener;
@@ -40,33 +49,65 @@ public final class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.Re
 
     @NonNull
     @Override
-    public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return TYPE_HEADER;
+        }
+        return recipes.isEmpty() ? TYPE_EMPTY : TYPE_RECIPE;
+    }
+
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == TYPE_HEADER) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.view_recipes_ai_card, parent, false);
+            view.findViewById(R.id.recipesAiGenerateButton)
+                    .setOnClickListener(v -> listener.onGenerateRecipes());
+            return new HeaderViewHolder(view);
+        }
+        if (viewType == TYPE_EMPTY) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.view_recipes_empty_state, parent, false);
+            return new EmptyViewHolder(view);
+        }
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.view_recipe_list_item, parent, false);
         return new RecipeViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
-        Recipe recipe = recipes.get(position);
-        Context context = holder.itemView.getContext();
-        holder.title.setText(recipe.title);
-        holder.description.setText(recipe.description);
-        holder.time.setText(recipe.cookingTime);
-        holder.image.setImageResource(recipe.imageRes);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        int type = getItemViewType(position);
+        if (type == TYPE_HEADER) {
+            return;
+        }
+        if (type == TYPE_EMPTY) {
+            EmptyViewHolder emptyHolder = (EmptyViewHolder) holder;
+            ImageUtils.loadAssetImage(emptyHolder.itemView.getContext(),
+                    emptyHolder.image, ASSET_EMPTY_IMAGE);
+            return;
+        }
+        Recipe recipe = recipes.get(position - 1);
+        RecipeViewHolder recipeHolder = (RecipeViewHolder) holder;
+        Context context = recipeHolder.itemView.getContext();
+        recipeHolder.title.setText(recipe.title);
+        recipeHolder.description.setText(recipe.description);
+        recipeHolder.time.setText(recipe.cookingTime);
+        ImageUtils.loadAssetImage(context, recipeHolder.image, ASSET_RECIPE_IMAGE);
 
         int count = recipe.ingredients.size();
-        holder.count.setText(context.getResources()
+        recipeHolder.count.setText(context.getResources()
                 .getQuantityString(R.plurals.home_suggestion_uses, count, count));
-        holder.count.getBackground().mutate().setTintList(ColorStateList.valueOf(
+        recipeHolder.count.getBackground().mutate().setTintList(ColorStateList.valueOf(
                 ContextCompat.getColor(context, R.color.tag_easy_background)));
-        holder.count.setTextColor(ContextCompat.getColor(context, R.color.tag_easy_text));
+        recipeHolder.count.setTextColor(ContextCompat.getColor(context, R.color.tag_easy_text));
 
-        bindIngredients(holder.ingredients, recipe);
-        bindFavorite(holder.heart, holder.heartIcon, recipe);
+        bindIngredients(recipeHolder.ingredients, recipe);
+        bindFavorite(recipeHolder.heart, recipeHolder.heartIcon, recipe);
 
-        holder.itemView.setOnClickListener(v -> listener.onRecipeClick(recipe));
-        holder.arrow.setOnClickListener(v -> listener.onRecipeClick(recipe));
+        recipeHolder.itemView.setOnClickListener(v -> listener.onRecipeClick(recipe));
+        recipeHolder.arrow.setOnClickListener(v -> listener.onRecipeClick(recipe));
     }
 
     private void bindIngredients(LinearLayout container, Recipe recipe) {
@@ -128,7 +169,22 @@ public final class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.Re
 
     @Override
     public int getItemCount() {
-        return recipes.size();
+        return recipes.isEmpty() ? 2 : recipes.size() + 1;
+    }
+
+    static final class HeaderViewHolder extends RecyclerView.ViewHolder {
+        HeaderViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+
+    static final class EmptyViewHolder extends RecyclerView.ViewHolder {
+        final ImageView image;
+
+        EmptyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            image = itemView.findViewById(R.id.recipesEmptyImage);
+        }
     }
 
     static final class RecipeViewHolder extends RecyclerView.ViewHolder {

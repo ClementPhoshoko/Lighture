@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Content-only enter animation. Applied to the content views of a screen
+     while the shared bottom navigation stays static, so the nav bar is not
+     part of the window-level transition. -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/decelerate_interpolator">
+
+    <translate
+        android:duration="300"
+        android:fromXDelta="8%p"
+        android:toXDelta="0" />
+
+    <alpha
+        android:duration="300"
+        android:fromAlpha="0.4"
+        android:toAlpha="1" />
+</set>

@@ -3,6 +3,7 @@ package com.example.lighture;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -43,6 +44,16 @@ public class RecipesActivity extends AppCompatActivity {
         wireHeaderActions();
         wireFilterRow();
         wireBottomNavigation();
+        animateContentIn();
+    }
+
+    private void animateContentIn() {
+        findViewById(R.id.recipesTop).startAnimation(
+                AnimationUtils.loadAnimation(this, R.anim.activity_content_in));
+        findViewById(R.id.recipesStickyHeader).startAnimation(
+                AnimationUtils.loadAnimation(this, R.anim.activity_content_in));
+        findViewById(R.id.recipesList).startAnimation(
+                AnimationUtils.loadAnimation(this, R.anim.activity_content_in));
     }
 
     private void applyInsets() {
@@ -67,8 +78,17 @@ public class RecipesActivity extends AppCompatActivity {
 
     private void setupRecipesList() {
         fullRecipesList.addAll(RecipesData.all());
-        adapter = new RecipesAdapter(fullRecipesList, recipe ->
-                showMessage(getString(R.string.home_snackbar_recipe)));
+        adapter = new RecipesAdapter(fullRecipesList, new RecipesAdapter.OnRecipeActionListener() {
+            @Override
+            public void onRecipeClick(Recipe recipe) {
+                showMessage(getString(R.string.home_snackbar_recipe));
+            }
+
+            @Override
+            public void onGenerateRecipes() {
+                showMessage(getString(R.string.recipes_snackbar_generate));
+            }
+        });
 
         RecyclerView list = findViewById(R.id.recipesList);
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -122,6 +142,7 @@ public class RecipesActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 finish();
                 return true;
             }

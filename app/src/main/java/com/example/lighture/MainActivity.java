@@ -202,7 +202,8 @@ public class MainActivity extends AppCompatActivity {
             }
             if (item.getItemId() == R.id.navRecipes) {
                 startActivity(new Intent(this, RecipesActivity.class));
-                return true;
+                overridePendingTransition(0, 0);
+                return false;
             }
             showComingSoon(item.getTitle().toString());
             return false;
