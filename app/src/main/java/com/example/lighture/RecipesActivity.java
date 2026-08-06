@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class RecipesActivity extends AppCompatActivity {
 
-    private final List<Recipe> recipes = new ArrayList<>();
+    private final List<Recipe> fullRecipesList = new ArrayList<>();
     private RecipesAdapter adapter;
 
     @Override
@@ -52,9 +52,10 @@ public class RecipesActivity extends AppCompatActivity {
             v.setPadding(bars.left + px, bars.top, bars.right + px, 0);
             return insets;
         });
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recipesScroll), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recipesStickyHeader), (v, insets) -> insets);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recipesList), (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left, 0, bars.right, 0);
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), bars.bottom);
             return insets;
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bottomNav), (v, insets) -> {
@@ -65,8 +66,8 @@ public class RecipesActivity extends AppCompatActivity {
     }
 
     private void setupRecipesList() {
-        recipes.addAll(RecipesData.all());
-        adapter = new RecipesAdapter(recipes, recipe ->
+        fullRecipesList.addAll(RecipesData.all());
+        adapter = new RecipesAdapter(fullRecipesList, recipe ->
                 showMessage(getString(R.string.home_snackbar_recipe)));
 
         RecyclerView list = findViewById(R.id.recipesList);
@@ -90,7 +91,7 @@ public class RecipesActivity extends AppCompatActivity {
 
     private void filter(String category) {
         List<Recipe> filtered = new ArrayList<>();
-        for (Recipe recipe : recipes) {
+        for (Recipe recipe : fullRecipesList) {
             if (RecipesData.CATEGORY_ALL.equals(category) || recipe.category.equals(category)) {
                 filtered.add(recipe);
             }

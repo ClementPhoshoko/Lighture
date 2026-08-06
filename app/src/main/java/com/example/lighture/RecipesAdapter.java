@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public final class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.Re
     private final OnRecipeActionListener listener;
 
     public RecipesAdapter(List<Recipe> recipes, OnRecipeActionListener listener) {
-        this.recipes = recipes;
+        this.recipes = new ArrayList<>(recipes);
         this.listener = listener;
     }
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Recipes screen shell: pinned header with system-bar insets, a scrollable
-     body (category chips, filter/sort row, recipe list) and the shared bottom
-     navigation. Mirrors the home screen's inset handling. -->
+     recipe list with header content (category chips, filter/sort row) and
+     the shared bottom navigation. Optimized for performance by using
+     RecyclerView as the main scrollable container. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,6 +17,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/glass_background"
+        android:elevation="@dimen/space_1"
         android:orientation="vertical"
         android:paddingStart="@dimen/page_padding_x"
         android:paddingEnd="@dimen/page_padding_x"
@@ -26,44 +28,41 @@
         <include layout="@layout/view_recipes_header" />
     </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/recipesScroll"
+    <LinearLayout
+        android:id="@+id/recipesStickyHeader"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/page_padding_x"
+        android:paddingTop="@dimen/page_padding_top"
+        android:paddingEnd="@dimen/page_padding_x"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recipesTop">
 
-        <LinearLayout
-            android:id="@+id/recipesContent"
+        <include layout="@layout/view_recipes_category_chips" />
+
+        <include
+            layout="@layout/view_recipes_filters"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/page_padding_x"
-            android:paddingTop="@dimen/page_padding_top"
-            android:paddingEnd="@dimen/page_padding_x"
-            android:paddingBottom="@dimen/space_8">
+            android:layout_marginTop="@dimen/space_4" />
+    </LinearLayout>
 
-            <include layout="@layout/view_recipes_category_chips" />
-
-            <include
-                layout="@layout/view_recipes_filters"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_4" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recipesList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_4"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipesList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/page_padding_x"
+        android:paddingTop="@dimen/space_4"
+        android:paddingEnd="@dimen/page_padding_x"
+        android:paddingBottom="@dimen/space_8"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipesStickyHeader" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
