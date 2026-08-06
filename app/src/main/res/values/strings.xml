@@ -149,7 +149,9 @@
     <string name="recipes_chip_high_protein">High Protein</string>
     <string name="recipes_chip_low_waste">Low Waste</string>
 
-    <string name="recipes_filter">Filter</string>
+    <string name="recipes_filter">Filters</string>
+    <string name="recipes_sort_by_prefix">Sort by: </string>
+    <string name="recipes_sort_recommended">Recommended</string>
     <string name="recipes_sort_by">Sort by: Recommended</string>
 
     <string name="recipes_more_ingredients">+%1$d</string>

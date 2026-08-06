@@ -1,41 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Recipes toolbar row: compact filter button on the left, sort selector on
-     the right. Both are stubs until the real filter/sort pipelines land. -->
+     the right. Wrapped in a card-like container matching the design spec. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_filter_sort_container"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="@dimen/space_1_5">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/recipesFilterButton"
-        style="@style/Widget.Lighture.Button.Secondary"
+        style="@style/Widget.Lighture.Button.Soft"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/size_button_sm"
-        android:paddingStart="@dimen/space_3"
-        android:paddingEnd="@dimen/space_3"
+        android:layout_height="@dimen/size_button_md"
+        android:paddingStart="@dimen/space_4"
+        android:paddingEnd="@dimen/space_4"
         android:text="@string/recipes_filter"
+        android:textAllCaps="false"
         app:icon="@drawable/ic_filter"
-        app:iconPadding="@dimen/space_1_5"
-        app:iconSize="@dimen/size_icon_sm" />
+        app:iconPadding="@dimen/space_2"
+        app:iconSize="@dimen/size_icon_sm"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Lighture.Button.Small" />
 
     <Space
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_weight="1" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/recipesSortButton"
-        style="@style/TextAppearance.Lighture.Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/ic_chevron_down"
-        android:drawablePadding="@dimen/space_1"
-        android:drawableTint="@color/icon_secondary"
+        android:layout_marginEnd="@dimen/space_3"
         android:gravity="center_vertical"
-        android:text="@string/recipes_sort_by"
-        android:textColor="@color/text_secondary" />
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextAppearance.Lighture.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipes_sort_by_prefix"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            style="@style/TextAppearance.Lighture.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recipes_sort_recommended"
+            android:textColor="@color/brand_primary" />
+
+        <ImageView
+            android:layout_width="@dimen/size_icon_sm"
+            android:layout_height="@dimen/size_icon_sm"
+            android:layout_marginStart="@dimen/space_1"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_chevron_down"
+            app:tint="@color/brand_primary" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,56 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Category filter chips for the Recipes screen, single-select and scrollable
-     horizontally. Uses the shared chip style + selectors. -->
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<!-- Category selection row: horizontal scrollable list of icons with labels.
+     Replaces the old Material Chips with a custom design matching the Figma spec. -->
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recipesCategoryList"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:orientation="horizontal"
     android:overScrollMode="never"
-    android:scrollbars="none">
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/recipesCategoryChips"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:chipSpacingHorizontal="@dimen/space_2"
-        app:singleLine="true"
-        app:singleSelection="true">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/recipesChipAll"
-            style="@style/Widget.Lighture.Chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/recipes_chip_all" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/recipesChipQuick"
-            style="@style/Widget.Lighture.Chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recipes_chip_quick" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/recipesChipVegetarian"
-            style="@style/Widget.Lighture.Chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recipes_chip_vegetarian" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/recipesChipHighProtein"
-            style="@style/Widget.Lighture.Chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recipes_chip_high_protein" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/recipesChipLowWaste"
-            style="@style/Widget.Lighture.Chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recipes_chip_low_waste" />
-
-    </com.google.android.material.chip.ChipGroup>
-</HorizontalScrollView>
+    android:scrollbars="none" />

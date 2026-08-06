@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -63,10 +61,16 @@ public class RecipesActivity extends AppCompatActivity {
             v.setPadding(bars.left + px, bars.top, bars.right + px, 0);
             return insets;
         });
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recipesStickyHeader), (v, insets) -> insets);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recipesStickyHeader), (v, insets) -> {
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            int px = getResources().getDimensionPixelSize(R.dimen.page_padding_x);
+            v.setPadding(bars.left + px, v.getPaddingTop(), bars.right + px, 0);
+            return insets;
+        });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recipesList), (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), bars.bottom);
+            int px = getResources().getDimensionPixelSize(R.dimen.page_padding_x);
+            v.setPadding(bars.left + px, v.getPaddingTop(), bars.right + px, bars.bottom);
             return insets;
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bottomNav), (v, insets) -> {
@@ -96,17 +100,17 @@ public class RecipesActivity extends AppCompatActivity {
     }
 
     private void wireChips() {
-        ChipGroup chips = findViewById(R.id.recipesCategoryChips);
-        chips.setOnCheckedStateChangeListener((group, checkedIds) -> {
-            String category = RecipesData.CATEGORY_ALL;
-            if (!checkedIds.isEmpty()) {
-                Chip chip = group.findViewById(checkedIds.get(0));
-                if (chip != null) {
-                    category = chip.getText().toString();
-                }
-            }
-            filter(category);
-        });
+        List<CategoryAdapter.Category> categories = new ArrayList<>();
+        categories.add(new CategoryAdapter.Category(RecipesData.CATEGORY_ALL, R.drawable.ic_grid, true));
+        categories.add(new CategoryAdapter.Category(RecipesData.CATEGORY_QUICK, R.drawable.ic_clock, false));
+        categories.add(new CategoryAdapter.Category(RecipesData.CATEGORY_VEGETARIAN, R.drawable.ic_leaf, false));
+        categories.add(new CategoryAdapter.Category(RecipesData.CATEGORY_HIGH_PROTEIN, R.drawable.ic_dumbbell, false));
+        categories.add(new CategoryAdapter.Category(RecipesData.CATEGORY_LOW_WASTE, R.drawable.ic_recycle, false));
+
+        CategoryAdapter categoryAdapter = new CategoryAdapter(categories, category -> filter(category.name));
+        RecyclerView categoryList = findViewById(R.id.recipesCategoryList);
+        categoryList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        categoryList.setAdapter(categoryAdapter);
     }
 
     private void filter(String category) {
