@@ -7,8 +7,10 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_filter_sort_container"
     android:gravity="center_vertical"
+    android:minHeight="56dp"
     android:orientation="horizontal"
-    android:padding="@dimen/space_1_5">
+    android:paddingStart="@dimen/space_3"
+    android:paddingEnd="@dimen/space_3">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/recipesFilterButton"
@@ -45,6 +47,7 @@
             android:textColor="@color/text_primary" />
 
         <TextView
+            android:id="@+id/recipesSortValueLabel"
             style="@style/TextAppearance.Lighture.Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

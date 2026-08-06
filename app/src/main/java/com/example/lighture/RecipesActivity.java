@@ -1,9 +1,17 @@
 package com.example.lighture;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -29,6 +37,9 @@ public class RecipesActivity extends AppCompatActivity {
 
     private final List<Recipe> fullRecipesList = new ArrayList<>();
     private RecipesAdapter adapter;
+    private String currentCategory = RecipesData.CATEGORY_ALL;
+    private String currentSearchQuery = "";
+    private String currentSortMode = "Recommended";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,25 +66,40 @@ public class RecipesActivity extends AppCompatActivity {
     }
 
     private void applyInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recipesTop), (v, insets) -> {
+        View recipesTop = findViewById(R.id.recipesTop);
+        int topInitialPaddingStart = recipesTop.getPaddingStart();
+        int topInitialPaddingEnd = recipesTop.getPaddingEnd();
+        int topInitialPaddingTop = recipesTop.getPaddingTop();
+
+        ViewCompat.setOnApplyWindowInsetsListener(recipesTop, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            int px = getResources().getDimensionPixelSize(R.dimen.page_padding_x);
-            v.setPadding(bars.left + px, bars.top, bars.right + px, 0);
+            v.setPadding(bars.left + topInitialPaddingStart, bars.top + topInitialPaddingTop, bars.right + topInitialPaddingEnd, 0);
             return insets;
         });
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recipesStickyHeader), (v, insets) -> {
+
+        View stickyHeader = findViewById(R.id.recipesStickyHeader);
+        int stickyInitialPaddingStart = stickyHeader.getPaddingStart();
+        int stickyInitialPaddingEnd = stickyHeader.getPaddingEnd();
+
+        ViewCompat.setOnApplyWindowInsetsListener(stickyHeader, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            int px = getResources().getDimensionPixelSize(R.dimen.page_padding_x);
-            v.setPadding(bars.left + px, v.getPaddingTop(), bars.right + px, 0);
+            v.setPadding(bars.left + stickyInitialPaddingStart, v.getPaddingTop(), bars.right + stickyInitialPaddingEnd, 0);
             return insets;
         });
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recipesList), (v, insets) -> {
+
+        View recipesList = findViewById(R.id.recipesList);
+        int listInitialPaddingStart = recipesList.getPaddingStart();
+        int listInitialPaddingEnd = recipesList.getPaddingEnd();
+        int listInitialPaddingBottom = recipesList.getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(recipesList, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            int px = getResources().getDimensionPixelSize(R.dimen.page_padding_x);
-            v.setPadding(bars.left + px, v.getPaddingTop(), bars.right + px, bars.bottom);
+            v.setPadding(bars.left + listInitialPaddingStart, v.getPaddingTop(), bars.right + listInitialPaddingEnd, bars.bottom + listInitialPaddingBottom);
             return insets;
         });
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bottomNav), (v, insets) -> {
+
+        View bottomNav = findViewById(R.id.bottomNav);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomNav, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(bars.left, 0, bars.right, bars.bottom);
             return insets;
@@ -114,25 +140,108 @@ public class RecipesActivity extends AppCompatActivity {
     }
 
     private void filter(String category) {
+        currentCategory = category;
+        applyFiltersAndSort();
+    }
+
+    private void applyFiltersAndSort() {
         List<Recipe> filtered = new ArrayList<>();
         for (Recipe recipe : fullRecipesList) {
-            if (RecipesData.CATEGORY_ALL.equals(category) || recipe.category.equals(category)) {
+            boolean matchesCategory = RecipesData.CATEGORY_ALL.equals(currentCategory) || recipe.category.equals(currentCategory);
+            boolean matchesSearch = currentSearchQuery.isEmpty() || 
+                    recipe.title.toLowerCase().contains(currentSearchQuery) || 
+                    recipe.description.toLowerCase().contains(currentSearchQuery);
+            
+            if (matchesCategory && matchesSearch) {
                 filtered.add(recipe);
             }
         }
+
+        // Apply Sorting
+        if (getString(R.string.recipes_sort_fastest).equals(currentSortMode)) {
+            filtered.sort((r1, r2) -> {
+                int t1 = extractMinutes(r1.cookingTime);
+                int t2 = extractMinutes(r2.cookingTime);
+                return Integer.compare(t1, t2);
+            });
+        } else if (getString(R.string.recipes_sort_newest).equals(currentSortMode)) {
+            // Placeholder: newest means reverse order of initial list
+            List<Recipe> reversed = new ArrayList<>();
+            for (int i = filtered.size() - 1; i >= 0; i--) {
+                reversed.add(filtered.get(i));
+            }
+            filtered = reversed;
+        }
+
         adapter.setRecipes(filtered);
     }
 
+    private int extractMinutes(String time) {
+        try {
+            return Integer.parseInt(time.split(" ")[0]);
+        } catch (Exception e) {
+            return 999;
+        }
+    }
+
     private void wireHeaderActions() {
-        findViewById(R.id.recipesSearchButton)
-                .setOnClickListener(v -> showMessage(getString(R.string.recipes_snackbar_search)));
+        View root = findViewById(R.id.recipesHeaderRoot);
+        View titleContainer = findViewById(R.id.recipesTitleContainer);
+        View searchContainer = findViewById(R.id.recipesSearchBarContainer);
+        EditText searchInput = findViewById(R.id.recipesSearchInput);
+
+        findViewById(R.id.recipesSearchButton).setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition((ViewGroup) root);
+            titleContainer.setVisibility(View.GONE);
+            searchContainer.setVisibility(View.VISIBLE);
+            searchInput.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) imm.showSoftInput(searchInput, InputMethodManager.SHOW_IMPLICIT);
+        });
+
+        findViewById(R.id.recipesSearchClose).setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition((ViewGroup) root);
+            searchContainer.setVisibility(View.GONE);
+            titleContainer.setVisibility(View.VISIBLE);
+            searchInput.setText("");
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) imm.hideSoftInputFromWindow(searchInput.getWindowToken(), 0);
+        });
+
+        searchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(Editable s) {
+                currentSearchQuery = s.toString().toLowerCase().trim();
+                applyFiltersAndSort();
+            }
+        });
     }
 
     private void wireFilterRow() {
         findViewById(R.id.recipesFilterButton)
                 .setOnClickListener(v -> showMessage(getString(R.string.recipes_snackbar_filter)));
-        findViewById(R.id.recipesSortButton)
-                .setOnClickListener(v -> showMessage(getString(R.string.recipes_snackbar_sort)));
+        
+        View sortButton = findViewById(R.id.recipesSortButton);
+        TextView sortValueLabel = sortButton.findViewById(R.id.recipesSortValueLabel);
+        
+        sortButton.setOnClickListener(v -> {
+            PopupMenu popup = new PopupMenu(this, sortButton);
+            popup.getMenu().add(getString(R.string.recipes_sort_recommended));
+            popup.getMenu().add(getString(R.string.recipes_sort_fastest));
+            popup.getMenu().add(getString(R.string.recipes_sort_newest));
+            
+            popup.setOnMenuItemClickListener(item -> {
+                currentSortMode = item.getTitle().toString();
+                sortValueLabel.setText(currentSortMode);
+                applyFiltersAndSort();
+                return true;
+            });
+            popup.show();
+        });
     }
 
     private void wireBottomNavigation() {
