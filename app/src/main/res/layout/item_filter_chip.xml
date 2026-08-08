@@ -6,7 +6,6 @@
     style="@style/Widget.Lighture.Chip"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/space_2"
     android:checkable="true"
     android:clickable="true"
     android:focusable="true"

@@ -78,15 +78,18 @@ public class HomeFragment extends Fragment {
     }
 
     private void applyInsets(View root) {
-        ViewCompat.setOnApplyWindowInsetsListener(root.findViewById(R.id.homeTop), (v, insets) -> {
+        View homeTop = root.findViewById(R.id.homeTop);
+        ViewCompat.setOnApplyWindowInsetsListener(homeTop, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             int px = getResources().getDimensionPixelSize(R.dimen.page_padding_x);
             v.setPadding(bars.left + px, bars.top, bars.right + px, 0);
             return insets;
         });
-        ViewCompat.setOnApplyWindowInsetsListener(root.findViewById(R.id.homeScroll), (v, insets) -> {
+
+        View scroll = root.findViewById(R.id.homeScroll);
+        ViewCompat.setOnApplyWindowInsetsListener(scroll, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left, 0, bars.right, 0);
+            v.setPadding(bars.left, 0, bars.right, bars.bottom);
             return insets;
         });
     }

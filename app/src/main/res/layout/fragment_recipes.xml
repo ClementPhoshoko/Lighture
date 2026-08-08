@@ -3,58 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_page">
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
+    <!-- Unified Header Container: Declared first in Strict mode for
+         better readability,sitting at the very top. -->
     <LinearLayout
-        android:id="@+id/recipesTop"
+        android:id="@+id/recipesHeaderContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/glass_background"
+        android:background="@color/background_page"
         android:elevation="@dimen/space_1"
         android:orientation="vertical"
-        android:paddingStart="@dimen/page_padding_x"
-        android:paddingEnd="@dimen/page_padding_x"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include layout="@layout/view_recipes_header" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/recipesStickyHeader"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/page_padding_x"
-        android:paddingTop="@dimen/page_padding_top"
-        android:paddingEnd="@dimen/page_padding_x"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recipesTop">
-
-        <include layout="@layout/view_recipes_category_chips" />
-
-        <include
-            layout="@layout/view_recipes_filters"
+        <!-- Top Title Row -->
+        <LinearLayout
+            android:id="@+id/recipesTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_4" />
+            android:orientation="vertical"
+            android:paddingStart="@dimen/page_padding_x"
+            android:paddingEnd="@dimen/page_padding_x">
+            <include layout="@layout/view_recipes_header" />
+        </LinearLayout>
+
+        <!-- Filter & Sort Row -->
+        <LinearLayout
+            android:id="@+id/recipesStickyHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/page_padding_top">
+
+            <include layout="@layout/view_filter_chip_bar" />
+
+            <include
+                layout="@layout/view_recipes_filters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_4" />
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipesList"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_4"
         android:clipToPadding="false"
+        android:clipChildren="false"
         android:paddingStart="@dimen/page_padding_x"
-        android:paddingTop="@dimen/space_4"
         android:paddingEnd="@dimen/page_padding_x"
         android:paddingBottom="@dimen/space_8"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recipesStickyHeader" />
+        app:layout_constraintTop_toBottomOf="@id/recipesHeaderContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

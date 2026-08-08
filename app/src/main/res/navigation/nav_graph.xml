@@ -27,6 +27,6 @@
         android:id="@+id/navProfile"
         android:name="com.example.lighture.ProfileFragment"
         android:label="@string/bottom_nav_profile"
-        tools:layout="@layout/fragment_coming_soon" />
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>

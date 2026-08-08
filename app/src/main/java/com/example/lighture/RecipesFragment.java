@@ -64,35 +64,33 @@ public class RecipesFragment extends Fragment {
     }
 
     private void applyInsets(View root) {
+        View headerContainer = root.findViewById(R.id.recipesHeaderContainer);
         View recipesTop = root.findViewById(R.id.recipesTop);
+        View recipesList = root.findViewById(R.id.recipesList);
+
         int topInitialPaddingStart = recipesTop.getPaddingStart();
         int topInitialPaddingEnd = recipesTop.getPaddingEnd();
         int topInitialPaddingTop = recipesTop.getPaddingTop();
 
-        ViewCompat.setOnApplyWindowInsetsListener(recipesTop, (v, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left + topInitialPaddingStart, bars.top + topInitialPaddingTop, bars.right + topInitialPaddingEnd, 0);
-            return insets;
-        });
-
-        View stickyHeader = root.findViewById(R.id.recipesStickyHeader);
-        int stickyInitialPaddingStart = stickyHeader.getPaddingStart();
-        int stickyInitialPaddingEnd = stickyHeader.getPaddingEnd();
-
-        ViewCompat.setOnApplyWindowInsetsListener(stickyHeader, (v, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left + stickyInitialPaddingStart, v.getPaddingTop(), bars.right + stickyInitialPaddingEnd, 0);
-            return insets;
-        });
-
-        View recipesList = root.findViewById(R.id.recipesList);
         int listInitialPaddingStart = recipesList.getPaddingStart();
         int listInitialPaddingEnd = recipesList.getPaddingEnd();
         int listInitialPaddingBottom = recipesList.getPaddingBottom();
 
-        ViewCompat.setOnApplyWindowInsetsListener(recipesList, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(headerContainer, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left + listInitialPaddingStart, v.getPaddingTop(), bars.right + listInitialPaddingEnd, bars.bottom + listInitialPaddingBottom);
+            
+            // Apply status bar padding to the internal top row
+            recipesTop.setPadding(bars.left + topInitialPaddingStart, 
+                               bars.top + topInitialPaddingTop, 
+                               bars.right + topInitialPaddingEnd, 0);
+
+            // In Strict Clipping mode, the list sits below the header. 
+            // We only need to handle bottom navigation insets here.
+            recipesList.setPadding(bars.left + listInitialPaddingStart, 
+                                0, // No top padding needed as it's below header
+                                bars.right + listInitialPaddingEnd, 
+                                bars.bottom + listInitialPaddingBottom);
+
             return insets;
         });
     }
@@ -125,10 +123,20 @@ public class RecipesFragment extends Fragment {
         categories.add(new CategoryAdapter.Category(RecipesData.CATEGORY_HIGH_PROTEIN, R.drawable.ic_dumbbell, false));
         categories.add(new CategoryAdapter.Category(RecipesData.CATEGORY_LOW_WASTE, R.drawable.ic_recycle, false));
 
-        CategoryAdapter categoryAdapter = new CategoryAdapter(categories, category -> filter(category.name));
-        RecyclerView categoryList = root.findViewById(R.id.recipesCategoryList);
+        FilterChipAdapter chipAdapter = new FilterChipAdapter(categories, category -> filter(category.name));
+        RecyclerView categoryList = root.findViewById(R.id.filterChipRecyclerView);
         categoryList.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
-        categoryList.setAdapter(categoryAdapter);
+        categoryList.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(@NonNull android.graphics.Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                int position = parent.getChildAdapterPosition(view);
+                int count = state.getItemCount();
+                if (position < count - 1) {
+                    outRect.right = getResources().getDimensionPixelSize(R.dimen.space_2);
+                }
+            }
+        });
+        categoryList.setAdapter(chipAdapter);
     }
 
     private void filter(String category) {
@@ -176,14 +184,14 @@ public class RecipesFragment extends Fragment {
     }
 
     private void wireHeaderActions(View root) {
-        View headerRoot = root.findViewById(R.id.recipesHeaderRoot);
-        View titleContainer = root.findViewById(R.id.recipesTitleContainer);
+        View filtersRoot = root.findViewById(R.id.recipesFiltersRoot);
+        View sortContainer = root.findViewById(R.id.recipesSortContainer);
         View searchContainer = root.findViewById(R.id.recipesSearchBarContainer);
         EditText searchInput = root.findViewById(R.id.recipesSearchInput);
 
         root.findViewById(R.id.recipesSearchButton).setOnClickListener(v -> {
-            TransitionManager.beginDelayedTransition((ViewGroup) headerRoot);
-            titleContainer.setVisibility(View.GONE);
+            TransitionManager.beginDelayedTransition((ViewGroup) filtersRoot);
+            sortContainer.setVisibility(View.GONE);
             searchContainer.setVisibility(View.VISIBLE);
             searchInput.requestFocus();
             InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -191,9 +199,9 @@ public class RecipesFragment extends Fragment {
         });
 
         root.findViewById(R.id.recipesSearchClose).setOnClickListener(v -> {
-            TransitionManager.beginDelayedTransition((ViewGroup) headerRoot);
+            TransitionManager.beginDelayedTransition((ViewGroup) filtersRoot);
             searchContainer.setVisibility(View.GONE);
-            titleContainer.setVisibility(View.VISIBLE);
+            sortContainer.setVisibility(View.VISIBLE);
             searchInput.setText("");
             InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) imm.hideSoftInputFromWindow(searchInput.getWindowToken(), 0);
@@ -213,9 +221,6 @@ public class RecipesFragment extends Fragment {
     }
 
     private void wireFilterRow(View root) {
-        root.findViewById(R.id.recipesFilterButton)
-                .setOnClickListener(v -> showMessage(R.string.recipes_snackbar_filter));
-        
         View sortButton = root.findViewById(R.id.recipesSortButton);
         TextView sortValueLabel = sortButton.findViewById(R.id.recipesSortValueLabel);
         

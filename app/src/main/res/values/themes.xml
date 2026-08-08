@@ -76,6 +76,7 @@
         <item name="toolbarStyle">@style/Widget.Lighture.TopAppBar</item>
         <item name="floatingActionButtonStyle">@style/Widget.Lighture.FloatingActionButton</item>
         <item name="textInputStyle">@style/Widget.Lighture.TextInputLayout</item>
+        <item name="popupMenuStyle">@style/Widget.Lighture.PopupMenu</item>
 
         <!-- Focus highlight -->
         <item name="android:colorControlActivated">@color/brand_primary</item>

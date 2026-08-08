@@ -3,6 +3,7 @@
      "Fridge History / View all" row, then a single scan history card. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipChildren="false"
@@ -88,16 +89,18 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_secondary" />
 
-                <ImageView
+                <TextView
                     android:layout_width="@dimen/size_icon_lg"
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/space_1"
                     android:background="@drawable/bg_icon_circle"
-                    android:contentDescription="@null"
-                    android:padding="6dp"
-                    android:src="@drawable/ic_chevron_right"
-                    app:tint="@color/icon_primary" />
+                    android:gravity="center"
+                    app:drawableStartCompat="@drawable/ic_chevron_right"
+                    app:drawableTint="@color/icon_primary"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="0dp"
+                    tools:ignore="RtlSymmetry" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -61,6 +61,8 @@ public final class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAd
         holder.expiry.setText(item.expiryText);
         TextViewCompat.setCompoundDrawableTintList(holder.expiry, ColorStateList.valueOf(statusColor));
 
+        holder.divider.setVisibility(position == getItemCount() - 1 ? View.GONE : View.VISIBLE);
+
         holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
     }
 
@@ -81,6 +83,7 @@ public final class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAd
         final ImageView image;
         final TextView status;
         final TextView expiry;
+        final View divider;
 
         ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,6 +92,7 @@ public final class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAd
             image = itemView.findViewById(R.id.fridgeItemImage);
             status = itemView.findViewById(R.id.fridgeItemStatus);
             expiry = itemView.findViewById(R.id.fridgeItemExpiry);
+            divider = itemView.findViewById(R.id.itemDivider);
         }
     }
 }

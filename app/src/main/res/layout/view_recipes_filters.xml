@@ -1,66 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Recipes toolbar row: compact filter button on the left, sort selector on
-     the right. Wrapped in a card-like container matching the design spec. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Recipes toolbar row: clean and integrated sort selector.
+     Removed the redundant filter button and background for a borderless look. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recipesFiltersRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_filter_sort_container"
-    android:gravity="center_vertical"
-    android:minHeight="56dp"
-    android:orientation="horizontal"
-    android:paddingStart="@dimen/space_3"
-    android:paddingEnd="@dimen/space_3">
+    android:paddingStart="@dimen/page_padding_x"
+    android:paddingEnd="@dimen/page_padding_x"
+    android:paddingBottom="@dimen/space_2">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/recipesFilterButton"
-        style="@style/Widget.Lighture.Button.Soft"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/size_button_md"
-        android:paddingStart="@dimen/space_4"
-        android:paddingEnd="@dimen/space_4"
-        android:text="@string/recipes_filter"
-        android:textAllCaps="false"
-        app:icon="@drawable/ic_filter"
-        app:iconPadding="@dimen/space_2"
-        app:iconSize="@dimen/size_icon_sm"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Lighture.Button.Small" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_weight="1" />
-
+    <!-- Row 1: Sort Button and Search Toggle -->
     <LinearLayout
-        android:id="@+id/recipesSortButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/space_3"
+        android:id="@+id/recipesSortContainer"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="visible">
 
-        <TextView
-            style="@style/TextAppearance.Lighture.Label"
+        <LinearLayout
+            android:id="@+id/recipesSortButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/recipes_sort_by_prefix"
-            android:textColor="@color/text_primary" />
+            android:background="@drawable/bg_sort_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/space_3"
+            android:paddingEnd="@dimen/space_2"
+            android:paddingTop="@dimen/space_1"
+            android:paddingBottom="@dimen/space_1">
 
-        <TextView
-            android:id="@+id/recipesSortValueLabel"
-            style="@style/TextAppearance.Lighture.Label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recipes_sort_recommended"
-            android:textColor="@color/brand_primary" />
+            <TextView
+                style="@style/TextAppearance.Lighture.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recipes_sort_by_prefix"
+                android:textColor="@color/text_secondary" />
 
-        <ImageView
-            android:layout_width="@dimen/size_icon_sm"
-            android:layout_height="@dimen/size_icon_sm"
-            android:layout_marginStart="@dimen/space_1"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_chevron_down"
-            app:tint="@color/brand_primary" />
+            <TextView
+                android:id="@+id/recipesSortValueLabel"
+                style="@style/TextAppearance.Lighture.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_2"
+                android:text="@string/recipes_sort_recommended"
+                android:textColor="@color/brand_primary" />
+
+            <ImageView
+                android:layout_width="@dimen/size_icon_sm"
+                android:layout_height="@dimen/size_icon_sm"
+                android:layout_marginStart="@dimen/space_0_5"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_chevron_down"
+                app:tint="@color/brand_primary" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/recipesSearchButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_icon_circle"
+            android:contentDescription="@string/recipes_search_description"
+            android:padding="@dimen/space_3"
+            app:srcCompat="@drawable/ic_search"
+            app:tint="@color/icon_primary" />
     </LinearLayout>
 
-</LinearLayout>
+    <!-- Active Search Bar (Overlays Sort Container) -->
+    <LinearLayout
+        android:id="@+id/recipesSearchBarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_filter_sort_container"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/space_4"
+        android:paddingEnd="@dimen/space_1"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_search"
+            app:tint="@color/text_tertiary" />
+
+        <EditText
+            android:id="@+id/recipesSearchInput"
+            style="@style/TextAppearance.Lighture.Body"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/space_2"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/recipes_search_hint"
+            android:imeOptions="actionSearch"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_tertiary"
+            android:textSize="@dimen/font_size_sm" />
+
+        <ImageButton
+            android:id="@+id/recipesSearchClose"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/recipes_search_close"
+            android:padding="@dimen/space_2_5"
+            app:srcCompat="@drawable/ic_chevron_right"
+            app:tint="@color/icon_secondary" />
+    </LinearLayout>
+</FrameLayout>

@@ -63,12 +63,9 @@ public class FridgeFragment extends Fragment {
 
     private void applyInsets(View root) {
         View fridgeTop = root.findViewById(R.id.fridgeTop);
-        int topPaddingStart = fridgeTop.getPaddingStart();
-        int topPaddingEnd = fridgeTop.getPaddingEnd();
-
         ViewCompat.setOnApplyWindowInsetsListener(fridgeTop, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left + topPaddingStart, bars.top, bars.right + topPaddingEnd, 0);
+            v.setPadding(bars.left + getResources().getDimensionPixelSize(R.dimen.page_padding_x), bars.top, bars.right + getResources().getDimensionPixelSize(R.dimen.page_padding_x), 0);
             return insets;
         });
 
@@ -106,13 +103,23 @@ public class FridgeFragment extends Fragment {
         categories.add(new CategoryAdapter.Category(FridgeData.FILTER_EXPIRING, R.drawable.ic_outline_clock, false));
         categories.add(new CategoryAdapter.Category(FridgeData.FILTER_EXPIRED, R.drawable.ic_outline_trash, false));
 
-        CategoryAdapter categoryAdapter = new CategoryAdapter(categories, category -> {
+        FilterChipAdapter filterAdapter = new FilterChipAdapter(categories, category -> {
             currentFilter = category.name;
             applyFilter();
         });
-        RecyclerView filterList = root.findViewById(R.id.fridgeCategoryList);
+        RecyclerView filterList = root.findViewById(R.id.filterChipRecyclerView);
         filterList.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
-        filterList.setAdapter(categoryAdapter);
+        filterList.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(@NonNull android.graphics.Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                int position = parent.getChildAdapterPosition(view);
+                int count = state.getItemCount();
+                if (position < count - 1) {
+                    outRect.right = getResources().getDimensionPixelSize(R.dimen.space_2);
+                }
+            }
+        });
+        filterList.setAdapter(filterAdapter);
     }
 
     private void setupItemsList(View root) {

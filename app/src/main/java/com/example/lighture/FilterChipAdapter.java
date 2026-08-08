@@ -11,7 +11,11 @@ import com.google.android.material.chip.Chip;
 
 import java.util.List;
 
-public final class FridgeFilterAdapter extends RecyclerView.Adapter<FridgeFilterAdapter.FilterViewHolder> {
+/**
+ * Reusable adapter for horizontal filter chip bars.
+ * Used by Recipes and Fridge screens for category filtering.
+ */
+public final class FilterChipAdapter extends RecyclerView.Adapter<FilterChipAdapter.FilterViewHolder> {
 
     public interface OnFilterClickListener {
         void onFilterClick(CategoryAdapter.Category category);
@@ -20,7 +24,7 @@ public final class FridgeFilterAdapter extends RecyclerView.Adapter<FridgeFilter
     private final List<CategoryAdapter.Category> categories;
     private final OnFilterClickListener listener;
 
-    public FridgeFilterAdapter(List<CategoryAdapter.Category> categories, OnFilterClickListener listener) {
+    public FilterChipAdapter(List<CategoryAdapter.Category> categories, OnFilterClickListener listener) {
         this.categories = categories;
         this.listener = listener;
     }
@@ -29,7 +33,7 @@ public final class FridgeFilterAdapter extends RecyclerView.Adapter<FridgeFilter
     @Override
     public FilterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_fridge_filter_chip, parent, false);
+                .inflate(R.layout.item_filter_chip, parent, false);
         return new FilterViewHolder(view);
     }
 
@@ -60,7 +64,7 @@ public final class FridgeFilterAdapter extends RecyclerView.Adapter<FridgeFilter
 
         FilterViewHolder(@NonNull View itemView) {
             super(itemView);
-            chip = (Chip) itemView;
+            chip = itemView.findViewById(R.id.filterChip);
         }
     }
 }

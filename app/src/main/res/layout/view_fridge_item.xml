@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Fridge ingredient row: rounded food-art thumb on the left, name + quantity
-     in the middle, a freshness status pill with a calendar expiry line on the
-     right and a chevron action at the end. Binds via FridgeItemsAdapter. -->
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Fridge ingredient row: designed as a list item for a grouped container.
+     Contains food-art thumb, name/quantity, status/expiry block and a chevron.
+     Dividers are handled by the adapter to prevent a trailing line. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fridgeItem"
-    style="@style/Widget.Lighture.Card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/space_0_5"
-    android:layout_marginEnd="@dimen/space_0_5"
-    android:layout_marginBottom="@dimen/space_3"
-    android:foreground="?attr/selectableItemBackground">
-
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:gravity="center_vertical"
+        android:minHeight="88dp"
         android:orientation="horizontal"
-        android:padding="@dimen/card_padding_compact">
+        android:paddingStart="@dimen/space_5"
+        android:paddingTop="@dimen/space_4"
+        android:paddingEnd="@dimen/space_5"
+        android:paddingBottom="@dimen/space_4">
 
         <FrameLayout
             android:layout_width="@dimen/size_avatar_lg"
             android:layout_height="@dimen/size_avatar_lg">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/fridgeItemImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
                 android:padding="@dimen/space_2"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_3"
+            android:layout_marginStart="@dimen/space_4"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -50,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="@color/text_primary" />
+                android:textColor="@color/text_primary"
+                tools:text="Tomatoes" />
 
             <TextView
                 android:id="@+id/fridgeItemQuantity"
@@ -60,14 +62,14 @@
                 android:layout_marginTop="@dimen/space_0_5"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="@color/text_secondary" />
+                android:textColor="@color/text_secondary"
+                tools:text="5 pieces" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_2"
-            android:layout_marginEnd="@dimen/space_4"
+            android:layout_marginStart="@dimen/space_3"
             android:baselineAligned="false"
             android:gravity="end"
             android:orientation="vertical">
@@ -82,7 +84,10 @@
                 android:paddingStart="@dimen/space_2"
                 android:paddingTop="@dimen/space_0_5"
                 android:paddingEnd="@dimen/space_2"
-                android:paddingBottom="@dimen/space_0_5" />
+                android:paddingBottom="@dimen/space_0_5"
+                tools:backgroundTint="@color/fresh_background"
+                tools:text="Fresh"
+                tools:textColor="@color/fresh_color" />
 
             <TextView
                 android:id="@+id/fridgeItemExpiry"
@@ -90,27 +95,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_1"
-                app:drawableStartCompat="@drawable/ic_calendar"
                 android:drawablePadding="@dimen/space_1"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:textColor="@color/text_secondary"
-                app:drawableTint="@color/icon_secondary" />
+                app:drawableStartCompat="@drawable/ic_calendar"
+                app:drawableTint="@color/icon_secondary"
+                tools:text="3 days left" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/fridgeItemArrow"
-            android:layout_width="@dimen/size_icon_lg"
-            android:layout_height="@dimen/size_icon_lg"
-            android:layout_marginStart="@dimen/space_2"
-            android:background="@drawable/bg_icon_circle"
+            android:layout_width="@dimen/size_icon_sm"
+            android:layout_height="@dimen/size_icon_sm"
+            android:layout_marginStart="@dimen/space_3"
             android:gravity="center"
             app:drawableStartCompat="@drawable/ic_chevron_right"
-            app:drawableTint="@color/icon_primary"
-            android:paddingStart="8dp"
-            android:paddingEnd="0dp"
+            app:drawableTint="@color/icon_tertiary"
             tools:ignore="RtlSymmetry" />
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
+    <View
+        android:id="@+id/itemDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/space_16"
+        android:background="@color/divider" />
+
+</LinearLayout>

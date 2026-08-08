@@ -2,26 +2,33 @@
 <!-- Login content, inflated into the auth frame. Pure ConstraintLayout:
      every block is constrained and the whole column forms a packed vertical
      chain that centres itself on tall screens (no scrolling). -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/authLoginRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false">
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
-    <include
-        android:id="@+id/authHeader"
-        layout="@layout/view_auth_logo"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/authLoginRoot"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/page_padding_top"
-        app:layout_constraintBottom_toTopOf="@id/loginTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintVertical_chainStyle="packed" />
+        android:clipChildren="false">
+
+        <include
+            android:id="@+id/authHeader"
+            layout="@layout/view_auth_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/page_padding_top"
+            app:layout_constraintBottom_toTopOf="@id/loginTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintVertical_chainStyle="packed" />
+
 
     <TextView
         android:id="@+id/loginTitle"
@@ -474,4 +481,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/signupPrompt" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
