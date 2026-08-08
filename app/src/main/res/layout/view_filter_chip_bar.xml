@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Reusable horizontal filter bar: scrollable set of category chips.
+     Uses clipToPadding="false" to allow chips to align with margins but scroll
+     to the very edge of the screen. -->
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/filterChipRecyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    android:paddingStart="@dimen/page_padding_x"
+    android:paddingEnd="@dimen/page_padding_x"
+    android:paddingTop="@dimen/space_1"
+    android:paddingBottom="@dimen/space_1"
+    android:orientation="horizontal"
+    android:overScrollMode="never"
+    android:scrollbars="none" />

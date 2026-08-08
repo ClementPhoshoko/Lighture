@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/filterChip"
+    style="@style/Widget.Lighture.Chip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/space_2"
+    android:checkable="true"
+    android:clickable="true"
+    android:focusable="true"
+    app:chipIconVisible="true"
+    tools:chipIcon="@drawable/ic_outline_leaf"
+    tools:text="Fresh" />

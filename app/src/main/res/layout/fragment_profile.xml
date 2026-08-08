@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_page">
+
+    <!-- Sticky Header -->
+    <LinearLayout
+        android:id="@+id/profileTop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/glass_background"
+        android:elevation="@dimen/space_1"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/page_padding_x"
+        android:paddingEnd="@dimen/page_padding_x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/space_2"
+            android:paddingBottom="@dimen/space_2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/profileTitle"
+                    style="@style/TextAppearance.Lighture.PageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/font_size_xl" />
+
+                <TextView
+                    android:id="@+id/profileSubtitle"
+                    style="@style/TextAppearance.Lighture.BodySmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_0_5"
+                    android:maxLines="2"
+                    android:text="@string/profile_subtitle"
+                    android:textColor="@color/text_secondary" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/settingsButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/space_3"
+                android:background="@drawable/bg_icon_circle"
+                android:contentDescription="@string/profile_settings_description"
+                android:padding="@dimen/space_3"
+                app:srcCompat="@drawable/ic_settings"
+                app:tint="@color/icon_primary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/profileScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileTop">
+
+        <LinearLayout
+            android:id="@+id/profileContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/page_padding_x"
+            android:paddingTop="@dimen/page_padding_top"
+            android:paddingEnd="@dimen/page_padding_x"
+            android:paddingBottom="@dimen/space_8">
+
+            <!-- Profile Summary Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/profileSummaryCard"
+                style="@style/Widget.Lighture.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/space_5">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/profileImage"
+                                android:layout_width="@dimen/size_avatar_lg"
+                                android:layout_height="@dimen/size_avatar_lg"
+                                android:scaleType="centerCrop"
+                                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                                app:strokeColor="@color/border_subtle"
+                                app:strokeWidth="1dp"
+                                tools:src="@drawable/ic_bg_cheese" />
+
+                            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                android:id="@+id/editAvatarButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|end"
+                                android:contentDescription="@string/profile_edit_avatar_description"
+                                app:fabCustomSize="24dp"
+                                app:maxImageSize="14dp"
+                                app:srcCompat="@drawable/ic_edit"
+                                app:backgroundTint="@color/brand_primary"
+                                app:tint="@color/neutral_0" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_4"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/profileName"
+                                style="@style/TextAppearance.Lighture.SectionTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_primary"
+                                tools:text="Clement Phoshoko" />
+
+                            <TextView
+                                android:id="@+id/profileEmail"
+                                style="@style/TextAppearance.Lighture.BodySmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_0_5"
+                                android:textColor="@color/text_secondary"
+                                tools:text="clement.pho@gmail.com" />
+
+                            <TextView
+                                android:id="@+id/premiumBadge"
+                                style="@style/TextAppearance.Lighture.Caption"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_1_5"
+                                android:background="@drawable/bg_tag_pill"
+                                android:backgroundTint="@color/food_grain_soft"
+                                android:paddingStart="@dimen/space_2"
+                                android:paddingTop="@dimen/space_0_5"
+                                android:paddingEnd="@dimen/space_2"
+                                android:paddingBottom="@dimen/space_0_5"
+                                android:text="@string/profile_badge_premium"
+                                android:textColor="@color/food_grain"
+                                app:drawableStartCompat="@drawable/ic_premium"
+                                app:drawableTint="@color/food_grain"
+                                android:drawablePadding="@dimen/space_1"
+                                android:gravity="center_vertical" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/size_icon_sm"
+                            android:layout_height="@dimen/size_icon_sm"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/icon_secondary" />
+                    </LinearLayout>
+
+                    <!-- Statistics Row -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/space_4"
+                        android:paddingBottom="@dimen/space_4">
+
+                        <!-- Recipes Tried -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/size_icon_sm"
+                                android:layout_height="@dimen/size_icon_sm"
+                                android:importantForAccessibility="no"
+                                app:srcCompat="@drawable/ic_chef_hat"
+                                app:tint="@color/brand_primary" />
+
+                            <TextView
+                                android:id="@+id/statRecipesValue"
+                                style="@style/TextAppearance.Lighture.Label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_1"
+                                android:textColor="@color/text_primary"
+                                tools:text="24" />
+
+                            <TextView
+                                style="@style/TextAppearance.Lighture.Caption"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_stat_recipes"
+                                android:textColor="@color/text_tertiary"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/divider" />
+
+                        <!-- Items Saved -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/size_icon_sm"
+                                android:layout_height="@dimen/size_icon_sm"
+                                android:importantForAccessibility="no"
+                                app:srcCompat="@drawable/ic_outline_basket"
+                                app:tint="@color/fresh_color" />
+
+                            <TextView
+                                android:id="@+id/statItemsValue"
+                                style="@style/TextAppearance.Lighture.Label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_1"
+                                android:textColor="@color/text_primary"
+                                tools:text="12" />
+
+                            <TextView
+                                style="@style/TextAppearance.Lighture.Caption"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_stat_items"
+                                android:textColor="@color/text_tertiary"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/divider" />
+
+                        <!-- Money Saved -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/size_icon_sm"
+                                android:layout_height="@dimen/size_icon_sm"
+                                android:importantForAccessibility="no"
+                                app:srcCompat="@drawable/ic_coins"
+                                app:tint="@color/color_warning" />
+
+                            <TextView
+                                android:id="@+id/statMoneyValue"
+                                style="@style/TextAppearance.Lighture.Label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_1"
+                                android:textColor="@color/text_primary"
+                                tools:text="R356" />
+
+                            <TextView
+                                style="@style/TextAppearance.Lighture.Caption"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_stat_money"
+                                android:textColor="@color/text_tertiary"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/divider" />
+
+                        <!-- Waste Avoided -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/size_icon_sm"
+                                android:layout_height="@dimen/size_icon_sm"
+                                android:importantForAccessibility="no"
+                                app:srcCompat="@drawable/ic_outline_leaf"
+                                app:tint="@color/food_vegetable" />
+
+                            <TextView
+                                android:id="@+id/statWasteValue"
+                                style="@style/TextAppearance.Lighture.Label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_1"
+                                android:textColor="@color/text_primary"
+                                tools:text="8.2 kg" />
+
+                            <TextView
+                                style="@style/TextAppearance.Lighture.Caption"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_stat_waste"
+                                android:textColor="@color/text_tertiary"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Preferences Section -->
+            <TextView
+                style="@style/TextAppearance.Lighture.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:layout_marginBottom="@dimen/space_3"
+                android:text="@string/profile_section_preferences"
+                android:textColor="@color/text_secondary" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Lighture.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include
+                        android:id="@+id/itemDietary"
+                        layout="@layout/view_profile_setting_item" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:background="@color/divider" />
+
+                    <include
+                        android:id="@+id/itemAllergies"
+                        layout="@layout/view_profile_setting_item" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:background="@color/divider" />
+
+                    <include
+                        android:id="@+id/itemSkill"
+                        layout="@layout/view_profile_setting_item" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:background="@color/divider" />
+
+                    <include
+                        android:id="@+id/itemAppliances"
+                        layout="@layout/view_profile_setting_item" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:background="@color/divider" />
+
+                    <include
+                        android:id="@+id/itemUnits"
+                        layout="@layout/view_profile_setting_item" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Account & Support Section -->
+            <TextView
+                style="@style/TextAppearance.Lighture.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:layout_marginBottom="@dimen/space_3"
+                android:text="@string/profile_section_account"
+                android:textColor="@color/text_secondary" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Lighture.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include
+                        android:id="@+id/itemAccountSettings"
+                        layout="@layout/view_profile_setting_item" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:background="@color/divider" />
+
+                    <include
+                        android:id="@+id/itemNotifications"
+                        layout="@layout/view_profile_setting_item" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:background="@color/divider" />
+
+                    <include
+                        android:id="@+id/itemHelp"
+                        layout="@layout/view_profile_setting_item" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:background="@color/divider" />
+
+                    <include
+                        android:id="@+id/itemContact"
+                        layout="@layout/view_profile_setting_item" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:background="@color/divider" />
+
+                    <include
+                        android:id="@+id/itemAbout"
+                        layout="@layout/view_profile_setting_item" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Motivation Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/motivationCard"
+                style="@style/Widget.Lighture.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                app:cardBackgroundColor="@color/fresh_background"
+                app:strokeColor="@color/fresh_border"
+                app:cardElevation="@dimen/elevation_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/space_5">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/stat_icon_container"
+                        android:layout_height="@dimen/stat_icon_container"
+                        android:background="@drawable/bg_icon_circle_green">
+
+                        <ImageView
+                            android:layout_width="@dimen/size_icon_md"
+                            android:layout_height="@dimen/size_icon_md"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_outline_trend_up"
+                            app:tint="@color/fresh_color" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_4"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/TextAppearance.Lighture.CardTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_motivation_title"
+                            android:textColor="@color/text_primary" />
+
+                        <TextView
+                            style="@style/TextAppearance.Lighture.BodySmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_0_5"
+                            android:text="@string/profile_motivation_body"
+                            android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Logout Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logoutButton"
+                style="@style/Widget.Lighture.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_button_lg"
+                android:layout_marginTop="@dimen/space_10"
+                android:text="@string/profile_logout"
+                android:textColor="@color/brand_primary"
+                app:icon="@drawable/ic_logout"
+                app:iconGravity="textStart"
+                app:iconPadding="@dimen/space_2"
+                app:iconTint="@color/brand_primary"
+                app:strokeColor="@color/brand_primary_soft" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

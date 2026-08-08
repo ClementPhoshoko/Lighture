@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:baselineAligned="false"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/space_4">
+
+    <FrameLayout
+        android:id="@+id/settingIconContainer"
+        android:layout_width="@dimen/size_touch_min"
+        android:layout_height="@dimen/size_touch_min"
+        android:background="@drawable/bg_icon_circle">
+
+        <ImageView
+            android:id="@+id/settingIcon"
+            android:layout_width="@dimen/size_icon_md"
+            android:layout_height="@dimen/size_icon_md"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            app:tint="@color/brand_primary"
+            tools:src="@drawable/ic_grid" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_3"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/settingTitle"
+            style="@style/TextAppearance.Lighture.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            tools:text="Setting Title" />
+
+        <TextView
+            android:id="@+id/settingValue"
+            style="@style/TextAppearance.Lighture.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_0_5"
+            android:textColor="@color/text_secondary"
+            android:visibility="gone"
+            tools:text="Setting Value"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="@dimen/size_icon_xs"
+        android:layout_height="@dimen/size_icon_xs"
+        android:layout_marginStart="@dimen/space_2"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_chevron_right"
+        app:tint="@color/icon_secondary" />
+
+</LinearLayout>
