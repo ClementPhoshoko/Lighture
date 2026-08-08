@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -188,23 +189,28 @@ public class RecipesFragment extends Fragment {
         View sortContainer = root.findViewById(R.id.recipesSortContainer);
         View searchContainer = root.findViewById(R.id.recipesSearchBarContainer);
         EditText searchInput = root.findViewById(R.id.recipesSearchInput);
+        ImageButton searchClose = root.findViewById(R.id.recipesSearchClose);
 
         root.findViewById(R.id.recipesSearchButton).setOnClickListener(v -> {
             TransitionManager.beginDelayedTransition((ViewGroup) filtersRoot);
             sortContainer.setVisibility(View.GONE);
             searchContainer.setVisibility(View.VISIBLE);
+            searchClose.setImageResource(R.drawable.ic_chevron_right);
             searchInput.requestFocus();
             InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imm != null) imm.showSoftInput(searchInput, InputMethodManager.SHOW_IMPLICIT);
         });
 
-        root.findViewById(R.id.recipesSearchClose).setOnClickListener(v -> {
-            TransitionManager.beginDelayedTransition((ViewGroup) filtersRoot);
-            searchContainer.setVisibility(View.GONE);
-            sortContainer.setVisibility(View.VISIBLE);
-            searchInput.setText("");
-            InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            if (imm != null) imm.hideSoftInputFromWindow(searchInput.getWindowToken(), 0);
+        searchClose.setOnClickListener(v -> {
+            if (searchInput.getText().length() > 0) {
+                searchInput.setText("");
+            } else {
+                TransitionManager.beginDelayedTransition((ViewGroup) filtersRoot);
+                searchContainer.setVisibility(View.GONE);
+                sortContainer.setVisibility(View.VISIBLE);
+                InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) imm.hideSoftInputFromWindow(searchInput.getWindowToken(), 0);
+            }
         });
 
         searchInput.addTextChangedListener(new TextWatcher() {
@@ -216,6 +222,12 @@ public class RecipesFragment extends Fragment {
             public void afterTextChanged(Editable s) {
                 currentSearchQuery = s.toString().toLowerCase().trim();
                 applyFiltersAndSort();
+
+                if (s.length() > 0) {
+                    searchClose.setImageResource(R.drawable.ic_close);
+                } else {
+                    searchClose.setImageResource(R.drawable.ic_chevron_right);
+                }
             }
         });
     }
