@@ -6,8 +6,24 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <!-- Unified Header Container: Declared first in Strict mode for
-         better readability,sitting at the very top. -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipesList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_2"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:paddingStart="@dimen/page_padding_x"
+        android:paddingEnd="@dimen/page_padding_x"
+        android:paddingBottom="@dimen/space_8"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipesHeaderContainer" />
+
+    <!-- Unified Header Container: Declared last to ensure it draws on top
+         of the scrolling list. -->
     <LinearLayout
         android:id="@+id/recipesHeaderContainer"
         android:layout_width="0dp"
@@ -36,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="@dimen/page_padding_top">
+            android:paddingTop="@dimen/space_2">
 
             <include layout="@layout/view_filter_chip_bar" />
 
@@ -44,24 +60,8 @@
                 layout="@layout/view_recipes_filters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_4" />
+                android:layout_marginTop="@dimen/space_2" />
         </LinearLayout>
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recipesList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/space_4"
-        android:clipToPadding="false"
-        android:clipChildren="false"
-        android:paddingStart="@dimen/page_padding_x"
-        android:paddingEnd="@dimen/page_padding_x"
-        android:paddingBottom="@dimen/space_8"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recipesHeaderContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

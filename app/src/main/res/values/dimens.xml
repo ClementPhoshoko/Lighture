@@ -29,15 +29,15 @@
     <dimen name="space_24">96dp</dimen>
 
     <!-- Semantic layout spacing -->
-    <dimen name="page_padding_x">@dimen/space_5</dimen>
+    <dimen name="page_padding_x">@dimen/space_4</dimen>
     <dimen name="page_padding_top">@dimen/space_6</dimen>
     <dimen name="page_padding_bottom">@dimen/space_20</dimen>
-    <dimen name="section_gap">@dimen/space_8</dimen>
+    <dimen name="section_gap">@dimen/space_6</dimen>
     <dimen name="content_gap">@dimen/space_4</dimen>
-    <dimen name="card_padding">@dimen/space_5</dimen>
-    <dimen name="card_padding_compact">@dimen/space_4</dimen>
+    <dimen name="card_padding">@dimen/space_4</dimen>
+    <dimen name="card_padding_compact">@dimen/space_3</dimen>
     <dimen name="list_row_padding_x">@dimen/space_4</dimen>
-    <dimen name="list_row_padding_y">@dimen/space_3</dimen>
+    <dimen name="list_row_padding_y">@dimen/space_2</dimen>
 
     <!-- =============================================================
          CORNER RADII
@@ -99,19 +99,19 @@
 
     <dimen name="size_avatar_sm">32dp</dimen>
     <dimen name="size_avatar_md">44dp</dimen>
-    <dimen name="size_avatar_lg">64dp</dimen>
+    <dimen name="size_avatar_lg">80dp</dimen>
     <dimen name="size_avatar_xl">96dp</dimen>
     <dimen name="size_avatar_2xl">160dp</dimen>
 
     <dimen name="size_touch_min">48dp</dimen>
-    <dimen name="size_button_sm">40dp</dimen>
+    <dimen name="size_button_sm">44dp</dimen>
     <dimen name="size_button_md">48dp</dimen>
     <dimen name="size_button_lg">56dp</dimen>
 
-    <dimen name="size_input">48dp</dimen>
-    <dimen name="size_bottom_nav">76dp</dimen>
-    <dimen name="bottom_nav_indicator_width">84dp</dimen>
-    <dimen name="bottom_nav_indicator_height">56dp</dimen>
+    <dimen name="size_input">52dp</dimen>
+    <dimen name="size_bottom_nav">68dp</dimen>
+    <dimen name="bottom_nav_indicator_width">64dp</dimen>
+    <dimen name="bottom_nav_indicator_height">36dp</dimen>
     <dimen name="size_top_bar">64dp</dimen>
     <dimen name="size_fab">64dp</dimen>
 
@@ -135,7 +135,7 @@
          CSS shadows are not directly expressible in Android XML; the
          closest reliable token is elevation.
     ============================================================= -->
-    <dimen name="elevation_card">3dp</dimen>
+    <dimen name="elevation_card">4dp</dimen>
     <dimen name="elevation_card_feature">3dp</dimen>
     <dimen name="elevation_floating">4dp</dimen>
     <dimen name="elevation_dialog">6dp</dimen>
@@ -150,7 +150,7 @@
          HOME SCREEN
     ============================================================= -->
     <dimen name="hero_image_size">88dp</dimen>
-    <dimen name="hero_button_height">40dp</dimen>
+    <dimen name="hero_button_height">48dp</dimen>
     <dimen name="hero_button_icon">16dp</dimen>
     <dimen name="hero_button_icon_padding">2dp</dimen>
     <dimen name="hero_buttons_gap">12dp</dimen>

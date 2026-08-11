@@ -7,8 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Widget.Lighture.Card"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardUseCompatPadding="true">
+    android:layout_height="wrap_content">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -53,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="@dimen/space_4"
+                android:layout_marginTop="@dimen/space_0"
                 android:text="@string/fridge_waste_action"
                 app:icon="@drawable/ic_chevron_right"
                 app:iconGravity="textEnd"

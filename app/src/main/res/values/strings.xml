@@ -180,6 +180,7 @@
     <string name="fridge_scan_description">Scan your fridge</string>
 
     <string name="fridge_overview_title">Fridge Overview</string>
+    <string name="fridge_list_title">My Ingredients</string>
     <string name="fridge_stat_items">Items in fridge</string>
     <string name="fridge_stat_fresh">Fresh items</string>
     <string name="fridge_stat_expiring">Expiring soon</string>
@@ -243,5 +244,5 @@
     <string name="bottom_nav_home">Home</string>
     <string name="bottom_nav_recipes">Recipes</string>
     <string name="bottom_nav_fridge">Fridge</string>
-    <string name="bottom_nav_profile">Profile</string>
+    <string name="bottom_nav_profile">Me</string>
 </resources>

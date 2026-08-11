@@ -52,8 +52,7 @@
 
                 <FrameLayout
                     android:layout_width="@dimen/stat_icon_container"
-                    android:layout_height="@dimen/stat_icon_container"
-                    android:background="@drawable/bg_icon_circle_green">
+                    android:layout_height="@dimen/stat_icon_container">
 
                     <ImageView
                         android:layout_width="@dimen/size_icon_md"
@@ -145,8 +144,7 @@
 
                 <FrameLayout
                     android:layout_width="@dimen/stat_icon_container"
-                    android:layout_height="@dimen/stat_icon_container"
-                    android:background="@drawable/bg_icon_circle_orange">
+                    android:layout_height="@dimen/stat_icon_container">
 
                     <ImageView
                         android:layout_width="@dimen/size_icon_md"
@@ -238,8 +236,7 @@
 
                 <FrameLayout
                     android:layout_width="@dimen/stat_icon_container"
-                    android:layout_height="@dimen/stat_icon_container"
-                    android:background="@drawable/bg_icon_circle_red">
+                    android:layout_height="@dimen/stat_icon_container">
 
                     <ImageView
                         android:layout_width="@dimen/size_icon_md"

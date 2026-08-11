@@ -6,27 +6,11 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <LinearLayout
-        android:id="@+id/fridgeTop"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/background_page"
-        android:elevation="@dimen/space_1"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/page_padding_x"
-        android:paddingEnd="@dimen/page_padding_x"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <include layout="@layout/view_fridge_header" />
-    </LinearLayout>
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/fridgeScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/space_4"
+        android:layout_marginTop="@dimen/space_2"
         android:clipToPadding="false"
         android:clipChildren="false"
         android:scrollbars="none"
@@ -56,16 +40,27 @@
                 layout="@layout/view_filter_chip_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_6" />
+                android:layout_marginTop="@dimen/space_2" />
+
+            <TextView
+                style="@style/TextAppearance.Lighture.Label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_1"
+                android:layout_marginBottom="@dimen/space_3"
+                android:layout_marginStart="@dimen/page_padding_x"
+                android:text="@string/fridge_list_title"
+                android:textColor="@color/text_primary" />
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Lighture.Card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_4"
                 android:layout_marginStart="@dimen/page_padding_x"
                 android:layout_marginEnd="@dimen/page_padding_x"
-                app:cardUseCompatPadding="true">
+                android:background="@drawable/bg_glass_card"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/fridgeItemsList"
@@ -83,19 +78,39 @@
                 layout="@layout/view_fridge_waste_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8"
+                android:layout_marginTop="@dimen/space_6"
                 android:layout_marginStart="@dimen/page_padding_x"
-                android:layout_marginEnd="@dimen/page_padding_x"
-                app:cardUseCompatPadding="true" />
+                android:layout_marginEnd="@dimen/page_padding_x" />
 
             <include
                 android:id="@+id/fridgeHistory"
                 layout="@layout/view_fridge_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8" />
+                android:layout_marginTop="@dimen/space_6" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/fridgeTop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/background_page"
+        android:elevation="@dimen/space_1"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/page_padding_x"
+        android:paddingEnd="@dimen/page_padding_x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/view_fridge_header" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+    </LinearLayout>
 
 
 

@@ -11,6 +11,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.view.HapticFeedbackConstants;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
@@ -44,6 +47,33 @@ public class MainActivity extends AppCompatActivity {
             NavController navController = navHostFragment.getNavController();
             BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
             NavigationUI.setupWithNavController(bottomNav, navController);
+
+            bottomNav.setOnItemSelectedListener(item -> {
+                // 1. Trigger haptic feedback (subtle click)
+                bottomNav.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+
+                // 2. Animate the active icon with a Spring/Overshoot effect
+                View itemView = bottomNav.findViewById(item.getItemId());
+                if (itemView != null) {
+                    View foundIcon = itemView.findViewById(com.google.android.material.R.id.navigation_bar_item_icon_view);
+                    if (foundIcon == null) {
+                        foundIcon = itemView.findViewById(com.google.android.material.R.id.icon);
+                    }
+                    if (foundIcon != null) {
+                        final View icon = foundIcon;
+                        icon.animate()
+                                .scaleX(1.2f)
+                                .scaleY(1.2f)
+                                .setDuration(200)
+                                .setInterpolator(new OvershootInterpolator(2f))
+                                .withEndAction(() -> icon.animate().scaleX(1f).scaleY(1f).setDuration(100).start())
+                                .start();
+                    }
+                }
+
+                // 3. Maintain standard NavigationUI behavior
+                return NavigationUI.onNavDestinationSelected(item, navController);
+            });
         }
     }
 }

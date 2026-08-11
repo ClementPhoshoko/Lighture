@@ -36,10 +36,10 @@ public class FloatingFruitsView extends View {
             R.drawable.ic_bg_sausage, R.drawable.ic_bg_fish, R.drawable.ic_bg_coffee
     };
 
-    private static final int MIN_COUNT = 9;
-    private static final int MAX_COUNT = 12;
-    private static final float MIN_SIZE_DP = 32f;
-    private static final float MAX_SIZE_DP = 52f;
+    private static final int MIN_COUNT = 12;
+    private static final int MAX_COUNT = 16;
+    private static final float MIN_SIZE_DP = 64f;
+    private static final float MAX_SIZE_DP = 120f;
     private static final int MAX_ROTATION_DEG = 20;
 
     private final Random random = new Random();
@@ -104,6 +104,7 @@ public class FloatingFruitsView extends View {
             canvas.rotate(item.rotation, item.x, item.y);
             int half = (int) (item.size / 2f);
             item.drawable.setBounds(new Rect(item.x - half, item.y - half, item.x + half, item.y + half));
+            item.drawable.setAlpha(60); // Low opacity (approx 23%)
             item.drawable.draw(canvas);
             canvas.restore();
         }

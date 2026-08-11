@@ -18,10 +18,10 @@
         android:gravity="center_vertical"
         android:minHeight="88dp"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/space_5"
-        android:paddingTop="@dimen/space_4"
-        android:paddingEnd="@dimen/space_5"
-        android:paddingBottom="@dimen/space_4">
+        android:paddingStart="0dp"
+        android:paddingTop="@dimen/space_1"
+        android:paddingEnd="@dimen/page_padding_x"
+        android:paddingBottom="@dimen/space_1">
 
         <FrameLayout
             android:layout_width="@dimen/size_avatar_lg"
@@ -32,15 +32,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
-                android:padding="@dimen/space_2"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+            <TextView
+                android:id="@+id/fridgeItemEmoji"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="40sp"
+                android:visibility="gone"
+                tools:text="🥑"
+                tools:visibility="visible" />
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_4"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -112,7 +120,7 @@
             android:layout_marginStart="@dimen/space_3"
             android:gravity="center"
             app:drawableStartCompat="@drawable/ic_chevron_right"
-            app:drawableTint="@color/icon_tertiary"
+            app:drawableTint="@color/icon_secondary"
             tools:ignore="RtlSymmetry" />
     </LinearLayout>
 

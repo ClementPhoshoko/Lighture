@@ -65,7 +65,7 @@ public final class HomeData {
     /** Smart suggestions list, in display order. */
     public static List<Suggestion> suggestions() {
         return new ArrayList<>(Arrays.asList(
-                new Suggestion("Creamy garlic pasta", "18 min", 7, R.drawable.ic_bg_pizza),
+                new Suggestion("Creamy garlic pasta", "18 min", 7, R.drawable.ic_bg_sauce),
                 new Suggestion("Rainbow veggie bowl", "22 min", 9, R.drawable.ic_bg_salad),
                 new Suggestion("Tomato & basil toast", "10 min", 4, R.drawable.ic_bg_bread),
                 new Suggestion("Cheesy omelette breakfast", "12 min", 6, R.drawable.ic_bg_egg_fried)
@@ -75,7 +75,7 @@ public final class HomeData {
     /** Meal-idea carousel entries, in display order. */
     public static List<Recipe> recipes() {
         return new ArrayList<>(Arrays.asList(
-                new Recipe("Creamy garlic pasta", "18 min", "248", R.drawable.ic_bg_pizza,
+                new Recipe("Creamy garlic pasta", "18 min", "248", R.drawable.ic_bg_sauce,
                         "Easy", R.color.tag_easy_background, R.color.tag_easy_text),
                 new Recipe("Rainbow veggie bowl", "22 min", "183", R.drawable.ic_bg_salad,
                         "Vegetarian", R.color.tag_vegetarian_background, R.color.tag_vegetarian_text),

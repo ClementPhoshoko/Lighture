@@ -129,8 +129,8 @@ public final class RecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         pill.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_tag_pill));
         pill.getBackground().mutate().setTintList(ColorStateList.valueOf(
-                ContextCompat.getColor(context, R.color.chip_background)));
-        pill.setTextColor(ContextCompat.getColor(context, R.color.text_secondary));
+                ContextCompat.getColor(context, R.color.red_50)));
+        pill.setTextColor(ContextCompat.getColor(context, R.color.red_700));
         pill.setTextSize(11);
         pill.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
         pill.setText(text);

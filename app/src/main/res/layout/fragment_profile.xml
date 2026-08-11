@@ -7,73 +7,11 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <!-- Header sitting at the very top. -->
-    <LinearLayout
-        android:id="@+id/profileTop"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/background_page"
-        android:elevation="@dimen/space_1"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/page_padding_x"
-        android:paddingEnd="@dimen/page_padding_x"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/space_2"
-            android:paddingBottom="@dimen/space_2">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/profileTitle"
-                    style="@style/TextAppearance.Lighture.PageTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/profile_title"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/font_size_xl" />
-
-                <TextView
-                    android:id="@+id/profileSubtitle"
-                    style="@style/TextAppearance.Lighture.BodySmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_0_5"
-                    android:maxLines="2"
-                    android:text="@string/profile_subtitle"
-                    android:textColor="@color/text_secondary" />
-            </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/settingsButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="@dimen/space_3"
-                android:background="@drawable/bg_icon_circle"
-                android:contentDescription="@string/profile_settings_description"
-                android:padding="@dimen/space_3"
-                app:srcCompat="@drawable/ic_settings"
-                app:tint="@color/icon_primary" />
-        </LinearLayout>
-    </LinearLayout>
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/profileScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/space_4"
+        android:layout_marginTop="@dimen/space_2"
         android:clipToPadding="false"
         android:clipChildren="false"
         android:scrollbars="none"
@@ -96,11 +34,13 @@
             <!-- Profile Summary Card -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/profileSummaryCard"
-                style="@style/Widget.Lighture.Card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_glass_card"
                 android:foreground="?attr/selectableItemBackground"
-                app:cardUseCompatPadding="true">
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -121,11 +61,13 @@
 
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/profileImage"
-                                android:layout_width="@dimen/size_avatar_lg"
-                                android:layout_height="@dimen/size_avatar_lg"
-                                android:scaleType="centerCrop"
-                                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-                                tools:src="@drawable/ic_bg_cheese" />
+                                android:layout_width="@dimen/size_avatar_xl"
+                                android:layout_height="@dimen/size_avatar_xl"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_nav_profile"
+                                android:padding="@dimen/space_3"
+                                android:background="@color/neutral_100"
+                                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 
                             <com.google.android.material.floatingactionbutton.FloatingActionButton
                                 android:id="@+id/editAvatarButton"
@@ -373,16 +315,18 @@
                 style="@style/TextAppearance.Lighture.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8"
+                android:layout_marginTop="@dimen/space_6"
                 android:layout_marginBottom="@dimen/space_3"
                 android:text="@string/profile_section_preferences"
-                android:textColor="@color/text_secondary" />
+                android:textColor="@color/text_primary" />
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Lighture.Card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true">
+                android:background="@drawable/bg_glass_card"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -440,16 +384,18 @@
                 style="@style/TextAppearance.Lighture.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8"
+                android:layout_marginTop="@dimen/space_6"
                 android:layout_marginBottom="@dimen/space_3"
                 android:text="@string/profile_section_account"
-                android:textColor="@color/text_secondary" />
+                android:textColor="@color/text_primary" />
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Lighture.Card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true">
+                android:background="@drawable/bg_glass_card"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -504,11 +450,13 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/motivationCard"
-                style="@style/Widget.Lighture.Card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8"
-                app:cardUseCompatPadding="true">
+                android:layout_marginTop="@dimen/space_6"
+                android:background="@drawable/bg_glass_card"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -561,9 +509,10 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/logoutButton"
                 style="@style/Widget.Lighture.Button.Secondary"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_button_lg"
-                android:layout_marginTop="@dimen/space_10"
+                android:layout_marginTop="@dimen/space_8"
+                android:layout_gravity="end"
                 android:text="@string/profile_logout"
                 android:textColor="@color/brand_primary"
                 app:icon="@drawable/ic_logout"
@@ -573,5 +522,72 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <!-- Header sitting at the very top. Declared last to draw on top of content. -->
+    <LinearLayout
+        android:id="@+id/profileTop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/background_page"
+        android:elevation="@dimen/space_1"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/page_padding_x"
+        android:paddingEnd="@dimen/page_padding_x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/space_2"
+            android:paddingBottom="@dimen/space_2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/profileTitle"
+                    style="@style/TextAppearance.Lighture.PageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/font_size_xl" />
+
+                <TextView
+                    android:id="@+id/profileSubtitle"
+                    style="@style/TextAppearance.Lighture.BodySmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_0_5"
+                    android:maxLines="2"
+                    android:text="@string/profile_subtitle"
+                    android:textColor="@color/text_secondary" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/settingsButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/space_3"
+                android:background="@drawable/bg_icon_circle"
+                android:contentDescription="@string/profile_settings_description"
+                android:padding="@dimen/space_3"
+                app:srcCompat="@drawable/ic_settings"
+                app:tint="@color/icon_primary" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,7 +50,15 @@ public final class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAd
         holder.quantity.setText(item.quantity);
 
         int iconRes = item.imageRes != 0 ? item.imageRes : ProductIconMapper.getIconFor(item.name);
-        holder.image.setImageResource(iconRes);
+        if (iconRes != 0) {
+            holder.image.setImageResource(iconRes);
+            holder.image.setVisibility(View.VISIBLE);
+            holder.emoji.setVisibility(View.GONE);
+        } else {
+            holder.emoji.setText(ProductIconMapper.getEmojiFor(item.name));
+            holder.emoji.setVisibility(View.VISIBLE);
+            holder.image.setVisibility(View.GONE);
+        }
 
         int statusColor = ContextCompat.getColor(context, FridgeItem.statusColorRes(item.status));
         holder.status.setText(context.getString(FridgeItem.statusLabelRes(item.status)));
@@ -81,6 +89,7 @@ public final class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAd
         final TextView name;
         final TextView quantity;
         final ImageView image;
+        final TextView emoji;
         final TextView status;
         final TextView expiry;
         final View divider;
@@ -90,6 +99,7 @@ public final class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAd
             name = itemView.findViewById(R.id.fridgeItemName);
             quantity = itemView.findViewById(R.id.fridgeItemQuantity);
             image = itemView.findViewById(R.id.fridgeItemImage);
+            emoji = itemView.findViewById(R.id.fridgeItemEmoji);
             status = itemView.findViewById(R.id.fridgeItemStatus);
             expiry = itemView.findViewById(R.id.fridgeItemExpiry);
             divider = itemView.findViewById(R.id.itemDivider);

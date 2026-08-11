@@ -27,10 +27,10 @@
     </style>
 
     <style name="TextAppearance.Lighture.SectionTitle" parent="TextAppearance.Material3.TitleLarge">
-        <item name="android:textSize">@dimen/font_size_lg</item>
+        <item name="android:textSize">@dimen/font_size_xl</item>
         <item name="android:fontFamily">@font/inter_bold</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:lineSpacingMultiplier">1.30</item>
+        <item name="android:lineSpacingMultiplier">1.20</item>
     </style>
 
     <style name="TextAppearance.Lighture.CardTitle" parent="TextAppearance.Material3.TitleMedium">
@@ -72,18 +72,24 @@
         <item name="android:letterSpacing">0.01</item>
     </style>
 
+    <style name="TextAppearance.Lighture.BottomNavLabel" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">@dimen/font_size_sm</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
     <!-- =============================================================
          SHAPES
     ============================================================= -->
 
     <style name="ShapeAppearance.Lighture.Card" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/radius_card</item>
+        <item name="cornerSize">@dimen/radius_xl</item>
     </style>
 
     <style name="ShapeAppearance.Lighture.FeatureCard" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/radius_card_feature</item>
+        <item name="cornerSize">@dimen/radius_3xl</item>
     </style>
 
     <style name="ShapeAppearance.Lighture.Button" parent="ShapeAppearance.Material3.LargeComponent">
@@ -110,8 +116,8 @@
          CARDS
     ============================================================= -->
 
-    <style name="Widget.Lighture.Card" parent="Widget.Material3.CardView.Filled">
-        <item name="cardBackgroundColor">@color/card_background</item>
+    <style name="Widget.Lighture.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/neutral_0</item>
         <item name="cardCornerRadius">@dimen/radius_card</item>
         <item name="cardElevation">@dimen/elevation_card</item>
         <item name="strokeWidth">0dp</item>
@@ -263,11 +269,13 @@
         <item name="itemIconTint">@color/bottom_nav_item_selector</item>
         <item name="itemTextColor">@color/bottom_nav_item_selector</item>
         <item name="itemActiveIndicatorStyle">@style/Widget.Lighture.BottomNavigationView.ActiveIndicator</item>
-        <item name="labelVisibilityMode">unlabeled</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.Lighture.BottomNavLabel</item>
+        <item name="itemTextAppearanceActive">@style/TextAppearance.Lighture.BottomNavLabel</item>
     </style>
 
     <style name="Widget.Lighture.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@android:color/transparent</item>
+        <item name="android:color">@color/bottom_nav_indicator</item>
         <item name="android:width">@dimen/bottom_nav_indicator_width</item>
         <item name="android:height">@dimen/bottom_nav_indicator_height</item>
     </style>
