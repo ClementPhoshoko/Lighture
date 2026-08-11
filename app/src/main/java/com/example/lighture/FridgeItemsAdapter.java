@@ -50,15 +50,9 @@ public final class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAd
         holder.quantity.setText(item.quantity);
 
         int iconRes = item.imageRes != 0 ? item.imageRes : ProductIconMapper.getIconFor(item.name);
-        if (iconRes != 0) {
-            holder.image.setImageResource(iconRes);
-            holder.image.setVisibility(View.VISIBLE);
-            holder.emoji.setVisibility(View.GONE);
-        } else {
-            holder.emoji.setText(ProductIconMapper.getEmojiFor(item.name));
-            holder.emoji.setVisibility(View.VISIBLE);
-            holder.image.setVisibility(View.GONE);
-        }
+        holder.image.setImageResource(iconRes);
+        holder.image.setVisibility(View.VISIBLE);
+        holder.emoji.setVisibility(View.GONE);
 
         int statusColor = ContextCompat.getColor(context, FridgeItem.statusColorRes(item.status));
         holder.status.setText(context.getString(FridgeItem.statusLabelRes(item.status)));

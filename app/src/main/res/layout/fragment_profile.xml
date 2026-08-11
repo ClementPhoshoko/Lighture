@@ -29,7 +29,7 @@
             android:orientation="vertical"
             android:paddingStart="@dimen/page_padding_x"
             android:paddingEnd="@dimen/page_padding_x"
-            android:paddingBottom="@dimen/space_8">
+            android:paddingBottom="@dimen/space_4">
 
             <!-- Profile Summary Card -->
             <com.google.android.material.card.MaterialCardView
@@ -452,7 +452,7 @@
                 android:id="@+id/motivationCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_6"
+                android:layout_marginTop="@dimen/space_4"
                 android:background="@drawable/bg_glass_card"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp"
@@ -464,7 +464,7 @@
                     android:baselineAligned="false"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="@dimen/space_5">
+                    android:padding="@dimen/space_4">
 
                     <FrameLayout
                         android:layout_width="@dimen/stat_icon_container"
@@ -511,7 +511,7 @@
                 style="@style/Widget.Lighture.Button.Secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_button_lg"
-                android:layout_marginTop="@dimen/space_8"
+                android:layout_marginTop="@dimen/space_4"
                 android:layout_gravity="end"
                 android:text="@string/profile_logout"
                 android:textColor="@color/brand_primary"

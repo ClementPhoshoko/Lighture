@@ -66,7 +66,8 @@ public class FloatingFruitsView extends View {
         for (int res : ICONS) {
             Drawable drawable = ResourcesCompat.getDrawable(getResources(), res, getContext().getTheme());
             if (drawable != null) {
-                iconPool.add(drawable);
+                // Mutate so alpha changes don't leak to other views using the same resource
+                iconPool.add(drawable.mutate());
             }
         }
     }

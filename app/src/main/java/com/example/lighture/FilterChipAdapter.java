@@ -1,13 +1,13 @@
 package com.example.lighture;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.chip.Chip;
 
 import java.util.List;
 
@@ -40,11 +40,19 @@ public final class FilterChipAdapter extends RecyclerView.Adapter<FilterChipAdap
     @Override
     public void onBindViewHolder(@NonNull FilterViewHolder holder, int position) {
         CategoryAdapter.Category category = categories.get(position);
-        holder.chip.setText(category.name);
-        holder.chip.setChipIconResource(category.iconRes);
-        holder.chip.setChecked(category.isSelected);
+        holder.label.setText(category.name);
+        
+        if (category.isSelected) {
+            holder.label.setTypeface(null, Typeface.BOLD);
+            holder.label.setTextColor(holder.itemView.getContext().getColor(R.color.brand_primary));
+            holder.indicator.setVisibility(View.VISIBLE);
+        } else {
+            holder.label.setTypeface(null, Typeface.NORMAL);
+            holder.label.setTextColor(holder.itemView.getContext().getColor(R.color.text_secondary));
+            holder.indicator.setVisibility(View.INVISIBLE);
+        }
 
-        holder.chip.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             for (CategoryAdapter.Category c : categories) {
                 c.isSelected = false;
             }
@@ -60,11 +68,13 @@ public final class FilterChipAdapter extends RecyclerView.Adapter<FilterChipAdap
     }
 
     static final class FilterViewHolder extends RecyclerView.ViewHolder {
-        final Chip chip;
+        final TextView label;
+        final View indicator;
 
         FilterViewHolder(@NonNull View itemView) {
             super(itemView);
-            chip = itemView.findViewById(R.id.filterChip);
+            label = itemView.findViewById(R.id.filterLabel);
+            indicator = itemView.findViewById(R.id.filterIndicator);
         }
     }
 }

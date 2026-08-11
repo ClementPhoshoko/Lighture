@@ -5,12 +5,11 @@ import java.util.Map;
 
 /**
  * Intelligent mapper that returns a food icon based on keywords found in the product name.
- * Prevents hardcoding UI assets in the data layer.
+ * Prevents hardcoding UI assets in the data layer. Now strictly uses PNG assets.
  */
 public final class ProductIconMapper {
 
     private static final Map<String, Integer> keywordMap = new HashMap<>();
-    private static final Map<String, String> emojiMap = new HashMap<>();
 
     static {
         // High-quality PNG mappings
@@ -52,60 +51,6 @@ public final class ProductIconMapper {
         keywordMap.put("lettuce", R.drawable.ic_bg_salad);
         keywordMap.put("spinach", R.drawable.ic_bg_salad);
         keywordMap.put("beef", R.drawable.ic_bg_steak);
-
-        // Emoji fallbacks for items without custom icons
-        emojiMap.put("avocado", "🥑");
-        emojiMap.put("garlic", "🧄");
-        emojiMap.put("onion", "🧅");
-        emojiMap.put("corn", "🌽");
-        emojiMap.put("shrimp", "🍤");
-        emojiMap.put("pork", "🥩");
-        emojiMap.put("rice", "🍚");
-        emojiMap.put("pasta", "🍝");
-        emojiMap.put("noodles", "🍜");
-        emojiMap.put("honey", "🍯");
-        emojiMap.put("salt", "🧂");
-        emojiMap.put("sugar", "🧂");
-        emojiMap.put("flour", "🍞");
-        emojiMap.put("oil", "🫗");
-        emojiMap.put("vinegar", "🍶");
-        emojiMap.put("wine", "🍷");
-        emojiMap.put("beer", "🍺");
-        emojiMap.put("tea", "🍵");
-        emojiMap.put("strawberry", "🍓");
-        emojiMap.put("blueberry", "🫐");
-        emojiMap.put("pineapple", "🍍");
-        emojiMap.put("mango", "🥭");
-        emojiMap.put("peach", "🍑");
-        emojiMap.put("watermelon", "🍉");
-        emojiMap.put("cucumber", "🥒");
-        emojiMap.put("eggplant", "🍆");
-        emojiMap.put("broccoli", "🥦");
-        emojiMap.put("tofu", "🧊");
-        emojiMap.put("beans", "🫘");
-        emojiMap.put("nuts", "🥜");
-        emojiMap.put("bacon", "🥓");
-        emojiMap.put("ham", "🥓");
-        emojiMap.put("turkey", "🍗");
-        emojiMap.put("lamb", "🍖");
-        emojiMap.put("ribs", "🍖");
-        emojiMap.put("orange", "🍊");
-        emojiMap.put("citrus", "🍋");
-        emojiMap.put("cabbage", "🥬");
-        emojiMap.put("cauliflower", "🥦");
-        emojiMap.put("pear", "🍐");
-        emojiMap.put("zucchini", "🥒");
-        emojiMap.put("squash", "🎃");
-        emojiMap.put("jam", "🍯");
-        emojiMap.put("jelly", "🍯");
-        emojiMap.put("chocolate", "🍫");
-        emojiMap.put("ice cream", "🍦");
-        emojiMap.put("wrap", "🌯");
-        emojiMap.put("tortilla", "🌯");
-        emojiMap.put("bagel", "🥯");
-        emojiMap.put("pastry", "🥐");
-        emojiMap.put("dragon fruit", "🐲");
-        emojiMap.put("kiwi", "🥝");
     }
 
     private ProductIconMapper() {}
@@ -113,10 +58,10 @@ public final class ProductIconMapper {
     /**
      * Finds the best matching icon for a given product name.
      * @param productName The name of the product (e.g. "Fuji Apple").
-     * @return The resource ID of the icon, or 0 if no custom icon matches.
+     * @return The resource ID of the icon, or a generic sauce/food package icon as fallback.
      */
     public static int getIconFor(String productName) {
-        if (productName == null) return 0;
+        if (productName == null) return R.drawable.ic_bg_sauce;
 
         String lowerName = productName.toLowerCase();
         for (Map.Entry<String, Integer> entry : keywordMap.entrySet()) {
@@ -125,24 +70,6 @@ public final class ProductIconMapper {
             }
         }
 
-        return 0; // No match found
-    }
-
-    /**
-     * Returns an emoji fallback for items that don't have custom icons.
-     * @param productName The name of the product.
-     * @return A single emoji string, or a generic food emoji.
-     */
-    public static String getEmojiFor(String productName) {
-        if (productName == null) return "🍲";
-
-        String lowerName = productName.toLowerCase();
-        for (Map.Entry<String, String> entry : emojiMap.entrySet()) {
-            if (lowerName.contains(entry.getKey())) {
-                return entry.getValue();
-            }
-        }
-
-        return "🍲"; // Clean fallback emoji (Bowl of food)
+        return R.drawable.ic_bg_sauce; // Generic PNG fallback
     }
 }
