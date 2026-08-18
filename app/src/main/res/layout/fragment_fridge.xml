@@ -46,7 +46,7 @@
                 style="@style/TextAppearance.Lighture.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_1"
+                android:layout_marginTop="@dimen/space_2"
                 android:layout_marginBottom="@dimen/space_3"
                 android:layout_marginStart="@dimen/page_padding_x"
                 android:text="@string/fridge_list_title"
@@ -78,7 +78,7 @@
                 layout="@layout/view_fridge_waste_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_6"
+                android:layout_marginTop="@dimen/space_4"
                 android:layout_marginStart="@dimen/page_padding_x"
                 android:layout_marginEnd="@dimen/page_padding_x" />
 
@@ -87,7 +87,7 @@
                 layout="@layout/view_fridge_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_6" />
+                android:layout_marginTop="@dimen/space_3" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

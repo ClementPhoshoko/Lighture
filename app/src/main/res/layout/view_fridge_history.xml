@@ -89,14 +89,12 @@
                     android:textColor="@color/text_secondary" />
 
                 <TextView
-                    android:layout_width="@dimen/size_icon_lg"
+                    android:layout_width="23dp"
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/space_1"
                     android:background="@drawable/bg_icon_circle"
                     android:gravity="center"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="0dp"
                     app:drawableStartCompat="@drawable/ic_chevron_right"
                     app:drawableTint="@color/icon_primary"
                     tools:ignore="RtlSymmetry" />
