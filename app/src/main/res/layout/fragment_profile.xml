@@ -56,17 +56,23 @@
                         android:padding="@dimen/space_5">
 
                         <FrameLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:id="@+id/profileImageContainer"
+                            android:layout_width="@dimen/size_avatar_xl"
+                            android:layout_height="@dimen/size_avatar_xl"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackgroundBorderless"
+                            android:stateListAnimator="@animator/anim_scale_click">
 
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/profileImage"
-                                android:layout_width="@dimen/size_avatar_xl"
-                                android:layout_height="@dimen/size_avatar_xl"
-                                android:scaleType="centerInside"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
                                 android:src="@drawable/ic_nav_profile"
-                                android:padding="@dimen/space_3"
-                                android:background="@color/neutral_100"
+                                app:tint="@color/icon_tertiary"
+                                android:padding="@dimen/space_4"
+                                android:background="@color/neutral_200"
                                 app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 
                             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -75,11 +81,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="bottom|end"
                                 android:contentDescription="@string/profile_edit_avatar_description"
-                                app:fabCustomSize="24dp"
+                                app:fabCustomSize="28dp"
                                 app:maxImageSize="14dp"
                                 app:srcCompat="@drawable/ic_edit"
                                 app:backgroundTint="@color/brand_primary"
-                                app:tint="@color/neutral_0" />
+                                app:tint="@color/neutral_0"
+                                android:stateListAnimator="@animator/anim_scale_click" />
                         </FrameLayout>
 
                         <LinearLayout
@@ -315,7 +322,7 @@
                 style="@style/TextAppearance.Lighture.Label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_6"
+                android:layout_marginTop="@dimen/space_2"
                 android:layout_marginBottom="@dimen/space_3"
                 android:text="@string/profile_section_preferences"
                 android:textColor="@color/text_primary" />
@@ -464,7 +471,7 @@
                     android:baselineAligned="false"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="@dimen/space_4">
+                    android:padding="@dimen/space_1">
 
                     <FrameLayout
                         android:layout_width="@dimen/stat_icon_container"

@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.Insets;
@@ -20,6 +23,21 @@ import com.google.android.material.snackbar.Snackbar;
 public class ProfileFragment extends Fragment {
 
     private ProfileViewModel viewModel;
+    private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
+    private ImageView profileImage;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
+            if (uri != null && profileImage != null) {
+                profileImage.setImageURI(uri);
+                profileImage.setPadding(0, 0, 0, 0); // Remove padding when real image is set
+                profileImage.setImageTintList(null); // Remove placeholder tint
+                profileImage.setBackground(null); // Remove placeholder background
+            }
+        });
+    }
 
     @Nullable
     @Override
@@ -34,6 +52,7 @@ public class ProfileFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
 
         applyInsets(view);
+        wireProfileImage(view);
         wireSettings(view);
         wirePreferences(view);
         wireAccount(view);
@@ -56,6 +75,21 @@ public class ProfileFragment extends Fragment {
             v.setPadding(bars.left, 0, bars.right, bars.bottom);
             return insets;
         });
+    }
+
+    private void wireProfileImage(View root) {
+        profileImage = root.findViewById(R.id.profileImage);
+        View container = root.findViewById(R.id.profileImageContainer);
+        View editBtn = root.findViewById(R.id.editAvatarButton);
+
+        View.OnClickListener clickListener = v -> {
+            pickMedia.launch(new PickVisualMediaRequest.Builder()
+                    .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                    .build());
+        };
+
+        container.setOnClickListener(clickListener);
+        editBtn.setOnClickListener(clickListener);
     }
 
     private void wireSettings(View root) {
