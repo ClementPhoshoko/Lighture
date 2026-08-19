@@ -1,134 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Fridge ingredient row: designed as a list item for a grouped container.
-     Contains food-art thumb, name/quantity, status/expiry block and a chevron.
-     Dividers are handled by the adapter to prevent a trailing line. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Fridge ingredient row: redesigned as a premium glassmorphic card,
+     matching the Recipe list item aesthetic. -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fridgeItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="vertical">
+    android:layout_marginBottom="@dimen/space_2"
+    android:background="@drawable/bg_glass_card_modern"
+    android:clipToOutline="true"
+    android:clickable="true"
+    android:elevation="@dimen/elevation_card"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:minHeight="88dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:gravity="center_vertical"
-        android:minHeight="88dp"
-        android:orientation="horizontal"
-        android:paddingStart="0dp"
-        android:paddingTop="@dimen/space_1"
-        android:paddingEnd="@dimen/page_padding_x"
-        android:paddingBottom="@dimen/space_1">
+    <FrameLayout
+        android:id="@+id/fridgeItemArt"
+        android:layout_width="@dimen/size_avatar_lg"
+        android:layout_height="@dimen/size_avatar_lg"
+        android:layout_marginStart="@dimen/space_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:layout_width="@dimen/size_avatar_lg"
-            android:layout_height="@dimen/size_avatar_lg">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/fridgeItemImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
-
-            <TextView
-                android:id="@+id/fridgeItemEmoji"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textSize="40sp"
-                android:visibility="gone"
-                tools:text="🥑"
-                tools:visibility="visible" />
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/fridgeItemName"
-                style="@style/TextAppearance.Lighture.Body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/text_primary"
-                tools:text="Tomatoes" />
-
-            <TextView
-                android:id="@+id/fridgeItemQuantity"
-                style="@style/TextAppearance.Lighture.BodySmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_0_5"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/text_secondary"
-                tools:text="5 pieces" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_3"
-            android:baselineAligned="false"
-            android:gravity="end"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/fridgeItemStatus"
-                style="@style/TextAppearance.Lighture.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_tag_pill"
-                android:maxLines="1"
-                android:paddingStart="@dimen/space_2"
-                android:paddingTop="@dimen/space_0_5"
-                android:paddingEnd="@dimen/space_2"
-                android:paddingBottom="@dimen/space_0_5"
-                tools:backgroundTint="@color/fresh_background"
-                tools:text="Fresh"
-                tools:textColor="@color/fresh_color" />
-
-            <TextView
-                android:id="@+id/fridgeItemExpiry"
-                style="@style/TextAppearance.Lighture.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_1"
-                android:drawablePadding="@dimen/space_1"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:textColor="@color/text_secondary"
-                app:drawableStartCompat="@drawable/ic_calendar"
-                app:drawableTint="@color/icon_secondary"
-                tools:text="3 days left" />
-        </LinearLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/fridgeItemImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 
         <TextView
-            android:id="@+id/fridgeItemArrow"
-            android:layout_width="@dimen/size_icon_sm"
-            android:layout_height="@dimen/size_icon_sm"
-            android:layout_marginStart="@dimen/space_3"
+            android:id="@+id/fridgeItemEmoji"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
-            app:drawableStartCompat="@drawable/ic_chevron_right"
-            app:drawableTint="@color/icon_secondary"
-            tools:ignore="RtlSymmetry" />
+            android:textSize="32sp"
+            android:visibility="gone"
+            tools:text="🥑"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_3"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fridgeItemStatusContainer"
+        app:layout_constraintStart_toEndOf="@id/fridgeItemArt"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/fridgeItemName"
+            style="@style/TextAppearance.Lighture.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_primary"
+            tools:text="Tomatoes" />
+
+        <TextView
+            android:id="@+id/fridgeItemQuantity"
+            style="@style/TextAppearance.Lighture.BodySmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_0_5"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_secondary"
+            tools:text="5 pieces" />
     </LinearLayout>
 
-    <View
-        android:id="@+id/itemDivider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="@dimen/space_16"
-        android:background="@color/divider" />
+    <LinearLayout
+        android:id="@+id/fridgeItemStatusContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_3"
+        android:gravity="end"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fridgeItemActionContainer"
+        app:layout_constraintTop_toTopOf="parent">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/fridgeItemStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_tag_pill"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:paddingStart="@dimen/space_2"
+            android:paddingTop="@dimen/space_0_5"
+            android:paddingEnd="@dimen/space_2"
+            android:paddingBottom="@dimen/space_0_5"
+            android:textSize="11sp"
+            tools:backgroundTint="@color/fresh_background"
+            tools:text="Fresh"
+            tools:textColor="@color/fresh_color" />
+
+        <TextView
+            android:id="@+id/fridgeItemExpiry"
+            style="@style/TextAppearance.Lighture.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_1"
+            android:drawablePadding="@dimen/space_1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/text_secondary"
+            app:drawableStartCompat="@drawable/ic_calendar"
+            app:drawableTint="@color/icon_secondary"
+            tools:text="3 days left" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fridgeItemActionContainer"
+        android:layout_width="@dimen/size_icon_lg"
+        android:layout_height="@dimen/size_icon_lg"
+        android:layout_marginEnd="@dimen/space_3"
+        android:background="@drawable/bg_icon_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/size_icon_xs"
+            android:layout_height="@dimen/size_icon_xs"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_chevron_right"
+            app:tint="@color/icon_primary" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

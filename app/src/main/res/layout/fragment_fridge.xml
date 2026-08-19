@@ -10,6 +10,8 @@
         android:id="@+id/fridgeScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingStart="@dimen/page_padding_x"
+        android:paddingEnd="@dimen/page_padding_x"
         android:clipToPadding="false"
         android:clipChildren="false"
         android:scrollbars="none"
@@ -25,15 +27,13 @@
             android:orientation="vertical"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:paddingBottom="@dimen/space_8">
+            android:paddingBottom="@dimen/space_2">
 
             <include
                 android:id="@+id/fridgeOverview"
                 layout="@layout/view_fridge_overview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/page_padding_x"
-                android:layout_marginEnd="@dimen/page_padding_x" />
+                android:layout_height="wrap_content" />
 
             <include
                 layout="@layout/view_filter_chip_bar"
@@ -47,39 +47,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_2"
                 android:layout_marginBottom="@dimen/space_3"
-                android:layout_marginStart="@dimen/page_padding_x"
                 android:text="@string/fridge_list_title"
                 android:textColor="@color/text_primary" />
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fridgeItemsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/page_padding_x"
-                android:layout_marginEnd="@dimen/page_padding_x"
-                android:background="@drawable/bg_glass_card"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardElevation="0dp"
-                app:strokeWidth="0dp">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/fridgeItemsList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:clipChildren="false"
-                    android:nestedScrollingEnabled="false"
-                    android:overScrollMode="never"
-                    android:scrollbars="none" />
-            </com.google.android.material.card.MaterialCardView>
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
 
             <include
                 android:id="@+id/fridgeWasteCard"
                 layout="@layout/view_fridge_waste_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_4"
-                android:layout_marginStart="@dimen/page_padding_x"
-                android:layout_marginEnd="@dimen/page_padding_x" />
+                android:layout_marginTop="@dimen/space_4" />
 
             <include
                 android:id="@+id/fridgeHistory"

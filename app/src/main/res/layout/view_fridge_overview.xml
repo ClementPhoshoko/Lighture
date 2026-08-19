@@ -1,261 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Fridge overview card: redesigned with horizontal flex stats
-     and a high-quality robot chef illustration with a soft fade blend. -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Fridge overview card: redesigned with premium glassmorphic style,
+     matching the Home Hero and Recipes list look. -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    android:background="@drawable/bg_glass_card_modern"
+    android:clipToOutline="true"
+    android:elevation="@dimen/elevation_card">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!-- Ambient glow -->
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="-32dp"
+        android:alpha="0.2"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_decorative_blob"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/glass_blob_danger" />
 
-        <!-- Left Column: Stats -->
-        <LinearLayout
-            android:id="@+id/fridgeStatsColumn"
-            android:layout_width="0dp"
+    <!-- Left Column: Stats -->
+    <LinearLayout
+        android:id="@+id/fridgeStatsColumn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fridgeIllustrationContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/fridgeOverviewTitle"
+            style="@style/TextAppearance.Lighture.SectionTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingVertical="@dimen/space_3"
+            android:text="@string/fridge_overview_title"
+            android:textColor="@color/text_primary" />
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/fridgeIllustrationContainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:baselineAligned="false"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/fridgeOverviewTitle"
-                style="@style/TextAppearance.Lighture.SectionTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fridge_overview_title"
-                android:textColor="@color/text_primary" />
-
+            <!-- Row 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_4"
                 android:baselineAligned="false"
-                android:paddingStart="@dimen/space_3"
-                android:paddingEnd="@dimen/space_0"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <!-- Row 1 -->
+                <!-- Items -->
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <!-- Items -->
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="@dimen/space_0"
-                        android:paddingEnd="@dimen/space_5">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="@dimen/size_icon_md"
-                                android:layout_height="@dimen/size_icon_md"
-                                android:contentDescription="@null"
-                                android:src="@drawable/ic_outline_basket"
-                                app:tint="@color/fresh_color" />
-
-                            <TextView
-                                android:id="@+id/fridgeStatItemsValue"
-                                style="@style/TextAppearance.Lighture.SectionTitle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/space_1"
-                                android:textColor="@color/text_primary"
-                                tools:text="12" />
-                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="@dimen/size_icon_sm"
+                            android:layout_height="@dimen/size_icon_sm"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_outline_basket"
+                            app:tint="@color/fresh_color" />
 
                         <TextView
-                            style="@style/TextAppearance.Lighture.Caption"
+                            android:id="@+id/fridgeStatItemsValue"
+                            style="@style/TextAppearance.Lighture.SectionTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/space_0_5"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:text="@string/fridge_stat_items"
-                            android:textColor="@color/text_secondary" />
+                            android:layout_marginStart="@dimen/space_1"
+                            android:textColor="@color/text_primary"
+                            tools:text="12" />
                     </LinearLayout>
 
-                    <!-- Fresh -->
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        style="@style/TextAppearance.Lighture.Caption"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="@dimen/size_icon_md"
-                                android:layout_height="@dimen/size_icon_md"
-                                android:contentDescription="@null"
-                                android:src="@drawable/ic_outline_leaf"
-                                app:tint="@color/fresh_color" />
-
-                            <TextView
-                                android:id="@+id/fridgeStatFreshValue"
-                                style="@style/TextAppearance.Lighture.SectionTitle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/space_1"
-                                android:textColor="@color/text_primary"
-                                tools:text="5" />
-                        </LinearLayout>
-
-                        <TextView
-                            style="@style/TextAppearance.Lighture.Caption"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/space_0_5"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:text="@string/fridge_stat_fresh"
-                            android:textColor="@color/text_secondary" />
-                    </LinearLayout>
+                        android:layout_marginTop="@dimen/space_0_5"
+                        android:text="@string/fridge_stat_items"
+                        android:textColor="@color/text_secondary" />
                 </LinearLayout>
 
-                <!-- Row 2 -->
+                <!-- Fresh -->
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_4"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <!-- Expiring -->
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="@dimen/size_icon_md"
-                                android:layout_height="@dimen/size_icon_md"
-                                android:contentDescription="@null"
-                                android:src="@drawable/ic_outline_clock"
-                                app:tint="@color/expiring_color" />
-
-                            <TextView
-                                android:id="@+id/fridgeStatExpiringValue"
-                                style="@style/TextAppearance.Lighture.SectionTitle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/space_1"
-                                android:textColor="@color/text_primary"
-                                tools:text="2" />
-                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="@dimen/size_icon_sm"
+                            android:layout_height="@dimen/size_icon_sm"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_outline_leaf"
+                            app:tint="@color/fresh_color" />
 
                         <TextView
-                            style="@style/TextAppearance.Lighture.Caption"
+                            android:id="@+id/fridgeStatFreshValue"
+                            style="@style/TextAppearance.Lighture.SectionTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/space_0_5"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:text="@string/fridge_stat_expiring"
-                            android:textColor="@color/text_secondary" />
+                            android:layout_marginStart="@dimen/space_1"
+                            android:textColor="@color/text_primary"
+                            tools:text="5" />
                     </LinearLayout>
 
-                    <!-- Saved -->
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        style="@style/TextAppearance.Lighture.Caption"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginTop="@dimen/space_0_5"
+                        android:text="@string/fridge_stat_fresh"
+                        android:textColor="@color/text_secondary" />
+                </LinearLayout>
+            </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+            <!-- Row 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_3"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="@dimen/size_icon_md"
-                                android:layout_height="@dimen/size_icon_md"
-                                android:contentDescription="@null"
-                                android:src="@drawable/ic_outline_trend_up"
-                                app:tint="@color/fresh_color" />
+                <!-- Expiring -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/fridgeStatSavedValue"
-                                style="@style/TextAppearance.Lighture.SectionTitle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/space_1"
-                                android:textColor="@color/text_primary"
-                                tools:text="R156" />
-                        </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/size_icon_sm"
+                            android:layout_height="@dimen/size_icon_sm"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_outline_clock"
+                            app:tint="@color/expiring_color" />
 
                         <TextView
-                            style="@style/TextAppearance.Lighture.Caption"
+                            android:id="@+id/fridgeStatExpiringValue"
+                            style="@style/TextAppearance.Lighture.SectionTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/space_0_5"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:text="@string/fridge_stat_saved"
-                            android:textColor="@color/text_secondary" />
+                            android:layout_marginStart="@dimen/space_1"
+                            android:textColor="@color/text_primary"
+                            tools:text="2" />
                     </LinearLayout>
+
+                    <TextView
+                        style="@style/TextAppearance.Lighture.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_0_5"
+                        android:text="@string/fridge_stat_expiring"
+                        android:textColor="@color/text_secondary" />
+                </LinearLayout>
+
+                <!-- Saved -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/size_icon_sm"
+                            android:layout_height="@dimen/size_icon_sm"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_outline_trend_up"
+                            app:tint="@color/fresh_color" />
+
+                        <TextView
+                            android:id="@+id/fridgeStatSavedValue"
+                            style="@style/TextAppearance.Lighture.SectionTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_1"
+                            android:textColor="@color/text_primary"
+                            tools:text="R156" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/TextAppearance.Lighture.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_0_5"
+                        android:text="@string/fridge_stat_saved"
+                        android:textColor="@color/text_secondary" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
 
-        <!-- Right Column: Illustration with Blur/Fade effect -->
-        <FrameLayout
-            android:id="@+id/fridgeIllustrationContainer"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.28">
+    <!-- Right Column: Illustration with Blur/Fade effect -->
+    <FrameLayout
+        android:id="@+id/fridgeIllustrationContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.3">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/fridgeOverviewIllustration"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/ShapeAppearance.Lighture.Card"
-                android:paddingEnd="@dimen/space_4"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/fridgeOverviewIllustration"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop" />
 
-            <!-- Blurriness/Fade Overlay on the left side of the image -->
-            <View
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:background="@drawable/bg_fade_left"
-                />
+        <!-- Fade Overlay -->
+        <View
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:alpha="0.5"
+            android:background="@drawable/bg_fade_left" />
+    </FrameLayout>
 
-        </FrameLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

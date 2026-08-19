@@ -83,9 +83,16 @@ public class FridgeFragment extends Fragment {
 
     private void applyInsets(View root) {
         View scroll = root.findViewById(R.id.fridgeScroll);
+        int initialPaddingStart = scroll.getPaddingStart();
+        int initialPaddingEnd = scroll.getPaddingEnd();
+        int initialPaddingBottom = scroll.getPaddingBottom();
+
         ViewCompat.setOnApplyWindowInsetsListener(scroll, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left, 0, bars.right, bars.bottom);
+            v.setPadding(bars.left + initialPaddingStart,
+                        0,
+                        bars.right + initialPaddingEnd,
+                        bars.bottom + initialPaddingBottom);
             return insets;
         });
     }
@@ -171,7 +178,7 @@ public class FridgeFragment extends Fragment {
         action.setText(R.string.fridge_history_action);
         action.setOnClickListener(v -> showMessage(R.string.fridge_snackbar_history));
 
-        TextView detected = root.findViewById(R.id.fridgeHistoryItemDetected);
+        TextView detected = root.findViewById(R.id.fridgeHistoryItemDetected1);
         detected.setText(getString(R.string.fridge_history_item_detected, FridgeData.all().size()));
     }
 

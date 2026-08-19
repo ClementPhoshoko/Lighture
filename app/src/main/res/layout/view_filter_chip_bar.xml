@@ -7,8 +7,6 @@
     android:layout_height="wrap_content"
     android:clipToPadding="false"
     android:clipChildren="false"
-    android:paddingStart="@dimen/page_padding_x"
-    android:paddingEnd="@dimen/page_padding_x"
     android:orientation="horizontal"
     android:overScrollMode="never"
     android:scrollbars="none" />

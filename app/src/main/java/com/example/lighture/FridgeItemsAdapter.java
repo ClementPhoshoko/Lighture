@@ -63,8 +63,6 @@ public final class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAd
         holder.expiry.setText(item.expiryText);
         TextViewCompat.setCompoundDrawableTintList(holder.expiry, ColorStateList.valueOf(statusColor));
 
-        holder.divider.setVisibility(position == getItemCount() - 1 ? View.GONE : View.VISIBLE);
-
         holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
     }
 
@@ -86,7 +84,6 @@ public final class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAd
         final TextView emoji;
         final TextView status;
         final TextView expiry;
-        final View divider;
 
         ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,7 +93,6 @@ public final class FridgeItemsAdapter extends RecyclerView.Adapter<FridgeItemsAd
             emoji = itemView.findViewById(R.id.fridgeItemEmoji);
             status = itemView.findViewById(R.id.fridgeItemStatus);
             expiry = itemView.findViewById(R.id.fridgeItemExpiry);
-            divider = itemView.findViewById(R.id.itemDivider);
         }
     }
 }

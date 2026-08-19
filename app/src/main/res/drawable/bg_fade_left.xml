@@ -3,5 +3,5 @@
     <gradient
         android:angle="0"
         android:endColor="@android:color/transparent"
-        android:startColor="@color/card_background" />
+        android:startColor="@color/glass_surface_white" />
 </shape>

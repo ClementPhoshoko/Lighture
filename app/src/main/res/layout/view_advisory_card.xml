@@ -1,26 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Advisory card: redesigned with premium glassmorphic style.
+     Matches the Hero and Recipe list look with ambient glow and real elevation. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clipToPadding="false"
-    android:background="@drawable/bg_glass_card_advisory">
+    android:background="@drawable/bg_glass_card_modern"
+    android:clipToOutline="true"
+    android:elevation="@dimen/elevation_card">
+
+    <!-- Ambient glow -->
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="-32dp"
+        android:alpha="0.3"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_decorative_blob"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/glass_blob_danger" />
 
     <!-- Subtle Background Watermark Icon on the Right (large size, low visibility) -->
     <ImageView
         android:id="@+id/advisoryIcon"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:alpha="0.18"
+        android:alpha="0.12"
         android:contentDescription="@null"
         app:srcCompat="@drawable/ic_outline_trend_up"
         app:tint="@color/fresh_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="4dp" />
+        android:layout_marginEnd="16dp" />
 
     <!-- Card Content (Text container) -->
     <LinearLayout
@@ -29,7 +45,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/space_5"
-        android:layout_marginBottom="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

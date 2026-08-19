@@ -108,9 +108,16 @@ public class HomeFragment extends Fragment {
 
     private void applyInsets(View root) {
         View scroll = root.findViewById(R.id.homeScroll);
+        int initialPaddingStart = scroll.getPaddingStart();
+        int initialPaddingEnd = scroll.getPaddingEnd();
+        int initialPaddingBottom = scroll.getPaddingBottom();
+
         ViewCompat.setOnApplyWindowInsetsListener(scroll, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left, 0, bars.right, 0);
+            v.setPadding(bars.left + initialPaddingStart,
+                        0,
+                        bars.right + initialPaddingEnd,
+                        bars.bottom + initialPaddingBottom);
             return insets;
         });
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Fridge history section: reuses the shared section header for the
-     "Fridge History / View all" row, then a single scan history card. -->
+     "Fridge History / View all" row, then a list of scan history glass cards. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,22 +8,23 @@
     android:layout_height="wrap_content"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:paddingStart="@dimen/page_padding_x"
-    android:paddingEnd="@dimen/page_padding_x"
     android:orientation="vertical">
 
     <include
         android:id="@+id/fridgeHistoryHeader"
         layout="@layout/view_home_section_header" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/fridgeHistoryCard"
-        style="@style/Widget.Lighture.Card"
+    <!-- History Card 1 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fridgeHistoryCard1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_3"
-        android:layout_marginStart="@dimen/space_0_5"
-        android:layout_marginEnd="@dimen/space_0_5"
+        android:background="@drawable/bg_glass_card_modern"
+        android:clipToOutline="true"
+        android:elevation="@dimen/elevation_card"
+        android:clickable="true"
+        android:focusable="true"
         android:foreground="?attr/selectableItemBackground">
 
         <LinearLayout
@@ -32,19 +33,24 @@
             android:baselineAligned="false"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/card_padding_compact">
+            android:padding="@dimen/card_padding_compact"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <FrameLayout
                 android:layout_width="@dimen/stat_icon_container"
-                android:layout_height="@dimen/stat_icon_container">
+                android:layout_height="@dimen/stat_icon_container"
+                android:background="@drawable/bg_glass_icon_container">
 
                 <ImageView
-                    android:layout_width="@dimen/size_icon_md"
-                    android:layout_height="@dimen/size_icon_md"
+                    android:layout_width="@dimen/size_icon_sm"
+                    android:layout_height="@dimen/size_icon_sm"
                     android:layout_gravity="center"
                     android:contentDescription="@null"
                     android:src="@drawable/ic_outline_fridge"
-                    app:tint="@color/icon_brand" />
+                    app:tint="@color/brand_primary" />
             </FrameLayout>
 
             <LinearLayout
@@ -52,11 +58,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_3"
                 android:layout_weight="1"
-                android:baselineAligned="false"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/fridgeHistoryItemTitle"
+                    android:id="@+id/fridgeHistoryItemTitle1"
                     style="@style/TextAppearance.Lighture.Label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,7 +69,7 @@
                     android:textColor="@color/text_primary" />
 
                 <TextView
-                    android:id="@+id/fridgeHistoryItemSubtitle"
+                    android:id="@+id/fridgeHistoryItemSubtitle1"
                     style="@style/TextAppearance.Lighture.Caption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -77,29 +82,132 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_2"
-                android:baselineAligned="false"
                 android:gravity="end"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/fridgeHistoryItemDetected"
+                    android:id="@+id/fridgeHistoryItemDetected1"
                     style="@style/TextAppearance.Lighture.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_secondary" />
+                    android:textColor="@color/text_secondary"
+                    tools:text="15 items detected" />
 
-                <TextView
-                    android:layout_width="23dp"
+                <FrameLayout
+                    android:layout_width="@dimen/size_icon_lg"
                     android:layout_height="@dimen/size_icon_lg"
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/space_1"
-                    android:background="@drawable/bg_icon_circle"
-                    android:gravity="center"
-                    app:drawableStartCompat="@drawable/ic_chevron_right"
-                    app:drawableTint="@color/icon_primary"
-                    tools:ignore="RtlSymmetry" />
+                    android:background="@drawable/bg_icon_circle">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_icon_xs"
+                        android:layout_height="@dimen/size_icon_xs"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/icon_primary" />
+                </FrameLayout>
             </LinearLayout>
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- History Card 2 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fridgeHistoryCard2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_2"
+        android:background="@drawable/bg_glass_card_modern"
+        android:clipToOutline="true"
+        android:elevation="@dimen/elevation_card"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/card_padding_compact"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="@dimen/stat_icon_container"
+                android:layout_height="@dimen/stat_icon_container"
+                android:background="@drawable/bg_glass_icon_container">
+
+                <ImageView
+                    android:layout_width="@dimen/size_icon_sm"
+                    android:layout_height="@dimen/size_icon_sm"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_outline_fridge"
+                    app:tint="@color/brand_primary" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_3"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fridgeHistoryItemTitle2"
+                    style="@style/TextAppearance.Lighture.Label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fridge scanned"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/fridgeHistoryItemSubtitle2"
+                    style="@style/TextAppearance.Lighture.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_0_5"
+                    android:text="Yesterday, 6:45 PM"
+                    android:textColor="@color/text_secondary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_2"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fridgeHistoryItemDetected2"
+                    style="@style/TextAppearance.Lighture.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_secondary"
+                    android:text="8 items detected" />
+
+                <FrameLayout
+                    android:layout_width="@dimen/size_icon_lg"
+                    android:layout_height="@dimen/size_icon_lg"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/space_1"
+                    android:background="@drawable/bg_icon_circle">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_icon_xs"
+                        android:layout_height="@dimen/size_icon_xs"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/icon_primary" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
