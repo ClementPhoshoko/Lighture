@@ -264,7 +264,7 @@
     ============================================================= -->
 
     <style name="Widget.Lighture.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
-        <item name="android:background">@color/bottom_nav_background</item>
+        <item name="android:background">@drawable/bg_bottom_nav_glass</item>
         <item name="android:elevation">@dimen/elevation_bottom_nav</item>
         <item name="itemIconTint">@color/bottom_nav_item_selector</item>
         <item name="itemTextColor">@color/bottom_nav_item_selector</item>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/logoutButton"
+    style="@style/Widget.Lighture.Button.Secondary"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/size_button_lg"
+    android:layout_marginTop="@dimen/space_4"
+    android:layout_gravity="end"
+    android:text="@string/profile_logout"
+    android:textColor="@color/brand_primary"
+    app:icon="@drawable/ic_logout"
+    app:iconGravity="textStart"
+    app:iconPadding="@dimen/space_2"
+    app:iconTint="@color/brand_primary" />

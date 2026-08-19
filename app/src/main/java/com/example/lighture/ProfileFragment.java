@@ -53,6 +53,7 @@ public class ProfileFragment extends Fragment {
 
         applyInsets(view);
         wireProfileImage(view);
+        wireMotivation(view);
         wireSettings(view);
         wirePreferences(view);
         wireAccount(view);
@@ -90,6 +91,13 @@ public class ProfileFragment extends Fragment {
 
         container.setOnClickListener(clickListener);
         editBtn.setOnClickListener(clickListener);
+    }
+
+    private void wireMotivation(View root) {
+        View card = root.findViewById(R.id.motivationCard);
+        ((ImageView) card.findViewById(R.id.advisoryIcon)).setImageResource(R.drawable.ic_outline_trend_up);
+        ((TextView) card.findViewById(R.id.advisoryTitle)).setText(R.string.profile_motivation_title);
+        ((TextView) card.findViewById(R.id.advisoryBody)).setText(R.string.profile_motivation_body);
     }
 
     private void wireSettings(View root) {

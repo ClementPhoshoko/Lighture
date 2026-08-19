@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/space_1"
+    android:clipToOutline="true"
+    android:elevation="@dimen/elevation_card"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Card Background Surface -->
+    <View
+        android:id="@+id/cardBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_glass_card_stat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Ambient glow behind the content -->
+    <ImageView
+        android:id="@+id/ambientGlow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="-24dp"
+        android:alpha="0.3"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_decorative_blob"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/glass_blob_success" />
+
+    <!-- Decorative glass blobs -->
+    <ImageView
+        android:id="@+id/decorativeBlob"
+        android:layout_width="@dimen/space_20"
+        android:layout_height="@dimen/space_20"
+        android:layout_marginEnd="-16dp"
+        android:layout_marginBottom="-16dp"
+        android:alpha="0.6"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_decorative_blob"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/glass_blob_success" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/space_4">
+
+        <!-- Top Left: Icon Container -->
+        <FrameLayout
+            android:id="@+id/iconContainer"
+            android:layout_width="@dimen/stat_icon_container"
+            android:layout_height="@dimen/stat_icon_container"
+            android:background="@drawable/bg_glass_icon_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/statIcon"
+                android:layout_width="@dimen/size_icon_md"
+                android:layout_height="@dimen/size_icon_md"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_outline_basket"
+                app:tint="@color/fresh_color" />
+        </FrameLayout>
+
+        <!-- Top Right: Menu -->
+        <TextView
+            android:id="@+id/menuIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            android:layout_marginEnd="@dimen/space_2"
+            android:text="@string/home_overview_menu"
+            android:textColor="@color/fresh_color"
+            android:textSize="18sp"
+            android:alpha="0.6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Center Content -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/statusPill"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iconContainer">
+
+            <TextView
+                android:id="@+id/statValue"
+                style="@style/TextAppearance.Lighture.Display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/statLabel"
+                style="@style/TextAppearance.Lighture.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-2dp"
+                android:alpha="0.8"
+                android:textColor="@color/text_primary"
+                tools:text="Items tracked" />
+        </LinearLayout>
+
+        <!-- Bottom: Status Pill -->
+        <LinearLayout
+            android:id="@+id/statusPill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_glass_pill"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/space_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.9">
+
+            <ImageView
+                android:id="@+id/pillIcon"
+                android:layout_width="@dimen/size_icon_xs"
+                android:layout_height="@dimen/size_icon_xs"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_outline_trend_up"
+                app:tint="@color/fresh_color" />
+
+            <TextView
+                android:id="@+id/pillText"
+                style="@style/TextAppearance.Lighture.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_1"
+                android:textColor="@color/fresh_color"
+                tools:text="+6 added" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

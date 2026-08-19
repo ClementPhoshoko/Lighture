@@ -1,33 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Smart suggestion card: matches the recipe-card pattern (16dp rounded
-     shell, pastel image area, white time pill on the image, single-line
-     title) but with suggestion content — an ingredient-count pill and a
-     chevron action instead of a category tag and favourite. -->
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/suggestionCard"
-    style="@style/Widget.Lighture.Card"
     android:layout_width="@dimen/recipe_card_width"
     android:layout_height="wrap_content"
-    android:foreground="?attr/selectableItemBackground">
+    android:layout_marginVertical="@dimen/space_1"
+    android:background="@drawable/bg_glass_card_modern"
+    android:clipToOutline="true"
+    android:elevation="@dimen/elevation_card"
+    android:clickable="true"
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <FrameLayout
             android:id="@+id/suggestionArt"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/recipe_art_height"
-            android:background="@drawable/bg_recipe_image">
+            android:layout_height="@dimen/recipe_art_height">
 
             <ImageView
                 android:id="@+id/suggestionIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:clipToOutline="true"
+                android:background="@drawable/bg_recipe_image" />
 
             <LinearLayout
                 android:id="@+id/suggestionTimePill"
@@ -35,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|start"
                 android:layout_margin="@dimen/space_2"
-                android:background="@drawable/bg_time_chip"
-                android:baselineAligned="false"
+                android:background="@drawable/bg_glass_pill"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/space_2"
@@ -47,7 +48,6 @@
                 <ImageView
                     android:layout_width="@dimen/size_icon_xs"
                     android:layout_height="@dimen/size_icon_xs"
-                    android:contentDescription="@null"
                     android:src="@drawable/ic_clock"
                     app:tint="@color/icon_primary" />
 
@@ -57,8 +57,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space_1"
-                    android:ellipsize="end"
-                    android:maxLines="1"
                     android:textColor="@color/text_primary" />
             </LinearLayout>
         </FrameLayout>
@@ -82,7 +80,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_2"
-                android:baselineAligned="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -91,9 +88,7 @@
                     style="@style/TextAppearance.Lighture.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_tag_pill"
-                    android:ellipsize="end"
-                    android:maxLines="1"
+                    android:background="@drawable/bg_glass_pill"
                     android:paddingStart="@dimen/space_2"
                     android:paddingTop="@dimen/space_0_5"
                     android:paddingEnd="@dimen/space_2"
@@ -108,19 +103,16 @@
                     android:id="@+id/suggestionAction"
                     android:layout_width="@dimen/size_icon_lg"
                     android:layout_height="@dimen/size_icon_lg"
-                    android:background="@drawable/bg_icon_circle">
+                    android:background="@drawable/bg_glass_icon_container">
 
                     <ImageView
                         android:layout_width="@dimen/size_icon_xs"
                         android:layout_height="@dimen/size_icon_xs"
                         android:layout_gravity="center"
-                        android:contentDescription="@null"
                         android:src="@drawable/ic_chevron_right"
                         app:tint="@color/brand_primary" />
                 </FrameLayout>
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
-
-</com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

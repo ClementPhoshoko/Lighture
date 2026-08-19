@@ -28,7 +28,7 @@
             android:clipToPadding="false"
             android:paddingStart="@dimen/page_padding_x"
             android:paddingEnd="@dimen/page_padding_x"
-            android:paddingBottom="@dimen/space_8">
+            android:paddingBottom="@dimen/space_4">
 
             <include
                 android:id="@+id/homeHero"
@@ -41,28 +41,28 @@
                 layout="@layout/view_home_recipes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8" />
+                android:layout_marginTop="@dimen/section_gap" />
 
             <include
                 android:id="@+id/homeOverview"
                 layout="@layout/view_home_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8" />
+                android:layout_marginTop="@dimen/section_gap" />
 
             <include
                 android:id="@+id/homeCarousel"
                 layout="@layout/view_home_carousel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8" />
+                android:layout_marginTop="@dimen/section_gap" />
 
             <include
                 android:id="@+id/homeAdvisory"
-                layout="@layout/view_home_advisory"
+                layout="@layout/view_advisory_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8" />
+                android:layout_marginTop="@dimen/section_gap" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -86,7 +86,5 @@
             android:layout_height="1dp"
             android:background="@color/divider" />
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

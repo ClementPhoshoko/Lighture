@@ -13,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -89,7 +90,7 @@ public class HomeFragment extends Fragment {
         View scroll = root.findViewById(R.id.homeScroll);
         ViewCompat.setOnApplyWindowInsetsListener(scroll, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left, 0, bars.right, bars.bottom);
+            v.setPadding(bars.left, 0, bars.right, 0);
             return insets;
         });
     }
@@ -154,9 +155,10 @@ public class HomeFragment extends Fragment {
     private void bindAdvisory(View root, int index) {
         if (advisories == null || index >= advisories.size()) return;
         HomeData.Advisory advisory = advisories.get(index);
-        ((ImageView) root.findViewById(R.id.advisoryIcon)).setImageResource(advisory.iconRes);
-        ((TextView) root.findViewById(R.id.advisoryTitle)).setText(advisory.title);
-        ((TextView) root.findViewById(R.id.advisoryBody)).setText(advisory.body);
+        View card = root.findViewById(R.id.homeAdvisory);
+        ((ImageView) card.findViewById(R.id.advisoryIcon)).setImageResource(advisory.iconRes);
+        ((TextView) card.findViewById(R.id.advisoryTitle)).setText(advisory.title);
+        ((TextView) card.findViewById(R.id.advisoryBody)).setText(advisory.body);
     }
 
     private Animation buildAdvisorySlide(boolean in) {
@@ -194,14 +196,90 @@ public class HomeFragment extends Fragment {
 
     private void bindOverview(View root) {
         List<HomeData.OverviewStat> stats = HomeData.overview();
-        bindOverviewCard(root, R.id.statItemsValue, R.id.statItemsLabel, stats.get(0));
-        bindOverviewCard(root, R.id.statExpiringValue, R.id.statExpiringLabel, stats.get(1));
-        bindOverviewCard(root, R.id.statWasteValue, R.id.statWasteLabel, stats.get(2));
+
+        bindGlassStatCard(root.findViewById(R.id.statItemsCard),
+                stats.get(0),
+                R.color.fresh_color,
+                R.color.glass_tint_success,
+                R.color.glass_blob_success,
+                R.drawable.ic_outline_basket,
+                R.drawable.ic_outline_trend_up,
+                R.string.home_overview_badge_items);
+
+        bindGlassStatCard(root.findViewById(R.id.statExpiringCard),
+                stats.get(1),
+                R.color.expiring_color,
+                R.color.glass_tint_warning,
+                R.color.glass_blob_warning,
+                R.drawable.ic_outline_clock,
+                R.drawable.ic_outline_clock,
+                R.string.home_overview_badge_expiring);
+
+        bindGlassStatCard(root.findViewById(R.id.statWasteCard),
+                stats.get(2),
+                R.color.expired_color,
+                R.color.glass_tint_danger,
+                R.color.glass_blob_danger,
+                R.drawable.ic_outline_trash,
+                R.drawable.ic_outline_leaf,
+                R.string.home_overview_badge_waste);
     }
 
-    private void bindOverviewCard(View root, int valueId, int labelId, HomeData.OverviewStat stat) {
-        ((TextView) root.findViewById(valueId)).setText(stat.value);
-        ((TextView) root.findViewById(labelId)).setText(stat.labelRes);
+    private void bindGlassStatCard(View cardRoot,
+                                  HomeData.OverviewStat stat,
+                                  int accentColorRes,
+                                  int tintColorRes,
+                                  int blobColorRes,
+                                  int iconRes,
+                                  int pillIconRes,
+                                  int pillTextRes) {
+        if (cardRoot == null) return;
+
+        int accentColor = getResources().getColor(accentColorRes, null);
+        int tintColor = getResources().getColor(tintColorRes, null);
+        int blobColor = getResources().getColor(blobColorRes, null);
+
+        // Background and decorative blob
+        View bg = cardRoot.findViewById(R.id.cardBackground);
+        if (bg != null) bg.setBackgroundTintList(android.content.res.ColorStateList.valueOf(tintColor));
+        
+        ImageView blob = cardRoot.findViewById(R.id.decorativeBlob);
+        if (blob != null) blob.setColorFilter(blobColor);
+
+        ImageView glow = cardRoot.findViewById(R.id.ambientGlow);
+        if (glow != null) glow.setColorFilter(blobColor);
+
+        // Icon and Menu
+        ImageView icon = cardRoot.findViewById(R.id.statIcon);
+        if (icon != null) {
+            icon.setImageResource(iconRes);
+            icon.setColorFilter(accentColor);
+        }
+        
+        TextView menu = cardRoot.findViewById(R.id.menuIndicator);
+        if (menu != null) menu.setTextColor(accentColor);
+
+        // Stats
+        TextView value = cardRoot.findViewById(R.id.statValue);
+        if (value != null) value.setText(stat.value);
+        
+        TextView label = cardRoot.findViewById(R.id.statLabel);
+        if (label != null) label.setText(stat.labelRes);
+
+        // Pill
+        ImageView pIcon = cardRoot.findViewById(R.id.pillIcon);
+        if (pIcon != null) {
+            pIcon.setImageResource(pillIconRes);
+            pIcon.setColorFilter(accentColor);
+        }
+        
+        TextView pText = cardRoot.findViewById(R.id.pillText);
+        if (pText != null) {
+            pText.setText(pillTextRes);
+            pText.setTextColor(accentColor);
+        }
+
+        cardRoot.setOnClickListener(v -> showComingSoon(getString(stat.labelRes)));
     }
 
     private void setupCarousel(View root) {
@@ -223,72 +301,78 @@ public class HomeFragment extends Fragment {
                                        @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
                 int gap = getResources().getDimensionPixelSize(R.dimen.space_2);
                 int position = parent.getChildAdapterPosition(view);
-                int count = parent.getAdapter() != null ? parent.getAdapter().getItemCount() : 0;
                 outRect.left = position == 0 ? 0 : gap;
-                outRect.right = position == count - 1 ? 0 : gap;
+                outRect.right = 0;
             }
         });
         list.setAdapter(adapter);
         new LinearSnapHelper().attachToRecyclerView(list);
 
+        final LinearLayout dotsContainer = root.findViewById(dotsId);
+
         buildPagerDots(root, dotsId, itemCount);
         list.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
-                updatePagerDots(root, dotsId, nearestPosition(list, layout));
+                updateActiveDotAlpha(rv, dotsContainer, itemCount);
             }
         });
-        list.post(() -> updatePagerDots(root, dotsId, nearestPosition(list, layout)));
+        // Ensure initial state is correct
+        list.post(() -> updateActiveDotAlpha(list, dotsContainer, itemCount));
     }
 
     private void buildPagerDots(View root, int dotsId, int count) {
         LinearLayout container = root.findViewById(dotsId);
+        if (container == null) return;
         container.removeAllViews();
         int size = getResources().getDimensionPixelSize(R.dimen.carousel_dot);
         int gap = getResources().getDimensionPixelSize(R.dimen.carousel_dot_gap);
         for (int i = 0; i < count; i++) {
-            View dot = new View(requireContext());
+            FrameLayout dotFrame = new FrameLayout(requireContext());
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
             params.setMargins(gap, 0, gap, 0);
-            dot.setLayoutParams(params);
-            container.addView(dot);
+            dotFrame.setLayoutParams(params);
+
+            // 1. Inactive hollow dot
+            View inactive = new View(requireContext());
+            inactive.setLayoutParams(new FrameLayout.LayoutParams(size, size));
+            inactive.setBackgroundResource(R.drawable.bg_dot_indicator);
+            dotFrame.addView(inactive);
+
+            // 2. Active solid dot (initially invisible)
+            View active = new View(requireContext());
+            active.setLayoutParams(new FrameLayout.LayoutParams(size, size));
+            active.setBackgroundResource(R.drawable.bg_dot_indicator_active);
+            active.setAlpha(0f);
+            active.setTag("active_layer");
+            dotFrame.addView(active);
+
+            container.addView(dotFrame);
         }
     }
 
-    private void updatePagerDots(View root, int dotsId, int active) {
-        LinearLayout container = root.findViewById(dotsId);
-        int size = getResources().getDimensionPixelSize(R.dimen.carousel_dot);
-        int activeWidth = getResources().getDimensionPixelSize(R.dimen.carousel_dot_active);
-        int gap = getResources().getDimensionPixelSize(R.dimen.carousel_dot_gap);
+    private void updateActiveDotAlpha(RecyclerView rv, LinearLayout container, int count) {
+        if (container == null || count <= 1) return;
+
+        int itemWidth = getResources().getDimensionPixelSize(R.dimen.recipe_card_width);
+        int gap = getResources().getDimensionPixelSize(R.dimen.space_2);
+        int totalPageWidth = itemWidth + gap;
+
+        int scrollOffset = rv.computeHorizontalScrollOffset();
+        float progress = (float) scrollOffset / totalPageWidth;
+
         for (int i = 0; i < container.getChildCount(); i++) {
-            View dot = container.getChildAt(i);
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) dot.getLayoutParams();
-            params.width = i == active ? activeWidth : size;
-            params.height = size;
-            params.setMargins(gap, 0, gap, 0);
-            dot.setLayoutParams(params);
-            dot.setBackgroundResource(i == active
-                    ? R.drawable.bg_dot_indicator_active : R.drawable.bg_dot_indicator);
-        }
-    }
-
-    private int nearestPosition(RecyclerView list, LinearLayoutManager layout) {
-        int center = list.getWidth() / 2;
-        int first = layout.findFirstVisibleItemPosition();
-        int last = layout.findLastVisibleItemPosition();
-        int best = first;
-        int bestDistance = Integer.MAX_VALUE;
-        for (int i = first; i <= last; i++) {
-            View child = layout.findViewByPosition(i);
-            if (child == null) continue;
-            int childCenter = (child.getLeft() + child.getRight()) / 2;
-            int distance = Math.abs(childCenter - center);
-            if (distance < bestDistance) {
-                bestDistance = distance;
-                best = i;
+            View dotFrame = container.getChildAt(i);
+            if (dotFrame instanceof ViewGroup) {
+                View activeLayer = dotFrame.findViewWithTag("active_layer");
+                if (activeLayer != null) {
+                    // Calculate alpha based on proximity to the current page
+                    float distance = Math.abs(progress - i);
+                    float alpha = Math.max(0, 1f - distance);
+                    activeLayer.setAlpha(alpha);
+                }
             }
         }
-        return best;
     }
 
     private void showComingSoon(String title) {

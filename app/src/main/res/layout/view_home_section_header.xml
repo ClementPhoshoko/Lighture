@@ -24,10 +24,15 @@
         style="@style/TextAppearance.Lighture.Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_glass_pill"
         android:drawableEnd="@drawable/ic_chevron_right"
         android:drawablePadding="@dimen/space_1_5"
         android:drawableTint="@color/text_brand"
         android:gravity="center_vertical"
+        android:paddingStart="@dimen/space_3"
+        android:paddingEnd="@dimen/space_2"
+        android:paddingTop="@dimen/space_1"
+        android:paddingBottom="@dimen/space_1"
         android:text="@string/home_section_action"
         android:textColor="@color/text_brand" />
 

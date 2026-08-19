@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Glass surface base -->
+    <color name="glass_surface_white">#99FFFFFF</color>
+    <color name="glass_border_light">#59FFFFFF</color>
+    <color name="glass_highlight_ambient">#1AFFFFFF</color>
+
+    <!-- Glass semantic tints (approx. 10-15% opacity) -->
+    <color name="glass_tint_success">#262F8F4E</color>
+    <color name="glass_tint_warning">#26B86800</color>
+    <color name="glass_tint_danger">#26C62845</color>
+
+    <!-- Icon container tokens -->
+    <color name="glass_icon_bg">#B3FFFFFF</color>
+    <color name="glass_icon_border">#80FFFFFF</color>
+
+    <!-- Pill tokens -->
+    <color name="glass_pill_bg">#CCFFFFFF</color>
+    <color name="glass_pill_border">#66FFFFFF</color>
+
+    <!-- Decorative blobs (very subtle) -->
+    <color name="glass_blob_success">#142F8F4E</color>
+    <color name="glass_blob_warning">#14B86800</color>
+    <color name="glass_blob_danger">#14C62845</color>
+</resources>

@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Carousel page indicator (active, elongated pill). -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <solid android:color="@color/brand_primary_accent" />
-    <corners android:radius="@dimen/radius_pill" />
+    android:shape="oval">
+    <solid android:color="@color/fresh_color" />
 </shape>

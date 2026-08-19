@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         if (navHostFragment != null) {
             NavController navController = navHostFragment.getNavController();
             BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+            bottomNav.setClipToOutline(true);
             NavigationUI.setupWithNavController(bottomNav, navController);
 
             bottomNav.setOnItemSelectedListener(item -> {

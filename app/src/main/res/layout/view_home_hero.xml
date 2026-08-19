@@ -4,93 +4,111 @@
      actions on the left and the hero art on the right. The image sits in a
      weighted container AFTER the buttons, so the buttons always measure at
      their natural width and the image absorbs the leftover space. -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/heroCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_feature_card"
-    android:clipToOutline="true"
+    android:clipToPadding="false"
     android:elevation="@dimen/elevation_card_feature"
-    android:foreground="?attr/selectableItemBackground">
+    android:paddingTop="@dimen/space_2">
 
-    <LinearLayout
-        android:id="@+id/heroTextColumn"
+    <!-- Glass background with brand tint -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_glass_card_stat"
+        android:backgroundTint="@color/glass_tint_danger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Ambient glow -->
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="-32dp"
+        android:alpha="0.4"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_decorative_blob"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/glass_blob_danger" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/heroContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/card_padding">
+        android:padding="@dimen/card_padding"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/heroTitle"
             style="@style/TextAppearance.Lighture.PageTitle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/home_hero_title"
-            android:textColor="@color/feature_card_text"
-            android:textSize="@dimen/font_size_2xl" />
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/font_size_2xl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/heroSubtitle"
             style="@style/TextAppearance.Lighture.BodySmall"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2"
+            android:layout_marginTop="@dimen/space_1"
+            android:layout_marginEnd="@dimen/space_3"
             android:text="@string/home_hero_subtitle"
-            android:textColor="@color/feature_card_text" />
+            android:textColor="@color/text_secondary"
+            app:layout_constraintEnd_toStartOf="@+id/heroImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heroTitle" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_5"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/heroTakePhoto"
+            style="@style/Widget.Lighture.Button.HeroPrimary.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/hero_button_height"
+            android:layout_marginTop="@dimen/space_3"
+            android:text="@string/home_hero_take_photo"
+            app:icon="@drawable/ic_camera"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heroSubtitle"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/heroLiveScan"
+            style="@style/Widget.Lighture.Button.HeroSecondary.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/hero_button_height"
+            android:layout_marginStart="@dimen/hero_buttons_gap"
+            android:backgroundTint="@color/glass_pill_bg"
+            android:text="@string/home_hero_live_scan"
+            app:icon="@drawable/ic_scan"
+            app:layout_constraintBottom_toBottomOf="@+id/heroTakePhoto"
+            app:layout_constraintStart_toEndOf="@id/heroTakePhoto"
+            app:layout_constraintTop_toTopOf="@+id/heroTakePhoto"
+            app:strokeColor="@color/glass_pill_border"
+            app:strokeWidth="1dp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/heroTakePhoto"
-                    style="@style/Widget.Lighture.Button.HeroPrimary.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/hero_button_height"
-                    android:ellipsize="none"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/home_hero_take_photo"
-                    app:icon="@drawable/ic_camera" />
+        <ImageView
+            android:id="@+id/heroImage"
+            android:layout_width="@dimen/hero_image_size"
+            android:layout_height="@dimen/hero_image_size"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heroTitle" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/heroLiveScan"
-                    style="@style/Widget.Lighture.Button.HeroSecondary.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/hero_button_height"
-                    android:layout_marginStart="@dimen/hero_buttons_gap"
-                    android:ellipsize="none"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/home_hero_live_scan"
-                    app:icon="@drawable/ic_scan" />
-            </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/space_4"
-                android:gravity="center_vertical|end">
-
-                <ImageView
-                    android:id="@+id/heroImage"
-                    android:layout_width="@dimen/hero_image_size"
-                    android:layout_height="@dimen/hero_image_size"
-                    android:contentDescription="@null"
-                    android:scaleType="fitCenter"
-                    android:src="@android:color/transparent" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
