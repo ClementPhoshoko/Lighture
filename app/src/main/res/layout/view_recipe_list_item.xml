@@ -3,170 +3,171 @@
      edges, stretching the full card height) with a time pill and favourite
      heart overlaid, then title, description, ingredient pills and a count
      badge with an arrow action. ConstraintLayout lets the image fill the card
-     height that the text column drives. Binds via RecipesAdapter. -->
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+     height that the text column drives. Binds via RecipesAdapter.
+     Uses the same premium semi-transparent glassmorphic look as the home suggestion cards. -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recipeItem"
-    style="@style/Widget.Lighture.Card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/space_3"
-    android:foreground="?attr/selectableItemBackground">
+    android:background="@drawable/bg_glass_card_modern"
+    android:clipToOutline="true"
+    android:elevation="@dimen/elevation_card"
+    android:clickable="true"
+    android:focusable="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <FrameLayout
+        android:id="@+id/recipeItemArt"
+        android:layout_width="@dimen/recipe_list_art"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_recipe_thumb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:id="@+id/recipeItemArt"
-            android:layout_width="@dimen/recipe_list_art"
-            android:layout_height="0dp"
-            android:background="@drawable/bg_recipe_thumb"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/recipeItemImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop" />
-
-            <LinearLayout
-                android:id="@+id/recipeItemTimePill"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|start"
-                android:layout_margin="@dimen/space_1_5"
-                android:background="@drawable/bg_time_chip"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/space_1_5"
-                android:paddingTop="@dimen/space_0_5"
-                android:paddingEnd="@dimen/space_1_5"
-                android:paddingBottom="@dimen/space_0_5">
-
-                <ImageView
-                    android:layout_width="@dimen/size_icon_xs"
-                    android:layout_height="@dimen/size_icon_xs"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_clock"
-                    app:tint="@color/icon_primary" />
-
-                <TextView
-                    android:id="@+id/recipeItemTime"
-                    style="@style/TextAppearance.Lighture.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_1"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:textColor="@color/text_primary" />
-            </LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/recipeItemHeart"
-                android:layout_width="@dimen/size_icon_lg"
-                android:layout_height="@dimen/size_icon_lg"
-                android:layout_gravity="top|end"
-                android:layout_margin="@dimen/space_1_5"
-                android:background="@drawable/bg_icon_circle">
-
-                <ImageView
-                    android:id="@+id/recipeItemHeartIcon"
-                    android:layout_width="@dimen/size_icon_xs"
-                    android:layout_height="@dimen/size_icon_xs"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/recipes_favorite_description"
-                    android:src="@drawable/ic_heart_outline"
-                    app:tint="@color/brand_primary" />
-            </FrameLayout>
-        </FrameLayout>
+        <ImageView
+            android:id="@+id/recipeItemImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/recipeItemTimePill"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_3"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/space_3"
-            android:paddingEnd="@dimen/space_3"
-            android:paddingBottom="@dimen/space_3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/recipeItemArt"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_gravity="top|start"
+            android:layout_margin="@dimen/space_1_5"
+            android:background="@drawable/bg_time_chip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/space_1_5"
+            android:paddingTop="@dimen/space_0_5"
+            android:paddingEnd="@dimen/space_1_5"
+            android:paddingBottom="@dimen/space_0_5">
+
+            <ImageView
+                android:layout_width="@dimen/size_icon_xs"
+                android:layout_height="@dimen/size_icon_xs"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_clock"
+                app:tint="@color/icon_primary" />
 
             <TextView
-                android:id="@+id/recipeItemTitle"
-                style="@style/TextAppearance.Lighture.CardTitle"
-                android:layout_width="match_parent"
+                android:id="@+id/recipeItemTime"
+                style="@style/TextAppearance.Lighture.Caption"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_1"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/text_primary" />
-
-            <TextView
-                android:id="@+id/recipeItemDescription"
-                style="@style/TextAppearance.Lighture.BodySmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_0_5"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@color/text_secondary" />
-
-            <LinearLayout
-                android:id="@+id/recipeItemIngredients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_3"
-                android:baselineAligned="false"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_3"
-                android:baselineAligned="false"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/recipeItemCount"
-                    style="@style/TextAppearance.Lighture.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_tag_pill"
-                    android:paddingStart="@dimen/space_2"
-                    android:paddingTop="@dimen/space_0_5"
-                    android:paddingEnd="@dimen/space_2"
-                    android:paddingBottom="@dimen/space_0_5"
-                    android:textColor="@color/text_secondary" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:id="@+id/recipeItemArrow"
-                    android:layout_width="@dimen/size_icon_lg"
-                    android:layout_height="@dimen/size_icon_lg"
-                    android:background="@drawable/bg_icon_circle">
-
-                    <ImageView
-                        android:layout_width="@dimen/size_icon_xs"
-                        android:layout_height="@dimen/size_icon_xs"
-                        android:layout_gravity="center"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_chevron_right"
-                        app:tint="@color/icon_primary" />
-                </FrameLayout>
-            </LinearLayout>
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+            android:id="@+id/recipeItemHeart"
+            android:layout_width="@dimen/size_icon_lg"
+            android:layout_height="@dimen/size_icon_lg"
+            android:layout_gravity="top|end"
+            android:layout_margin="@dimen/space_1_5"
+            android:background="@drawable/bg_icon_circle">
 
-</com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:id="@+id/recipeItemHeartIcon"
+                android:layout_width="@dimen/size_icon_xs"
+                android:layout_height="@dimen/size_icon_xs"
+                android:layout_gravity="center"
+                android:contentDescription="@string/recipes_favorite_description"
+                android:src="@drawable/ic_heart_outline"
+                app:tint="@color/brand_primary" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_3"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/space_3"
+        android:paddingEnd="@dimen/space_3"
+        android:paddingBottom="@dimen/space_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/recipeItemArt"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/recipeItemTitle"
+            style="@style/TextAppearance.Lighture.CardTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/recipeItemDescription"
+            style="@style/TextAppearance.Lighture.BodySmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_0_5"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/text_secondary" />
+
+        <LinearLayout
+            android:id="@+id/recipeItemIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_3"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_3"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/recipeItemCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tag_pill"
+                android:backgroundTint="@color/red_50"
+                android:fontFamily="sans-serif-medium"
+                android:paddingStart="@dimen/space_2"
+                android:paddingTop="@dimen/space_0_5"
+                android:paddingEnd="@dimen/space_2"
+                android:paddingBottom="@dimen/space_0_5"
+                android:textColor="@color/red_700"
+                android:textSize="11sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <FrameLayout
+                android:id="@+id/recipeItemArrow"
+                android:layout_width="@dimen/size_icon_lg"
+                android:layout_height="@dimen/size_icon_lg"
+                android:background="@drawable/bg_icon_circle">
+
+                <ImageView
+                    android:layout_width="@dimen/size_icon_xs"
+                    android:layout_height="@dimen/size_icon_xs"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/icon_primary" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

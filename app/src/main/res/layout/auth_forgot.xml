@@ -131,7 +131,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/forgotButton"
             style="@style/Widget.Lighture.AuthButton"
             android:layout_width="0dp"
