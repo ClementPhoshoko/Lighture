@@ -75,29 +75,38 @@
             android:id="@+id/heroTakePhoto"
             style="@style/Widget.Lighture.Button.HeroPrimary.Small"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/hero_button_height"
-            android:layout_marginTop="@dimen/space_3"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/hero_button_height"
             android:text="@string/home_hero_take_photo"
-            app:icon="@drawable/ic_camera"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/heroSubtitle"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:icon="@drawable/ic_camera" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/heroLiveScan"
             style="@style/Widget.Lighture.Button.HeroSecondary.Small"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/hero_button_height"
-            android:layout_marginStart="@dimen/hero_buttons_gap"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/hero_button_height"
             android:backgroundTint="@color/glass_pill_bg"
             android:text="@string/home_hero_live_scan"
             app:icon="@drawable/ic_scan"
-            app:layout_constraintBottom_toBottomOf="@+id/heroTakePhoto"
-            app:layout_constraintStart_toEndOf="@id/heroTakePhoto"
-            app:layout_constraintTop_toTopOf="@+id/heroTakePhoto"
             app:strokeColor="@color/glass_pill_border"
             app:strokeWidth="1dp" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/heroButtonsFlow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_3"
+            app:constraint_referenced_ids="heroTakePhoto,heroLiveScan"
+            app:flow_horizontalBias="0"
+            app:flow_horizontalGap="@dimen/hero_buttons_gap"
+            app:flow_horizontalStyle="packed"
+            app:flow_verticalGap="@dimen/space_3"
+            app:flow_wrapMode="aligned"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/heroImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heroSubtitle" />
 
         <ImageView
             android:id="@+id/heroImage"

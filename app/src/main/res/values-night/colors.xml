@@ -61,6 +61,7 @@
     <color name="glass_background_strong">#E0201B1E</color>
     <color name="glass_background_soft">#9E1B1719</color>
     <color name="glass_background_red">#AD441824</color>
+    <color name="glass_shadow">#4D000000</color>
     <color name="glass_border">#1AFFFFFF</color>
     <color name="glass_border_soft">#12FFFFFF</color>
     <color name="glass_outline">#24FF7084</color>

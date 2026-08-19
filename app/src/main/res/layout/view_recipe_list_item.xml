@@ -103,8 +103,6 @@
             style="@style/TextAppearance.Lighture.CardTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
             android:textColor="@color/text_primary" />
 
         <TextView
@@ -113,8 +111,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_0_5"
-            android:ellipsize="end"
-            android:maxLines="2"
             android:textColor="@color/text_secondary" />
 
         <LinearLayout

@@ -448,7 +448,8 @@
                 android:id="@+id/registerButton"
                 style="@style/Widget.Lighture.AuthButton"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/size_button_lg"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/size_button_lg"
                 android:contentDescription="@string/auth_register_description"
                 android:text="@string/auth_register_button"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -564,12 +565,10 @@
             </FrameLayout>
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_6"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/space_6">
 
             <TextView
                 android:id="@+id/loginPrompt"
@@ -591,7 +590,20 @@
                 android:paddingBottom="@dimen/space_1"
                 android:text="@string/auth_login_link"
                 android:textColor="@color/text_brand" />
-        </LinearLayout>
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/registerFooterFlow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="loginPrompt,loginLink"
+                app:flow_horizontalGap="0dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/registerAgreement"

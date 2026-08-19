@@ -159,6 +159,8 @@
     <color name="glass_background_soft">#A3FFFAFB</color>
     <color name="glass_background_red">#B8FFEFF3</color>
 
+    <color name="glass_shadow">#1A000000</color>
+
     <color name="glass_border">#D1FFFFFF</color>
     <color name="glass_border_soft">#94FFFFFF</color>
     <color name="glass_outline">#1AD92D4A</color>

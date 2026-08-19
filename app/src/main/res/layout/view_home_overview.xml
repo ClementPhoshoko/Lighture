@@ -13,39 +13,46 @@
         android:id="@+id/overviewHeader"
         layout="@layout/view_home_section_header" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_3"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
+        android:layout_marginTop="@dimen/space_3">
 
         <!-- Items tracked -->
         <include
             android:id="@+id/statItemsCard"
             layout="@layout/layout_glass_stat_card"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginEnd="@dimen/space_0_5" />
+            android:layout_height="wrap_content" />
 
         <!-- Expiring soon -->
         <include
             android:id="@+id/statExpiringCard"
             layout="@layout/layout_glass_stat_card"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginEnd="@dimen/space_0_5" />
+            android:layout_height="wrap_content" />
 
         <!-- Waste saved -->
         <include
             android:id="@+id/statWasteCard"
             layout="@layout/layout_glass_stat_card"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content" />
 
-    </LinearLayout>
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/overviewFlow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="statItemsCard,statExpiringCard,statWasteCard"
+            app:flow_horizontalGap="@dimen/space_1"
+            app:flow_verticalGap="@dimen/space_2"
+            app:flow_maxElementsWrap="3"
+            app:flow_wrapMode="aligned"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

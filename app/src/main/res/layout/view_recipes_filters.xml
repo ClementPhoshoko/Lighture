@@ -14,7 +14,8 @@
     <LinearLayout
         android:id="@+id/recipesSortContainer"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:visibility="visible">
@@ -85,7 +86,8 @@
     <LinearLayout
         android:id="@+id/recipesSearchBarContainer"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="@dimen/space_4"

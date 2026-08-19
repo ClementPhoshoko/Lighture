@@ -218,7 +218,6 @@ public class HomeFragment extends Fragment {
                 R.color.glass_tint_success,
                 R.color.glass_blob_success,
                 R.drawable.ic_outline_basket,
-                R.drawable.ic_outline_trend_up,
                 R.string.home_overview_badge_items);
 
         bindGlassStatCard(root.findViewById(R.id.statExpiringCard),
@@ -226,7 +225,6 @@ public class HomeFragment extends Fragment {
                 R.color.expiring_color,
                 R.color.glass_tint_warning,
                 R.color.glass_blob_warning,
-                R.drawable.ic_outline_clock,
                 R.drawable.ic_outline_clock,
                 R.string.home_overview_badge_expiring);
 
@@ -236,7 +234,6 @@ public class HomeFragment extends Fragment {
                 R.color.glass_tint_danger,
                 R.color.glass_blob_danger,
                 R.drawable.ic_outline_trash,
-                R.drawable.ic_outline_leaf,
                 R.string.home_overview_badge_waste);
     }
 
@@ -246,7 +243,6 @@ public class HomeFragment extends Fragment {
                                   int tintColorRes,
                                   int blobColorRes,
                                   int iconRes,
-                                  int pillIconRes,
                                   int pillTextRes) {
         if (cardRoot == null) return;
 
@@ -282,12 +278,6 @@ public class HomeFragment extends Fragment {
         if (label != null) label.setText(stat.labelRes);
 
         // Pill
-        ImageView pIcon = cardRoot.findViewById(R.id.pillIcon);
-        if (pIcon != null) {
-            pIcon.setImageResource(pillIconRes);
-            pIcon.setColorFilter(accentColor);
-        }
-        
         TextView pText = cardRoot.findViewById(R.id.pillText);
         if (pText != null) {
             pText.setText(pillTextRes);

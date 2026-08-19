@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
-    android:baselineAligned="false"
     android:clickable="true"
     android:focusable="true"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
     android:padding="@dimen/space_4">
 
     <FrameLayout
         android:id="@+id/settingIconContainer"
         android:layout_width="@dimen/size_touch_min"
         android:layout_height="@dimen/size_touch_min"
-        android:background="@drawable/bg_icon_circle">
+        android:background="@drawable/bg_icon_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/settingIcon"
@@ -29,11 +29,16 @@
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/settingTextContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_3"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_marginEnd="@dimen/space_2"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/chevronIcon"
+        app:layout_constraintStart_toEndOf="@id/settingIconContainer"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/settingTitle"
@@ -56,11 +61,14 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/chevronIcon"
         android:layout_width="@dimen/size_icon_xs"
         android:layout_height="@dimen/size_icon_xs"
-        android:layout_marginStart="@dimen/space_2"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_chevron_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/icon_secondary" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

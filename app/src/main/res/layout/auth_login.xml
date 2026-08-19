@@ -239,7 +239,8 @@
         android:id="@+id/loginButton"
         style="@style/Widget.Lighture.AuthButton"
         android:layout_width="0dp"
-        android:layout_height="@dimen/size_button_lg"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/size_button_lg"
         android:layout_marginStart="@dimen/page_padding_x"
         android:layout_marginTop="@dimen/space_4"
         android:layout_marginEnd="@dimen/page_padding_x"
@@ -455,15 +456,8 @@
         style="@style/TextAppearance.Lighture.BodySmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_6"
-        android:layout_marginBottom="@dimen/space_4"
         android:text="@string/auth_signup_prompt"
-        android:textColor="@color/text_secondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/signUpLink"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/privacyCard" />
+        android:textColor="@color/text_secondary" />
 
     <TextView
         android:id="@+id/signUpLink"
@@ -476,10 +470,22 @@
         android:paddingEnd="@dimen/space_1"
         android:paddingBottom="@dimen/space_1"
         android:text="@string/auth_signup_link"
-        android:textColor="@color/text_brand"
-        app:layout_constraintBaseline_toBaselineOf="@id/signupPrompt"
+        android:textColor="@color/text_brand" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/authFooterFlow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_6"
+        android:layout_marginBottom="@dimen/space_4"
+        app:constraint_referenced_ids="signupPrompt,signUpLink"
+        app:flow_horizontalGap="0dp"
+        app:flow_horizontalStyle="packed"
+        app:flow_wrapMode="aligned"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/signupPrompt" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/privacyCard" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

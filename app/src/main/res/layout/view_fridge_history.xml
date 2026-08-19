@@ -25,90 +25,85 @@
         android:elevation="@dimen/elevation_card"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/card_padding_compact">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="@dimen/card_padding_compact"
+        <FrameLayout
+            android:id="@+id/historyIconContainer1"
+            android:layout_width="@dimen/stat_icon_container"
+            android:layout_height="@dimen/stat_icon_container"
+            android:background="@drawable/bg_glass_icon_container"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <FrameLayout
-                android:layout_width="@dimen/stat_icon_container"
-                android:layout_height="@dimen/stat_icon_container"
-                android:background="@drawable/bg_glass_icon_container">
+            <ImageView
+                android:layout_width="@dimen/size_icon_sm"
+                android:layout_height="@dimen/size_icon_sm"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_outline_fridge"
+                app:tint="@color/brand_primary" />
+        </FrameLayout>
 
-                <ImageView
-                    android:layout_width="@dimen/size_icon_sm"
-                    android:layout_height="@dimen/size_icon_sm"
-                    android:layout_gravity="center"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_outline_fridge"
-                    app:tint="@color/brand_primary" />
-            </FrameLayout>
+        <TextView
+            android:id="@+id/fridgeHistoryItemTitle1"
+            style="@style/TextAppearance.Lighture.Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_3"
+            android:text="@string/fridge_history_item_title"
+            android:textColor="@color/text_primary"
+            app:layout_constraintEnd_toStartOf="@+id/historyStatusContainer1"
+            app:layout_constraintStart_toEndOf="@id/historyIconContainer1"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_3"
-                android:layout_weight="1"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/fridgeHistoryItemSubtitle1"
+            style="@style/TextAppearance.Lighture.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_0_5"
+            android:text="@string/fridge_history_item_subtitle"
+            android:textColor="@color/text_secondary"
+            app:layout_constraintEnd_toStartOf="@+id/historyStatusContainer1"
+            app:layout_constraintStart_toEndOf="@id/historyIconContainer1"
+            app:layout_constraintTop_toBottomOf="@id/fridgeHistoryItemTitle1" />
 
-                <TextView
-                    android:id="@+id/fridgeHistoryItemTitle1"
-                    style="@style/TextAppearance.Lighture.Label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fridge_history_item_title"
-                    android:textColor="@color/text_primary" />
+        <LinearLayout
+            android:id="@+id/historyStatusContainer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2"
+            android:gravity="end"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/fridgeHistoryItemSubtitle1"
-                    style="@style/TextAppearance.Lighture.Caption"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_0_5"
-                    android:text="@string/fridge_history_item_subtitle"
-                    android:textColor="@color/text_secondary" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/fridgeHistoryItemDetected1"
+                style="@style/TextAppearance.Lighture.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_2"
-                android:gravity="end"
-                android:orientation="vertical">
+                android:textColor="@color/text_secondary"
+                tools:text="15 items detected" />
 
-                <TextView
-                    android:id="@+id/fridgeHistoryItemDetected1"
-                    style="@style/TextAppearance.Lighture.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_secondary"
-                    tools:text="15 items detected" />
+            <FrameLayout
+                android:layout_width="@dimen/size_icon_lg"
+                android:layout_height="@dimen/size_icon_lg"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/space_1"
+                android:background="@drawable/bg_icon_circle">
 
-                <FrameLayout
-                    android:layout_width="@dimen/size_icon_lg"
-                    android:layout_height="@dimen/size_icon_lg"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="@dimen/space_1"
-                    android:background="@drawable/bg_icon_circle">
-
-                    <ImageView
-                        android:layout_width="@dimen/size_icon_xs"
-                        android:layout_height="@dimen/size_icon_xs"
-                        android:layout_gravity="center"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_chevron_right"
-                        app:tint="@color/icon_primary" />
-                </FrameLayout>
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="@dimen/size_icon_xs"
+                    android:layout_height="@dimen/size_icon_xs"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/icon_primary" />
+            </FrameLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -123,90 +118,85 @@
         android:elevation="@dimen/elevation_card"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/card_padding_compact">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="@dimen/card_padding_compact"
+        <FrameLayout
+            android:id="@+id/historyIconContainer2"
+            android:layout_width="@dimen/stat_icon_container"
+            android:layout_height="@dimen/stat_icon_container"
+            android:background="@drawable/bg_glass_icon_container"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <FrameLayout
-                android:layout_width="@dimen/stat_icon_container"
-                android:layout_height="@dimen/stat_icon_container"
-                android:background="@drawable/bg_glass_icon_container">
+            <ImageView
+                android:layout_width="@dimen/size_icon_sm"
+                android:layout_height="@dimen/size_icon_sm"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_outline_fridge"
+                app:tint="@color/brand_primary" />
+        </FrameLayout>
 
-                <ImageView
-                    android:layout_width="@dimen/size_icon_sm"
-                    android:layout_height="@dimen/size_icon_sm"
-                    android:layout_gravity="center"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_outline_fridge"
-                    app:tint="@color/brand_primary" />
-            </FrameLayout>
+        <TextView
+            android:id="@+id/fridgeHistoryItemTitle2"
+            style="@style/TextAppearance.Lighture.Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_3"
+            android:text="Fridge scanned"
+            android:textColor="@color/text_primary"
+            app:layout_constraintEnd_toStartOf="@+id/historyStatusContainer2"
+            app:layout_constraintStart_toEndOf="@id/historyIconContainer2"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_3"
-                android:layout_weight="1"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/fridgeHistoryItemSubtitle2"
+            style="@style/TextAppearance.Lighture.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_0_5"
+            android:text="Yesterday, 6:45 PM"
+            android:textColor="@color/text_secondary"
+            app:layout_constraintEnd_toStartOf="@+id/historyStatusContainer2"
+            app:layout_constraintStart_toEndOf="@id/historyIconContainer2"
+            app:layout_constraintTop_toBottomOf="@id/fridgeHistoryItemTitle2" />
 
-                <TextView
-                    android:id="@+id/fridgeHistoryItemTitle2"
-                    style="@style/TextAppearance.Lighture.Label"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Fridge scanned"
-                    android:textColor="@color/text_primary" />
+        <LinearLayout
+            android:id="@+id/historyStatusContainer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2"
+            android:gravity="end"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/fridgeHistoryItemSubtitle2"
-                    style="@style/TextAppearance.Lighture.Caption"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_0_5"
-                    android:text="Yesterday, 6:45 PM"
-                    android:textColor="@color/text_secondary" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/fridgeHistoryItemDetected2"
+                style="@style/TextAppearance.Lighture.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_2"
-                android:gravity="end"
-                android:orientation="vertical">
+                android:textColor="@color/text_secondary"
+                android:text="8 items detected" />
 
-                <TextView
-                    android:id="@+id/fridgeHistoryItemDetected2"
-                    style="@style/TextAppearance.Lighture.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_secondary"
-                    android:text="8 items detected" />
+            <FrameLayout
+                android:layout_width="@dimen/size_icon_lg"
+                android:layout_height="@dimen/size_icon_lg"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/space_1"
+                android:background="@drawable/bg_icon_circle">
 
-                <FrameLayout
-                    android:layout_width="@dimen/size_icon_lg"
-                    android:layout_height="@dimen/size_icon_lg"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="@dimen/space_1"
-                    android:background="@drawable/bg_icon_circle">
-
-                    <ImageView
-                        android:layout_width="@dimen/size_icon_xs"
-                        android:layout_height="@dimen/size_icon_xs"
-                        android:layout_gravity="center"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_chevron_right"
-                        app:tint="@color/icon_primary" />
-                </FrameLayout>
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="@dimen/size_icon_xs"
+                    android:layout_height="@dimen/size_icon_xs"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/icon_primary" />
+            </FrameLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
