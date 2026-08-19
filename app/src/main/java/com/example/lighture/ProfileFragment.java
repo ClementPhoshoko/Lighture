@@ -25,6 +25,7 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel viewModel;
     private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
     private ImageView profileImage;
+    private HeaderViewModel headerViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,8 +51,10 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        headerViewModel = new ViewModelProvider(requireActivity()).get(HeaderViewModel.class);
 
         applyInsets(view);
+        setupHeader();
         wireProfileImage(view);
         wireMotivation(view);
         wireSettings(view);
@@ -61,15 +64,25 @@ public class ProfileFragment extends Fragment {
         observeProfile(view);
     }
 
-    private void applyInsets(View root) {
-        View profileTop = root.findViewById(R.id.profileTop);
-        ViewCompat.setOnApplyWindowInsetsListener(profileTop, (v, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            int px = getResources().getDimensionPixelSize(R.dimen.page_padding_x);
-            v.setPadding(bars.left + px, bars.top, bars.right + px, 0);
-            return insets;
-        });
+    private void setupHeader() {
+        headerViewModel.updateState(new HeaderViewModel.HeaderState(
+                getString(R.string.profile_title),
+                getString(R.string.profile_subtitle),
+                true,
+                R.drawable.ic_settings,
+                null,
+                false
+        ));
 
+        headerViewModel.actionClicked.observe(getViewLifecycleOwner(), clicked -> {
+            if (clicked != null && clicked) {
+                showMessage("Settings are coming soon.");
+                headerViewModel.consumeActionClick();
+            }
+        });
+    }
+
+    private void applyInsets(View root) {
         View scroll = root.findViewById(R.id.profileScroll);
         ViewCompat.setOnApplyWindowInsetsListener(scroll, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -101,8 +114,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void wireSettings(View root) {
-        root.findViewById(R.id.settingsButton).setOnClickListener(v ->
-                showMessage("Settings are coming soon."));
         root.findViewById(R.id.profileSummaryCard).setOnClickListener(v ->
                 showMessage("Profile details are coming soon."));
     }

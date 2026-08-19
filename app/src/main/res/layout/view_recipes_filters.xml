@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Recipes toolbar row: clean and integrated sort selector.
-     Removed the redundant filter button and background for a borderless look. -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Recipes toolbar row: sort selector and search.
+     Used inside sticky header which provides glass background. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/recipesFiltersRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/page_padding_x"
-    android:paddingEnd="@dimen/page_padding_x"
-    android:paddingBottom="@dimen/space_2">
+    android:orientation="vertical"
+    android:clipToPadding="false"
+    android:clipChildren="false">
 
     <!-- Row 1: Sort Button and Search Toggle -->
     <LinearLayout
@@ -23,7 +23,7 @@
             android:id="@+id/recipesSortButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_sort_button"
+            android:background="@drawable/bg_glass_pill"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
@@ -63,15 +63,22 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <ImageButton
+        <FrameLayout
             android:id="@+id/recipesSearchButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/bg_icon_circle"
-            android:contentDescription="@string/recipes_search_description"
-            android:padding="@dimen/space_3"
-            app:srcCompat="@drawable/ic_search"
-            app:tint="@color/icon_primary" />
+            android:background="@drawable/bg_glass_icon_container"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/space_3">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/recipes_search_description"
+                android:src="@drawable/ic_search"
+                app:tint="@color/icon_primary" />
+        </FrameLayout>
     </LinearLayout>
 
     <!-- Active Search Bar (Overlays Sort Container) -->
@@ -79,7 +86,6 @@
         android:id="@+id/recipesSearchBarContainer"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/bg_filter_sort_container"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="@dimen/space_4"
@@ -120,4 +126,4 @@
             app:srcCompat="@drawable/ic_chevron_right"
             app:tint="@color/icon_secondary" />
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

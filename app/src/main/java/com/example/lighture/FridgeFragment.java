@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +34,7 @@ public class FridgeFragment extends Fragment {
     private final List<FridgeItem> fullItemsList = new ArrayList<>();
     private FridgeItemsAdapter itemsAdapter;
     private String currentFilter = FridgeData.FILTER_ALL;
+    private HeaderViewModel headerViewModel;
 
     @Nullable
     @Override
@@ -44,8 +46,10 @@ public class FridgeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        headerViewModel = new ViewModelProvider(requireActivity()).get(HeaderViewModel.class);
+
         applyInsets(view);
-        wireHeader(view);
+        setupHeader();
         bindOverview(view);
         wireFilters(view);
         setupItemsList(view);
@@ -54,21 +58,30 @@ public class FridgeFragment extends Fragment {
         animateContentIn(view);
     }
 
+    private void setupHeader() {
+        headerViewModel.updateState(new HeaderViewModel.HeaderState(
+                getString(R.string.fridge_title),
+                getString(R.string.fridge_subtitle),
+                true,
+                R.drawable.ic_camera,
+                getString(R.string.fridge_scan),
+                false
+        ));
+
+        headerViewModel.actionClicked.observe(getViewLifecycleOwner(), clicked -> {
+            if (clicked != null && clicked) {
+                showMessage(R.string.fridge_snackbar_scan);
+                headerViewModel.consumeActionClick();
+            }
+        });
+    }
+
     private void animateContentIn(View root) {
-        root.findViewById(R.id.fridgeTop).startAnimation(
-                AnimationUtils.loadAnimation(requireContext(), R.anim.activity_content_in));
         root.findViewById(R.id.fridgeScroll).startAnimation(
                 AnimationUtils.loadAnimation(requireContext(), R.anim.activity_content_in));
     }
 
     private void applyInsets(View root) {
-        View fridgeTop = root.findViewById(R.id.fridgeTop);
-        ViewCompat.setOnApplyWindowInsetsListener(fridgeTop, (v, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left + getResources().getDimensionPixelSize(R.dimen.page_padding_x), bars.top, bars.right + getResources().getDimensionPixelSize(R.dimen.page_padding_x), 0);
-            return insets;
-        });
-
         View scroll = root.findViewById(R.id.fridgeScroll);
         ViewCompat.setOnApplyWindowInsetsListener(scroll, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -77,10 +90,7 @@ public class FridgeFragment extends Fragment {
         });
     }
 
-    private void wireHeader(View root) {
-        root.findViewById(R.id.fridgeScanButton).setOnClickListener(v ->
-                showMessage(R.string.fridge_snackbar_scan));
-    }
+
 
     private void bindOverview(View root) {
         FridgeData.FridgeStats stats = FridgeData.stats();

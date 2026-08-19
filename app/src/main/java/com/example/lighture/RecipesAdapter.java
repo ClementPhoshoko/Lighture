@@ -92,16 +92,8 @@ public final class RecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
         RecipeViewHolder recipeHolder = (RecipeViewHolder) holder;
         Context context = recipeHolder.itemView.getContext();
         recipeHolder.title.setText(recipe.title);
-        recipeHolder.description.setText(recipe.description);
         recipeHolder.time.setText(recipe.cookingTime);
         ImageUtils.loadAssetImage(context, recipeHolder.image, ASSET_RECIPE_IMAGE);
-
-        int count = recipe.ingredients.size();
-        recipeHolder.count.setText(context.getResources()
-                .getQuantityString(R.plurals.home_suggestion_uses, count, count));
-        recipeHolder.count.getBackground().mutate().setTintList(ColorStateList.valueOf(
-                ContextCompat.getColor(context, R.color.tag_easy_background)));
-        recipeHolder.count.setTextColor(ContextCompat.getColor(context, R.color.tag_easy_text));
 
         bindIngredients(recipeHolder.ingredients, recipe);
         bindFavorite(recipeHolder.heart, recipeHolder.heartIcon, recipe);
@@ -189,9 +181,7 @@ public final class RecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     static final class RecipeViewHolder extends RecyclerView.ViewHolder {
         final TextView title;
-        final TextView description;
         final TextView time;
-        final TextView count;
         final ImageView image;
         final ImageView heartIcon;
         final View heart;
@@ -201,9 +191,7 @@ public final class RecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
         RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.recipeItemTitle);
-            description = itemView.findViewById(R.id.recipeItemDescription);
             time = itemView.findViewById(R.id.recipeItemTime);
-            count = itemView.findViewById(R.id.recipeItemCount);
             image = itemView.findViewById(R.id.recipeItemImage);
             heartIcon = itemView.findViewById(R.id.recipeItemHeartIcon);
             heart = itemView.findViewById(R.id.recipeItemHeart);

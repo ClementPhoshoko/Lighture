@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Filter chip bar: used inside sticky header which provides glass background. -->
+<androidx.recyclerview.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/filterChipRecyclerView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/filterChipRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:clipChildren="false"
-        android:paddingStart="@dimen/page_padding_x"
-        android:paddingEnd="@dimen/page_padding_x"
-        android:orientation="horizontal"
-        android:overScrollMode="never"
-        android:scrollbars="none" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider" />
-
-</LinearLayout>
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    android:paddingStart="@dimen/page_padding_x"
+    android:paddingEnd="@dimen/page_padding_x"
+    android:orientation="horizontal"
+    android:overScrollMode="never"
+    android:scrollbars="none" />

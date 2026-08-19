@@ -176,7 +176,7 @@
 
     <!-- Fridge screen -->
     <string name="fridge_title">My Fridge</string>
-    <string name="fridge_subtitle">Track your ingredients, check freshness, and reduce waste.</string>
+    <string name="fridge_subtitle">Track ingredients and reduce waste.</string>
     <string name="fridge_scan">Scan Fridge</string>
     <string name="fridge_scan_description">Scan your fridge</string>
 

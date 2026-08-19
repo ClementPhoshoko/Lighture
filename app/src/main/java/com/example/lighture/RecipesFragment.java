@@ -21,6 +21,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,6 +37,7 @@ public class RecipesFragment extends Fragment {
     private String currentCategory = RecipesData.CATEGORY_ALL;
     private String currentSearchQuery = "";
     private String currentSortMode = "Recommended";
+    private HeaderViewModel headerViewModel;
 
     @Nullable
     @Override
@@ -47,7 +49,10 @@ public class RecipesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        headerViewModel = new ViewModelProvider(requireActivity()).get(HeaderViewModel.class);
+
         applyInsets(view);
+        setupHeader();
         setupRecipesList(view);
         wireChips(view);
         wireHeaderActions(view);
@@ -55,9 +60,18 @@ public class RecipesFragment extends Fragment {
         animateContentIn(view);
     }
 
+    private void setupHeader() {
+        headerViewModel.updateState(new HeaderViewModel.HeaderState(
+                getString(R.string.recipes_title),
+                getString(R.string.recipes_subtitle),
+                false,
+                null,
+                null,
+                false
+        ));
+    }
+
     private void animateContentIn(View root) {
-        root.findViewById(R.id.recipesTop).startAnimation(
-                AnimationUtils.loadAnimation(requireContext(), R.anim.activity_content_in));
         root.findViewById(R.id.recipesStickyHeader).startAnimation(
                 AnimationUtils.loadAnimation(requireContext(), R.anim.activity_content_in));
         root.findViewById(R.id.recipesList).startAnimation(
@@ -65,30 +79,17 @@ public class RecipesFragment extends Fragment {
     }
 
     private void applyInsets(View root) {
-        View headerContainer = root.findViewById(R.id.recipesHeaderContainer);
-        View recipesTop = root.findViewById(R.id.recipesTop);
         View recipesList = root.findViewById(R.id.recipesList);
-
-        int topInitialPaddingStart = recipesTop.getPaddingStart();
-        int topInitialPaddingEnd = recipesTop.getPaddingEnd();
-        int topInitialPaddingTop = recipesTop.getPaddingTop();
 
         int listInitialPaddingStart = recipesList.getPaddingStart();
         int listInitialPaddingEnd = recipesList.getPaddingEnd();
         int listInitialPaddingBottom = recipesList.getPaddingBottom();
 
-        ViewCompat.setOnApplyWindowInsetsListener(headerContainer, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             
-            // Apply status bar padding to the internal top row
-            recipesTop.setPadding(bars.left + topInitialPaddingStart, 
-                               bars.top + topInitialPaddingTop, 
-                               bars.right + topInitialPaddingEnd, 0);
-
-            // In Strict Clipping mode, the list sits below the header. 
-            // We only need to handle bottom navigation insets here.
             recipesList.setPadding(bars.left + listInitialPaddingStart, 
-                                0, // No top padding needed as it's below header
+                                0, 
                                 bars.right + listInitialPaddingEnd, 
                                 bars.bottom + listInitialPaddingBottom);
 
@@ -190,8 +191,9 @@ public class RecipesFragment extends Fragment {
         View searchContainer = root.findViewById(R.id.recipesSearchBarContainer);
         EditText searchInput = root.findViewById(R.id.recipesSearchInput);
         ImageButton searchClose = root.findViewById(R.id.recipesSearchClose);
+        View searchButton = root.findViewById(R.id.recipesSearchButton);
 
-        root.findViewById(R.id.recipesSearchButton).setOnClickListener(v -> {
+        searchButton.setOnClickListener(v -> {
             TransitionManager.beginDelayedTransition((ViewGroup) filtersRoot);
             sortContainer.setVisibility(View.GONE);
             searchContainer.setVisibility(View.VISIBLE);

@@ -24,6 +24,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,6 +51,7 @@ public class HomeFragment extends Fragment {
 
     private List<HomeData.Advisory> advisories;
     private int advisoryIndex;
+    private HeaderViewModel headerViewModel;
 
     @Nullable
     @Override
@@ -61,15 +63,41 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        headerViewModel = new ViewModelProvider(requireActivity()).get(HeaderViewModel.class);
+
         applyInsets(view);
-        wireGreeting(view);
-        wireHeaderActions(view);
+        setupHeader();
         wireHeroActions(view);
         wireSeeAllLinks(view);
         setupSuggestions(view);
         bindOverview(view);
         setupCarousel(view);
         startAdvisoryCycle(view);
+    }
+
+    private void setupHeader() {
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        int greetingRes = hour < 12 ? R.string.home_greeting_morning
+                : hour < 17 ? R.string.home_greeting_afternoon
+                : R.string.home_greeting_evening;
+        String title = getString(greetingRes) + " " + getString(R.string.home_greeting_name);
+        String subtitle = getString(R.string.home_subtitle);
+
+        headerViewModel.updateState(new HeaderViewModel.HeaderState(
+                title,
+                subtitle,
+                true,
+                R.drawable.ic_bell,
+                null,
+                true
+        ));
+
+        headerViewModel.actionClicked.observe(getViewLifecycleOwner(), clicked -> {
+            if (clicked != null && clicked) {
+                showMessage(R.string.home_snackbar_notifications);
+                headerViewModel.consumeActionClick();
+            }
+        });
     }
 
     @Override
@@ -79,14 +107,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void applyInsets(View root) {
-        View homeTop = root.findViewById(R.id.homeTop);
-        ViewCompat.setOnApplyWindowInsetsListener(homeTop, (v, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            int px = getResources().getDimensionPixelSize(R.dimen.page_padding_x);
-            v.setPadding(bars.left + px, bars.top, bars.right + px, 0);
-            return insets;
-        });
-
         View scroll = root.findViewById(R.id.homeScroll);
         ViewCompat.setOnApplyWindowInsetsListener(scroll, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -103,19 +123,7 @@ public class HomeFragment extends Fragment {
         ImageUtils.loadAssetImage(requireContext(), root.findViewById(R.id.heroImage), ASSET_HERO_IMAGE);
     }
 
-    private void wireGreeting(View root) {
-        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        int greetingRes = hour < 12 ? R.string.home_greeting_morning
-                : hour < 17 ? R.string.home_greeting_afternoon
-                : R.string.home_greeting_evening;
-        TextView greeting = root.findViewById(R.id.homeGreeting);
-        greeting.setText(getString(greetingRes) + " " + getString(R.string.home_greeting_name));
-    }
 
-    private void wireHeaderActions(View root) {
-        root.findViewById(R.id.notificationButton).setOnClickListener(v ->
-                showMessage(R.string.home_snackbar_notifications));
-    }
 
     private void setupSuggestions(View root) {
         List<HomeData.Suggestion> suggestions = HomeData.suggestions();
