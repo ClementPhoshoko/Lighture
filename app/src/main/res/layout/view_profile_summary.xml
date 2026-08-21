@@ -27,8 +27,8 @@
 
             <FrameLayout
                 android:id="@+id/profileImageContainer"
-                android:layout_width="@dimen/size_avatar_xl"
-                android:layout_height="@dimen/size_avatar_xl"
+                android:layout_width="@dimen/size_avatar_profile"
+                android:layout_height="@dimen/size_avatar_profile"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"

@@ -101,6 +101,7 @@
     <dimen name="size_avatar_md">44dp</dimen>
     <dimen name="size_avatar_lg">80dp</dimen>
     <dimen name="size_avatar_xl">96dp</dimen>
+    <dimen name="size_avatar_profile">120dp</dimen>
     <dimen name="size_avatar_2xl">160dp</dimen>
 
     <dimen name="size_touch_min">48dp</dimen>
