@@ -29,5 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_2"
         android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textColor="@color/category_text_selector" />
 </LinearLayout>

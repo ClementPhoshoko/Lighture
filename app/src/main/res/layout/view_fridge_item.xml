@@ -14,7 +14,7 @@
     android:elevation="@dimen/elevation_card"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
-    android:minHeight="88dp">
+    android:minHeight="72dp">
 
     <FrameLayout
         android:id="@+id/fridgeItemArt"
@@ -59,6 +59,8 @@
             style="@style/TextAppearance.Lighture.Body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/text_primary"
             tools:text="Tomatoes" />
 
@@ -68,6 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_0_5"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/text_secondary"
             tools:text="5 pieces" />
     </LinearLayout>

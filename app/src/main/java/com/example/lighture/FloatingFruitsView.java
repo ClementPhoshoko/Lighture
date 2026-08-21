@@ -86,9 +86,11 @@ public class FloatingFruitsView extends View {
             return;
         }
         int count = MIN_COUNT + random.nextInt(MAX_COUNT - MIN_COUNT + 1);
+        float density = getResources().getDisplayMetrics().density;
         for (int i = 0; i < count; i++) {
             Drawable drawable = iconPool.get(random.nextInt(iconPool.size()));
-            float size = dp(MIN_SIZE_DP + random.nextFloat() * (MAX_SIZE_DP - MIN_SIZE_DP));
+            float sizeBase = MIN_SIZE_DP + random.nextFloat() * (MAX_SIZE_DP - MIN_SIZE_DP);
+            float size = sizeBase * density;
             int x = random.nextInt(width);
             int y = random.nextInt(height);
             float rotation = random.nextInt(MAX_ROTATION_DEG * 2 + 1) - MAX_ROTATION_DEG;
@@ -109,10 +111,6 @@ public class FloatingFruitsView extends View {
             item.drawable.draw(canvas);
             canvas.restore();
         }
-    }
-
-    private float dp(float value) {
-        return value * getResources().getDisplayMetrics().density;
     }
 
     private static class FloatingItem {

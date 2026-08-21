@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Optimized for narrow/zoomed devices (360dp - 410dp, like Samsung A24).
+         We slightly reduce the base sp and dp tokens to compensate for the system's "Huge" scaling. -->
+
+    <!-- Spacing Refinements -->
+    <dimen name="page_padding_x">10dp</dimen>
+    <dimen name="section_gap">16dp</dimen>
+    <dimen name="card_padding">12dp</dimen>
+    <dimen name="hero_image_size">64dp</dimen>
+    <dimen name="stat_icon_container">40dp</dimen>
+
+    <!-- Adaptive Font sizes (approx 15% reduction to offset 1.3x font scale) -->
+    <dimen name="font_size_2xs">9sp</dimen>
+    <dimen name="font_size_xs">10sp</dimen>
+    <dimen name="font_size_sm">12sp</dimen>
+    <dimen name="font_size_md">14sp</dimen>
+    <dimen name="font_size_lg">16sp</dimen>
+    <dimen name="font_size_xl">18sp</dimen>
+    <dimen name="font_size_2xl">20sp</dimen>
+</resources>

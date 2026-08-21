@@ -16,7 +16,8 @@
     android:clipToOutline="true"
     android:elevation="@dimen/elevation_card"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:minHeight="100dp">
 
     <FrameLayout
         android:id="@+id/recipeItemArt"
@@ -103,6 +104,8 @@
             style="@style/TextAppearance.Lighture.CardTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/text_primary" />
 
         <TextView

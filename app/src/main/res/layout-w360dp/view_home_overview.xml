@@ -1,38 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Fridge overview: Premium glassmorphic cards.
-     Stacked vertically for mobile. Horizontal row for tablet (layout-w600dp). -->
+<!-- Adaptive Home Overview for narrow/zoomed devices (e.g. Samsung A24).
+     Uses Flow to allow cards to wrap 2+1 if the system font is too large. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/space_0">
+    android:orientation="vertical">
 
-    <include
-        android:id="@+id/overviewHeader"
-        layout="@layout/view_home_section_header" />
+    <include layout="@layout/view_home_section_header" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_3">
 
-        <!-- Items tracked -->
         <include
             android:id="@+id/statItemsCard"
             layout="@layout/layout_glass_stat_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
-        <!-- Expiring soon -->
         <include
             android:id="@+id/statExpiringCard"
             layout="@layout/layout_glass_stat_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
-        <!-- Waste saved -->
         <include
             android:id="@+id/statWasteCard"
             layout="@layout/layout_glass_stat_card"
@@ -52,7 +45,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </LinearLayout>

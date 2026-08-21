@@ -15,7 +15,6 @@ import android.transition.TransitionManager;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -112,30 +111,20 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupWithNavController(bottomNav, navController);
 
             bottomNav.setOnItemSelectedListener(item -> {
-                // 1. Trigger haptic feedback (subtle click)
+                // 1. Trigger haptic feedback
                 bottomNav.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
-                // 2. Animate the active icon with a Spring/Overshoot effect
-                View itemView = bottomNav.findViewById(item.getItemId());
-                if (itemView != null) {
-                    View foundIcon = itemView.findViewById(com.google.android.material.R.id.navigation_bar_item_icon_view);
-                    if (foundIcon == null) {
-                        foundIcon = itemView.findViewById(com.google.android.material.R.id.icon);
-                    }
-                    if (foundIcon != null) {
-                        final View icon = foundIcon;
-                        icon.animate()
-                                .scaleX(1.2f)
-                                .scaleY(1.2f)
-                                .setDuration(200)
-                                .setInterpolator(new OvershootInterpolator(2f))
-                                .withEndAction(() -> icon.animate().scaleX(1f).scaleY(1f).setDuration(100).start())
-                                .start();
-                    }
-                }
-
-                // 3. Maintain standard NavigationUI behavior
-                return NavigationUI.onNavDestinationSelected(item, navController);
+                // 2. Perform navigation with smooth animations
+                navController.navigate(item.getItemId(), null, new androidx.navigation.NavOptions.Builder()
+                        .setLaunchSingleTop(true)
+                        .setRestoreState(true)
+                        .setPopUpTo(navController.getGraph().getStartDestinationId(), false, true)
+                        .setEnterAnim(R.anim.nav_fade_in)
+                        .setExitAnim(R.anim.nav_fade_out)
+                        .setPopEnterAnim(R.anim.nav_pop_enter)
+                        .setPopExitAnim(R.anim.nav_pop_exit)
+                        .build());
+                return true;
             });
         }
     }

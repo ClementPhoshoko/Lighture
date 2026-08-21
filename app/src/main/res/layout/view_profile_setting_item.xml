@@ -7,7 +7,8 @@
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:padding="@dimen/space_4">
+    android:padding="@dimen/space_4"
+    android:minHeight="@dimen/size_touch_min">
 
     <FrameLayout
         android:id="@+id/settingIconContainer"
@@ -45,6 +46,8 @@
             style="@style/TextAppearance.Lighture.Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/text_primary"
             tools:text="Setting Title" />
 

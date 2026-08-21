@@ -96,13 +96,12 @@
         <!-- Center Content -->
         <LinearLayout
             android:id="@+id/statTextContainer"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_3"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/space_4"
-            app:layout_constraintBottom_toTopOf="@+id/statusPill"
+            android:paddingHorizontal="@dimen/space_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iconContainer">
@@ -122,6 +121,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-2dp"
                 android:alpha="0.8"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@color/text_primary"
                 tools:text="Items tracked" />
         </LinearLayout>
@@ -131,12 +132,12 @@
             android:id="@+id/statusPill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_3"
+            android:layout_marginTop="@dimen/space_4"
             android:layout_marginBottom="@dimen/space_4"
             android:background="@drawable/bg_glass_pill"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/space_3"
+            android:paddingHorizontal="@dimen/space_4"
             android:paddingVertical="@dimen/space_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -148,6 +149,8 @@
                 style="@style/TextAppearance.Lighture.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@color/fresh_color"
                 android:textSize="@dimen/font_size_2xs"
                 tools:text="+6 added" />

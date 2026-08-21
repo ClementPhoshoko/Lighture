@@ -130,16 +130,16 @@ public final class RecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
         pill.setTextSize(11);
         pill.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
         pill.setText(text);
-        pill.setPadding(dp(context, 6), dp(context, 2), dp(context, 6), dp(context, 2));
+
+        int pxX = context.getResources().getDimensionPixelSize(R.dimen.ingredient_pill_padding_x);
+        int pxY = context.getResources().getDimensionPixelSize(R.dimen.ingredient_pill_padding_y);
+        pill.setPadding(pxX, pxY, pxX, pxY);
+
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMarginEnd(dp(context, 6));
+        params.setMarginEnd(context.getResources().getDimensionPixelSize(R.dimen.ingredient_pill_margin));
         pill.setLayoutParams(params);
         return pill;
-    }
-
-    private int dp(Context context, int value) {
-        return Math.round(context.getResources().getDisplayMetrics().density * value);
     }
 
     private void bindFavorite(View heartButton, ImageView heartIcon, Recipe recipe) {

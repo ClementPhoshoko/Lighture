@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Restore standard proportions for devices with 411dp width or more (like Samsung A12) -->
+    <dimen name="page_padding_x">16dp</dimen>
+    <dimen name="section_gap">24dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="hero_image_size">88dp</dimen>
+
+    <!-- Standard Font sizes for wide screens -->
+    <dimen name="font_size_2xs">11sp</dimen>
+    <dimen name="font_size_xs">12sp</dimen>
+    <dimen name="font_size_sm">14sp</dimen>
+    <dimen name="font_size_md">16sp</dimen>
+    <dimen name="font_size_lg">18sp</dimen>
+    <dimen name="font_size_xl">20sp</dimen>
+    <dimen name="font_size_2xl">24sp</dimen>
+</resources>

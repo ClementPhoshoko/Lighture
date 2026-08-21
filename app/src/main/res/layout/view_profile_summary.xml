@@ -20,12 +20,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:padding="@dimen/space_5">
 
             <FrameLayout
@@ -35,7 +32,10 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:stateListAnimator="@animator/anim_scale_click">
+                android:stateListAnimator="@animator/anim_scale_click"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/profileImage"
@@ -62,57 +62,68 @@
                     android:stateListAnimator="@animator/anim_scale_click" />
             </FrameLayout>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/profileName"
+                style="@style/TextAppearance.Lighture.SectionTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_4"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginEnd="@dimen/space_2"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/text_primary"
+                app:layout_constraintEnd_toStartOf="@+id/profileArrow"
+                app:layout_constraintStart_toEndOf="@id/profileImageContainer"
+                app:layout_constraintTop_toTopOf="@id/profileImageContainer"
+                tools:text="Clement Phoshoko" />
 
-                <TextView
-                    android:id="@+id/profileName"
-                    style="@style/TextAppearance.Lighture.SectionTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_primary"
-                    tools:text="Clement Phoshoko" />
+            <TextView
+                android:id="@+id/profileEmail"
+                style="@style/TextAppearance.Lighture.BodySmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_0_5"
+                android:layout_marginEnd="@dimen/space_2"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/text_secondary"
+                app:layout_constraintEnd_toStartOf="@+id/profileArrow"
+                app:layout_constraintStart_toStartOf="@id/profileName"
+                app:layout_constraintTop_toBottomOf="@id/profileName"
+                tools:text="clement.pho@gmail.com" />
 
-                <TextView
-                    android:id="@+id/profileEmail"
-                    style="@style/TextAppearance.Lighture.BodySmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_0_5"
-                    android:textColor="@color/text_secondary"
-                    tools:text="clement.pho@gmail.com" />
-
-                <TextView
-                    android:id="@+id/premiumBadge"
-                    style="@style/TextAppearance.Lighture.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_1_5"
-                    android:background="@drawable/bg_tag_pill"
-                    android:backgroundTint="@color/food_grain_soft"
-                    android:paddingStart="@dimen/space_2"
-                    android:paddingTop="@dimen/space_0_5"
-                    android:paddingEnd="@dimen/space_2"
-                    android:paddingBottom="@dimen/space_0_5"
-                    android:text="@string/profile_badge_premium"
-                    android:textColor="@color/food_grain"
-                    app:drawableStartCompat="@drawable/ic_premium"
-                    app:drawableTint="@color/food_grain"
-                    android:drawablePadding="@dimen/space_1"
-                    android:gravity="center_vertical" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/premiumBadge"
+                style="@style/TextAppearance.Lighture.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_1_5"
+                android:background="@drawable/bg_tag_pill"
+                android:backgroundTint="@color/food_grain_soft"
+                android:paddingStart="@dimen/space_2"
+                android:paddingTop="@dimen/space_0_5"
+                android:paddingEnd="@dimen/space_2"
+                android:paddingBottom="@dimen/space_0_5"
+                android:text="@string/profile_badge_premium"
+                android:textColor="@color/food_grain"
+                app:drawableStartCompat="@drawable/ic_premium"
+                app:drawableTint="@color/food_grain"
+                android:drawablePadding="@dimen/space_1"
+                android:gravity="center_vertical"
+                app:layout_constraintStart_toStartOf="@id/profileName"
+                app:layout_constraintTop_toBottomOf="@id/profileEmail" />
 
             <ImageView
+                android:id="@+id/profileArrow"
                 android:layout_width="@dimen/size_icon_sm"
                 android:layout_height="@dimen/size_icon_sm"
                 android:importantForAccessibility="no"
                 android:src="@drawable/ic_chevron_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/icon_secondary" />
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Statistics Row -->
         <View

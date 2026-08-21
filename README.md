@@ -219,6 +219,14 @@ Authentication, subscription billing, and cloud profile synchronization can be a
 | Testing | JUnit, Espresso, Room tests, and manual device testing |
 | Version control | Git and GitHub |
 
+### Targeted Adaptive Scaling (Samsung Galaxy A-Series Optimization)
+
+To ensure a consistent "premium" look across devices with varying densities and user accessibility settings (like the Samsung A12 vs. A24), the app uses a dual-bucket scaling strategy:
+
+- **Standard Screens (`values-w411dp`)**: Optimized for devices with wider DP widths (like the A12). It uses the full, generous spacing and typography tokens defined in the core design system.
+- **Narrow/Zoomed Screens (`values-w360dp`)**: Optimized for narrower devices or those with high "Screen Zoom" active (like the A24 at 384dp). This bucket uses slightly reduced `sp` and `dp` tokens to compensate for the system's aggressive 1.3x+ font scaling, ensuring text doesn't become "Huge" or break layouts.
+- **Layout Adaptation**: The app switches from rigid `LinearLayout` rows to adaptive `Flow` layouts (`layout-w360dp`) on narrow screens to allow components like stat cards to wrap gracefully rather than squishing.
+
 ### Why Firebase AI Logic
 
 Firebase AI Logic is recommended instead of placing a raw Gemini API key inside the Android application.
